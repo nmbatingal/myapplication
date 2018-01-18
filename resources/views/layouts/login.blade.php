@@ -9,7 +9,8 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Propeller Admin Dashboard</title>
+        <title>Laravel</title>
+        
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bower/bootstrap-material-design-icons/css/material-icons.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('propeller/assets/css/bootstrap.min.css')}}">
@@ -35,7 +36,7 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a href="{{ route('home') }}" class="navbar-brand navbar-brand-custome">My Application</a>
+                <a href="javascript:void(0);" class="navbar-brand navbar-brand-custome">My Application</a>
             </div>
 
             @if (Auth::check())
