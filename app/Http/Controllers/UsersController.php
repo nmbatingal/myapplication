@@ -91,7 +91,8 @@ class UsersController extends Controller
         $user->lastname        = $request['u_lname'];
         $user->email           = $request['u_email'];
         $user->mobile_number   = $request['u_contact'];
-        $user->div_unit   = $request['u_unit'];
+        $user->div_unit        = $request['u_unit'];
+        $user->position        = $request['u_position'];
         $user->save();
 
         //return redirect()->route('users.index');

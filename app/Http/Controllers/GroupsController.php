@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Office;
+use App\User;
+use App\Offices;
 use Illuminate\Http\Request;
 
 class GroupsController extends Controller
@@ -19,8 +20,10 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        $groups = Office::orderBy('acronym', 'ASC')->get();
-        return view('accounts.groups', compact('groups'));
+        $users   = User::orderBy('firstname', 'ASC')->get();
+        $groups = Offices::orderBy('acronym', 'ASC')->get();
+
+        return view('accounts.groups', compact('users', 'groups'));
     }
 
     /**
@@ -41,15 +44,13 @@ class GroupsController extends Controller
      */
     public function store(Request $request)
     {
-        $office = new Office();
+        $office = new Offices();
 
         $office->div_name  = $request['div_name'];
         $office->acronym   = $request['acronym'];
-        $office->div_head  = $request['div_head'];
-        $office->position  = $request['position'];
         $office->save();
 
-        return redirect()->route('accounts.groups');
+        return redirect()->route('groups.index');
     }
 
     /**
@@ -58,7 +59,7 @@ class GroupsController extends Controller
      * @param  \App\Office  $office
      * @return \Illuminate\Http\Response
      */
-    public function show(Office $office)
+    public function show(Offices $office)
     {
         //
     }
@@ -69,7 +70,7 @@ class GroupsController extends Controller
      * @param  \App\Office  $office
      * @return \Illuminate\Http\Response
      */
-    public function edit(Office $office)
+    public function edit(Offices $office)
     {
         //
     }
@@ -81,7 +82,7 @@ class GroupsController extends Controller
      * @param  \App\Office  $office
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Office $office)
+    public function update(Request $request, Offices $office)
     {
         //
     }
@@ -92,7 +93,7 @@ class GroupsController extends Controller
      * @param  \App\Office  $office
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Office $office)
+    public function destroy(Offices $office)
     {
         //
     }

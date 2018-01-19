@@ -13,14 +13,23 @@
         <h1 class="section-title" id="services">
             <span>&nbsp;</span>
         </h1><!-- End Title -->
-            
-        <!--breadcrum start-->
-        <ol class="breadcrumb text-left">
-          <li><a href="index.html">&nbsp;</a></li>
-        </ol><!--breadcrum end-->
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (Auth::check())
+                            <div class="alert alert-info" role="alert">
+                                <p class="">Welcome <strong>{{ Auth::user()->firstname }}</strong>! Start using the system by clicking an application below.</p>
+                            </div>
+                        @endif
+                        @if (session('unauthorize'))
+                            <div class="alert alert-danger">
+                                {{ session('unauthorize') }}
+                            </div>
+                        @endif
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="pmd-card pmd-card-default pmd-z-depth">
@@ -62,7 +71,7 @@
                             
                             <!-- Card action -->
                             <div class="pmd-card-actions">
-                                <a href="{{ route('hrmis.index') }}" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Open</a>
+                                <a href="{{ route('groups.index') }}" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Open</a>
                             </div>
                         </div>
                     </div>

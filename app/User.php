@@ -37,4 +37,9 @@ class User extends Authenticatable
         'password', 
         'remember_token',
     ];
+
+    public function hasOffice()
+    {
+        return $this->belongsTo('App\Offices', 'div_unit', 'id');
+    }
 }

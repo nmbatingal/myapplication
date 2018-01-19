@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.login')
 
 @section('styles')
 <!-- DataTables css-->
@@ -30,14 +30,14 @@
     <div class="container-fluid full-width-container">
         <!--- Title -->
         <h1 class="section-title" id="services">
-            <span>User Groups</span>
+            <span>Group Settings</span>
         </h1>
         <!-- End Title -->
     
         <!--breadcrum start-->
         <ol class="breadcrumb text-left">
             <li><a href="{{ route('home') }}">Dashboard</a></li>
-            <li class="active">User Groups</li>
+            <li class="active">Groups</li>
         </ol>
         <!--breadcrum end-->
 
@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="media-right"> 
                                         <div class="pull-right">
-                                            <span class="badge badge-info">3</span>
+                                            <span class="badge badge-info">{{ $group->officeCount($group['id']) }} {{ $group->officeCount($group['id']) > 1 ? 'members' : 'member' }}</span>
                                         </div>
                                     </div>
                                 </li>
@@ -94,7 +94,7 @@
 
                         <h3 class="heading">Group Information</h3>
                         <div class="row">
-                            <form id="form-group" class="form-horizontal" action="{{ route('accounts.group.store') }}"  method="POST">
+                            <form id="form-group" class="form-horizontal" action="{{ route('groups.store') }}"  method="POST">
                                 {{ csrf_field() }}
                                 <fieldset>
                                     <div class="form-group pmd-textfield">
@@ -112,7 +112,12 @@
                                     <div class="form-group pmd-textfield">
                                         <label class="col-sm-3 control-label" for="">Office Head</label>
                                         <div class="col-sm-9 group-input">
-                                            <input type="text" class="form-control" id="" name="div_head">
+                                            <select class="form-control" name="u_unit">
+                                                <option value=""></option>
+                                                @foreach( $users as $user )
+                                                    <option value="{{ $user['id'] }}">{{ $user['firstname'] }} {{ $user['middlename'][0] }}. {{ $user['lastname'] }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group pmd-textfield">
@@ -124,7 +129,7 @@
                                     <div class="form-group btns margin-bot-30">
                                         <div class="col-sm-9 col-sm-offset-3">
                                             <button type="submit" class="btn btn-success pmd-ripple-effect">Save</button>
-                                            <button class="btn btn-default btn-link pmd-ripple-effect">Reset</button>
+                                            <button type="reset" class="btn btn-default btn-link pmd-ripple-effect">Reset</button>
                                         </div>
                                     </div>
                                 </fieldset>

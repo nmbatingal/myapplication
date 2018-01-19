@@ -4,8 +4,6 @@ $(function () {
         rules: {
             div_name    : "required",
             acronym     : "required",
-            div_head    : "required",
-            position    : "required",
         },
         onfocusout: function(element) {
             this.element(element);  

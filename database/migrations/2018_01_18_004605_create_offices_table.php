@@ -17,8 +17,9 @@ class CreateOfficesTable extends Migration
             $table->increments('id');
             $table->string('div_name', 50)->nullable();
             $table->char('acronym');
-            $table->integer('div_head_id')->unsigned();
-            $table->foreign('div_head_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('div_head_id')->unsigned()->nullable();
+            $table->string('position')->nullable();
+            $table->foreign('div_head_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
 

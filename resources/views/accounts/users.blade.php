@@ -60,12 +60,12 @@
                                             <div class="media-body">
                                                 <a href="{{ route('users.show', ['id'=> $user['id']]) }}" class="list-user"> 
                                                     <h3 class="list-group-item-heading"><b>{{ $user['firstname'] }} {{ !empty($user['middlename']) ? $user['middlename'][0].'. ' : '' }}{{ $user['lastname'] }}</b></h3>
-                                                    <span class="list-group-item-text">Position - Office</span>
+                                                    <span class="list-group-item-text">{{ $user['position'] }} - {{ $user->hasOffice['div_name'] }}</span>
                                                 </a>
                                             </div>
                                             <div class="media-right"> 
                                                 <div class="pull-right">
-                                                    @if ( $user['__is'] > 0 )
+                                                    @if ( $user['__isAdmin'] > 0 )
                                                         <span class="badge badge-warning">admin</span>
                                                     @endif
                                                 </div>
