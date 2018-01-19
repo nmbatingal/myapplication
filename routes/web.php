@@ -21,6 +21,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function() {
 
-	Route::get('/hrmis', function () { return view('psbrs.index'); })->name('hrmis.index');
+    Route::group(['middleware' => 'checkAdmin'], function() {
+        // ACCOUNTS
+        Route::post('/accounts/users/status', 'UsersController@changeStatus')->name('users.switchStatus');  // switch user status
+        Route::post('/accounts/users/admin', 'UsersController@changeAdmin')->name('users.switchAdmin');     // switch user admin
+        Route::post('/accounts/users/reset', 'UsersController@resetPassword')->name('users.reset');         // reset user password
+        Route::resource('accounts/users', 'UsersController');
+        Route::resource('accounts/groups', 'GroupsController');
+
+
+        //Route::get('/accounts/groups', 'GroupsController@index')->name('accounts.groups');      // group
+        //Route::post('/accounts/groups/store', 'GroupsController@store')->name('accounts.group.store'); // store new group
+    });
+
+    Route::get('hrmis/applicants', 'applicants\ApplicantsController@showApplicants')->name('hrmis.applicants');
+    Route::resource('hrmis', 'applicants\ApplicantsController');
 
 });

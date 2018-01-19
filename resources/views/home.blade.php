@@ -21,7 +21,6 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                
                 <div class="row">
                     <div class="col-md-4">
                         <div class="pmd-card pmd-card-default pmd-z-depth">
@@ -45,7 +44,43 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <br>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="pmd-card pmd-card-default pmd-z-depth">
+
+                            <!-- Card header -->
+                            <div class="pmd-card-title ellipsis">
+                                <h2 class="pmd-card-title-text">Groups</h2>
+                            </div>
+                            
+                            <!-- Card action -->
+                            <div class="pmd-card-actions">
+                                <a href="{{ route('hrmis.index') }}" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="pmd-card pmd-card-default pmd-z-depth">
+
+                            <!-- Card header -->
+                            <div class="pmd-card-title ellipsis">
+                                <h2 class="pmd-card-title-text">Users</h2>
+                            </div>
+                            
+                            <!-- Card action -->
+                            <div class="pmd-card-actions">
+                                <a href="{{ route('users.index') }}" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

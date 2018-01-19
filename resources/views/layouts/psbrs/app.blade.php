@@ -17,8 +17,6 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('bower/bootstrap-material-design-icons/css/material-icons.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('propeller/assets/css/bootstrap.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{ asset('propeller/assets/css/propeller.min.css') }}" >
-        <link rel="stylesheet" type="text/css" href="{{ asset('components/datetimepicker/css/bootstrap-datetimepicker.css') }}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('components/datetimepicker/css/pmd-datetimepicker.css') }}" />
 
         @yield('styles')
 
@@ -41,10 +39,6 @@
         <!--content area start-->
         @yield('content')
         <!-- content area end -->
-
-        <!--content area start
-        include('layouts.footer')
-         content area end -->
          
     </div>
 
@@ -54,6 +48,20 @@
     <script src="{{ asset('propeller/assets/js/jquery-1.12.2.min.js') }}"></script>
     <script src="{{ asset('propeller/assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('propeller/assets/js/propeller.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            var sPath=window.location.pathname;
+            var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+            $(".pmd-sidebar-nav").each(function(){
+                $(this).find("a[href='"+sPage+"']").parents(".dropdown").addClass("open");
+                $(this).find("a[href='"+sPage+"']").parents(".dropdown").find('.dropdown-menu').css("display", "block");
+                $(this).find("a[href='"+sPage+"']").parents(".dropdown").find('a.dropdown-toggle').addClass("active");
+                $(this).find("a[href='"+sPage+"']").addClass("active");
+            });
+            $(".auto-update-year").html(new Date().getFullYear());
+        });
+    </script>
+
     <script src="{{ asset('bower/jquery-validation/dist/jquery.validate.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/common-scripts.js') }}"></script>
 

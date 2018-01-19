@@ -24,6 +24,8 @@ class User extends Authenticatable
         'div_unit',
         'position',
         'password',
+        '__isActive',
+        '__isAdmin',
     ];
 
     /**
@@ -34,7 +36,5 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 
         'remember_token',
-        '__isActive',
-        '__isAdmin',
     ];
 }

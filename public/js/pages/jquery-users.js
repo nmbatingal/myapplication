@@ -69,6 +69,7 @@ $(function () {
         e.preventDefault();
 
         $.get( $(this).attr('href') , function( data ) {
+
             $('.u_username').text(data['username']);
             $('input[name=u_id]').val(data['id']);
             $('input.u_fname').val(data['firstname']);
@@ -76,11 +77,11 @@ $(function () {
             $('input.u_lname').val(data['lastname']);
             $('input.u_email').val(data['email']);
             $('input.u_contact').val(data['mobile_number']);
-            $('select[name=u_unit]').val(data['division_unit']);
+            $('select[name=u_unit]').val(data['div_unit']);
             $('input.u_position').val(data['position']);
 
-            $('input[name="u_active"]').bootstrapSwitch('state', data['status']);
-            $('input[name="u_admin"]').bootstrapSwitch('state', data['__is']);
+            $('input[name="u_active"]').bootstrapSwitch('state', data['__isActive']);
+            $('input[name="u_admin"]').bootstrapSwitch('state', data['__isAdmin']);
 
             $('#form_button').removeClass('hidden');
         });
@@ -111,6 +112,7 @@ $(function () {
             var id    = $('input[name=u_id]').val();
 
             $.ajax({
+                method: "PUT", 
                 url: $(form).attr('action') + '/' + id,
                 data: $(form).serialize(),
                 success: function(data) {
@@ -119,13 +121,14 @@ $(function () {
                         alert("ERROR!");
                     } else {
                         location.reload();
+                        //console.log(data);
                     }
                 }
             });
 
-            //console.log($('[name=u_img]').val());
+            //console.log( $(form).attr('action') );
 
-            return false;
+            //return false;
         },
         onfocusout: function(element) {
             this.element(element);  

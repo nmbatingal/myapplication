@@ -19,6 +19,7 @@
                 <li>
                     <a href="{{ route('home') }}">Return to Homepage</a>
                 </li>
+
                 <li>
                     <a href="#">Profile</a>
                 </li>
@@ -37,7 +38,7 @@
         </li><!-- End user info -->
 
         <li> 
-            <a class="pmd-ripple-effect {{ route::has('hrmis.index') ? 'active' : '' }}" href="{{ url('/hrmis') }}"> 
+            <a class="pmd-ripple-effect {{ Request::is('hrmis') ? 'active' : '' }}" href="{{ route('hrmis.index') }}"> 
                 <i class="media-left media-middle">
                     <div class="material-icons md-light md-24">dashboard</div>
                 </i> 
@@ -45,20 +46,30 @@
                 <div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
             </a> 
         </li>
+
+        <li> 
+            <a class="pmd-ripple-effect {{ Request::is('hrmis/applicants') ? 'active' : '' }}" href="{{ route('hrmis.applicants') }}"> 
+                <i class="media-left media-middle">
+                    <div class="material-icons md-light md-24">people</div>
+                </i> 
+                <span class="media-body">Applicants</span>
+                <div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
+            </a> 
+        </li>
         
-        <li class="dropdown pmd-dropdown"> 
+        <!-- <li class="dropdown pmd-dropdown"> 
             <a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" href="javascript:void(0);">  
                 <i class="media-left media-middle">
-                    <div class="material-icons md-light md-24">trending_up</div>
+                    <div class="material-icons md-light md-24">people</div>
                 </i> 
-                <span class="media-body">My Performance</span>
+                <span class="media-body">Applicants</span>
                 <div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
             </a> 
             <ul class="dropdown-menu">
                 <li><a href="" class="">Individual Performance</a></li>
                 <li><a href="">Office Performance</a></li>
             </ul>
-        </li>
+        </li> -->
 
         <!-- <li class="dropdown pmd-dropdown"> 
             <a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" href="javascript:void(0);">  
