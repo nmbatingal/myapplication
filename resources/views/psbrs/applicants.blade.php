@@ -52,82 +52,49 @@ HRMIS
                     <!-- table card example -->
                     <div  class="pmd-card pmd-z-depth pmd-card-custom-view">
                         <div class="table-responsive">
-                        <table id="example-checkbox" class="table pmd-table table-hover table-striped display responsive nowrap" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Name</th>
-                                <th>Education</th>
-                                <th>Trainings</th>
-                                <th>Experience</th>
-                                <th>Eligibility</th>
-                                <th>Date Filed</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td>Tiger</td>
-                                <td>Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>2011/04/25</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>Brielle</td>
-                                <td>Williamson</td>
-                                <td>Integration Specialist</td>
-                                <td>New York</td>
-                                <td>61</td>
-                                <td>2012/12/02</td>
-                                <td>2012/12/02</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>Herrod</td>
-                                <td>Chandler</td>
-                                <td>Sales Assistant</td>
-                                <td>San Francisco</td>
-                                <td>59</td>
-                                <td>2012/08/06</td>
-                                <td>2012/08/06</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>Airi</td>
-                                <td>Satou</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>33</td>
-                                <td>2008/11/28</td>
-                                <td>2008/11/28</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>Brielle</td>
-                                <td>Williamson</td>
-                                <td>Integration Specialist</td>
-                                <td>New York</td>
-                                <td>61</td>
-                                <td>2012/12/02</td>
-                                <td>2012/12/02</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>Herrod</td>
-                                <td>Chandler</td>
-                                <td>Sales Assistant</td>
-                                <td>San Francisco</td>
-                                <td>59</td>
-                                <td>2012/08/06</td>
-                                <td>2012/08/06</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <table id="example-checkbox" class="table pmd-table table-hover table-striped display responsive" cellspacing="0" width="100%">
+                            <colgroup>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                                <col width="5%">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Education</th>
+                                    <th>Trainings</th>
+                                    <th>Experience</th>
+                                    <th>Eligibility</th>
+                                    <th>Date Filed</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>Herrod</td>
+                                    <td>Chandler</td>
+                                    <td>Sales Assistant</td>
+                                    <td>San Francisco</td>
+                                    <td>59</td>
+                                    <td>2012/08/06</td>
+                                    <td>2012/08/06</td>
+                                    <td class="pmd-table-row-action">
+                                        <a href="javascript:void(0);" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm">
+                                            <i class="material-icons md-dark pmd-sm">edit</i>
+                                        </a>                
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                         </div>
                     </div> <!-- table card example end -->
                 
@@ -158,11 +125,17 @@ HRMIS
 $(document).ready(function() {
     $('#example-checkbox').DataTable({
         responsive: false,
-        columnDefs: [ {
-            orderable: false,
-            className: 'select-checkbox',
-            targets:0,
-        } ],
+        columnDefs: [ 
+            {
+                orderable: false,
+                className: 'select-checkbox',
+                targets:0,
+            },{
+                orderable: false,
+                className: 'pmd-table-row-action',
+                targets:8,
+            } 
+        ],
         select: {
             style: 'multi',
             selector: 'td:first-child'
