@@ -33,7 +33,7 @@
                             </div>
 
                             <div class="header">
-                                <h2><a href="{{ route('hrmis.index') }}">HRMIS</a> <small>Description text here...</small></h2>
+                                <h2><a href="{{ route('applicants.index') }}">HRMIS</a> <small>Description text here...</small></h2>
                                 <ul class="header-dropdown m-r-0">
                                     <li>
                                         <a href="javascript:void(0);">
@@ -41,7 +41,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('hrmis.index') }}">
+                                        <a href="{{ route('applicants.index') }}">
                                             <i class="material-icons col-green">launch</i>
                                         </a>
                                     </li>
@@ -57,7 +57,7 @@
                             </div>
 
                             <div class="header">
-                                <h2><a href="{{ route('hrmis.index') }}">HRMIS</a> <small>Description text here...</small></h2>
+                                <h2><a href="{{ route('applicants.index') }}">HRMIS</a> <small>Description text here...</small></h2>
                                 <ul class="header-dropdown m-r-0">
                                     <li>
                                         <a href="javascript:void(0);">
@@ -65,7 +65,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('hrmis.index') }}">
+                                        <a href="{{ route('applicants.index') }}">
                                             <i class="material-icons col-green">launch</i>
                                         </a>
                                     </li>
@@ -81,7 +81,7 @@
                             </div>
 
                             <div class="header">
-                                <h2><a href="{{ route('hrmis.index') }}">HRMIS</a> <small>Description text here...</small></h2>
+                                <h2><a href="{{ route('applicants.index') }}">HRMIS</a> <small>Description text here...</small></h2>
                                 <ul class="header-dropdown m-r-0">
                                     <li>
                                         <a href="javascript:void(0);">
@@ -89,7 +89,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('hrmis.index') }}">
+                                        <a href="{{ route('applicants.index') }}">
                                             <i class="material-icons col-green">launch</i>
                                         </a>
                                     </li>
@@ -105,7 +105,7 @@
                             </div>
 
                             <div class="header">
-                                <h2><a href="{{ route('hrmis.index') }}">HRMIS</a> <small>Description text here...</small></h2>
+                                <h2><a href="{{ route('applicants.index') }}">HRMIS</a> <small>Description text here...</small></h2>
                                 <ul class="header-dropdown m-r-0">
                                     <li>
                                         <a href="javascript:void(0);">
@@ -113,7 +113,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('hrmis.index') }}">
+                                        <a href="{{ route('applicants.index') }}">
                                             <i class="material-icons col-green">launch</i>
                                         </a>
                                     </li>
