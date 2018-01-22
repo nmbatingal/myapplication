@@ -26,26 +26,21 @@
             </div>
         </div>
         <!-- #User Info -->
+
         <!-- Menu -->
-        <div class="menu">
-            <ul class="list">
+        <div class="menu left-nav">
+            <ul class="list left-sidebar-nav">
                 <li class="header">MENU</li>
-                <li class="active">
-                    <a href="{{ route('hrmis.index') }}">
+                <li class="{{ Request::is('hrmis/applicants') ? 'active' : '' }}">
+                    <a href="{{ route('applicants.index') }}">
                         <i class="material-icons">dashboard</i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('hrmis.applicants') }}">
+                <li class="{{ Request::is('hrmis/applicants/*') ? 'active' : '' }}">
+                    <a href="{{ route('applicants.showApplicants') }}">
                         <i class="material-icons">people</i>
                         <span>Applicants</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('hrmis.applicants') }}">
-                        <i class="material-icons">star</i>
-                        <span>Rate Applicant</span>
                     </a>
                 </li>
                 <li class="header">MAIN NAVIGATION</li>

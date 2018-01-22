@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function() {
         //Route::post('/accounts/groups/store', 'GroupsController@store')->name('accounts.group.store'); // store new group
     });
 
-    Route::get('hrmis/applicants', 'applicants\ApplicantsController@showApplicants')->name('hrmis.applicants');
-    Route::resource('hrmis', 'applicants\ApplicantsController');
+    Route::get('hrmis/applicants/all', 'applicants\ApplicantsController@showApplicants')->name('applicants.showApplicants');
+    Route::resource('hrmis/applicants', 'applicants\ApplicantsController');
 
 });

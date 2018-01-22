@@ -20,7 +20,7 @@
         <div class="block-header">
             <h2>APPLICANTS</h2>
             <ol class="breadcrumb p-l-0">
-              <li><a href="{{ route('hrmis.index') }}">Dashboard</a></li>
+              <li><a href="{{ route('applicants.index') }}">Dashboard</a></li>
               <li class="active">Applicants</li>
             </ol>
         </div>
@@ -68,17 +68,44 @@
                                 @foreach ( $applicants as $applicant )
                                 <tr>
                                     <td></td>
-                                    <td>{{ $applicant['lastname'] }}, {{ $applicant['firstname'] }} {{ $applicant['middlename'] ? $applicant['middlename'][0].'.' : '' }}</td>
+                                    <td>
+                                        <a href="{{ route('applicants.show', ['id' => $applicant['id'] ]) }}">
+                                            {{ $applicant['lastname'] }}, {{ $applicant['firstname'] }} {{ $applicant['middlename'] ? $applicant['middlename'][0].'.' : '' }}
+                                        </a>
+                                    </td>
                                     <td>
                                         @foreach ( $applicant->educations as $education )
-                                         {{ $education['program'] }}
+                                            {{ $education['program'] }} <br>
+                                            <small>{{ $education['school'] }} - {{ date("M Y", strtotime( $education['year_graduated'] )) }}</small> 
+                                            <br>
                                         @endforeach
                                     </td>
-                                    <td>Sales Assistant</td>
-                                    <td>San Francisco</td>
-                                    <td>59</td>
-                                    <td>2012/08/06</td>
-                                    <td>2012/08/06</td>
+                                    <td>
+                                        @foreach ( $applicant->trainings as $training )
+                                            {{ $training['title'] }} <br>
+                                            <small>{{ $training['conducted_by'] }} - {{ date("M Y", strtotime( $training['to_date'] )) }}</small> 
+                                            <br>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        @foreach ( $applicant->experiences as $experience )
+                                            {{ $experience['position'] }} <br>
+                                            <small>{{ $experience['agency'] }} - {{ date("M Y", strtotime( $experience['to_date'] )) }}</small> 
+                                            <br>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        @foreach ( $applicant->eligibilities as $eligibility )
+                                            {{ $eligibility['title'] }}
+                                            <br>
+                                        @endforeach
+                                    </td>
+                                    <td>{{ date("M-d-Y", strtotime( $applicant['created_at'] )) }}</td>
+                                    <td>
+                                        @if($applicant['status'] == 0)
+                                            <span class="label bg-red">not yet interviewed</span>
+                                        @endif
+                                    </td>
                                     <td class="pmd-table-row-action">
                                                        
                                     </td>
@@ -184,7 +211,7 @@ $(document).ready(function() {
 
 <script type="text/javascript">
     function createNewApplicant() {
-        window.location = "{{ route('hrmis.create') }}";
+        window.location = "{{ route('applicants.create') }}";
     }
 
     $('button[type=button]').remove();

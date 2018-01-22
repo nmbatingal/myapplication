@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Applicants;
 
+use Auth;
 use App\Models\Hrmis\Applicants as Applicants;
 use App\Models\Hrmis\ApplicantEducation as Education;
+use App\Models\Hrmis\ApplicantTraining as Training;
+use App\Models\Hrmis\ApplicantExperience as Experience;
+use App\Models\Hrmis\ApplicantEligibility as Eligibility;
+use App\Models\Hrmis\ApplicantAttachment as FileApplicant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -49,11 +54,14 @@ class ApplicantsController extends Controller
         $applicant->firstname = $request['firstname'];
         $applicant->middlename = $request['middlename'];
         $applicant->contact_number = $request['contact_number'];
-        $applicant->email = $request['email'];
+        $applicant->age       = $request['age'];
+        $applicant->email     = $request['email'];
+        $applicant->log_id    = Auth::user()->id;
+        $applicant->remarks   = $request['remarks'];
         $applicant->save();
 
         if ( !empty($request['program']) ) {
-            $education             = new Education();
+            $education = new Education();
 
             $education->program         = $request['program'];
             $education->school          = $request['school'];
@@ -62,7 +70,56 @@ class ApplicantsController extends Controller
             $education->save();
         }
 
-        return redirect()->route('hrmis.applicants')->with('info', 'created');
+        if ( !empty($request['training_title']) ) {
+            $training = new Training();
+
+            $training->title         = $request['training_title'];
+            $training->conducted_by  = $request['conducted_by'];
+            $training->hours         = $request['training_hours'];
+            $training->from_date     = $request['from_date_training'];
+            $training->to_date       = $request['to_date_training'];
+            $training->hasApplicant()->associate($applicant);
+            $training->save();
+        }
+
+        if ( !empty($request['work_position']) ) {
+            $experience = new Experience();
+
+            $experience->position       = $request['work_position'];
+            $experience->agency         = $request['work_agency'];
+            $experience->salary_grade   = $request['salary_grade'];
+            $experience->from_date      = $request['from_date_agency'];
+            $experience->to_date        = $request['to_date_agency'];
+            $experience->hasApplicant()->associate($applicant);
+            $experience->save();
+        }
+
+        if ( !empty($request['title_eligibility']) ) {
+            $eligibility = new Eligibility();
+
+            $eligibility->title          = $request['title_eligibility'];
+            $eligibility->license_number = $request['license_number'];
+            $eligibility->rating         = $request['rating'];
+            $eligibility->exam_date      = $request['exam_date'];
+            $eligibility->hasApplicant()->associate($applicant);
+            $eligibility->save();
+        }
+
+        foreach ($request->attachment as $attached) {
+
+            $filename            = $attached->getClientOriginalName();
+            $destinationPath     = 'upload/applicants/'.'applicant_no_'.$applicant['id'];
+
+            $file                = new FileApplicant();
+            $file->filename      = $filename;
+            $file->path          = $destinationPath;
+            $file->hasApplicant()->associate($applicant);
+
+            $attached->move($destinationPath, $filename);
+            $file->save();
+        }
+
+        return redirect()->route('applicants.showApplicants')->with('info', 'Applicant Information Saved Successfully!');
     }
 
     /**
@@ -73,7 +130,9 @@ class ApplicantsController extends Controller
      */
     public function show($id)
     {
-        //
+        $applicant = Applicants::findOrFail($id);
+        
+        return view('hrmis.view', compact('applicant'));
     }
 
     /**

@@ -52,9 +52,11 @@ $(function () {
                 email      : true
             },
             contact_number : {
-                required   : true,
-                minlength  : 11
+                required   : true
             },
+            program     : "required",
+            school      : "required",
+            remarks     : "required",
         },
         highlight: function (input) {
             $(input).parents('.form-line').addClass('error');

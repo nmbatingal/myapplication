@@ -17,10 +17,10 @@ class CreateApplicantEligibilitiesTable extends Migration
             $table->increments('id');
             $table->char('license_number', 20)->nullable();
             $table->string('title');
-            $table->decimal('rating', 3, 2)->nullable();
+            $table->decimal('rating', 10, 2)->nullable();
             $table->date('exam_date')->nullable();
             $table->integer('applicant_id')->unsigned()->nullable();
-            $table->foreign('applicant_id')->references('id')->on('applicants')->onDelete('set null');
+            $table->foreign('applicant_id')->references('id')->on('applicants')->onDelete('cascade');
             $table->timestamps();
         });
     }

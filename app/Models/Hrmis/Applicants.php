@@ -21,18 +21,23 @@ class Applicants extends Model
         return $this->hasMany('App\Models\Hrmis\ApplicantEducation', 'applicant_id');
     }
 
-    public function experiences()
-    {
-        return $this->hasMany('App\Models\Hrmis\ApplicantExperience', 'applicant_id');
-    }
-
     public function trainings()
     {
         return $this->hasMany('App\Models\Hrmis\ApplicantTraining', 'applicant_id');
     }
 
+    public function experiences()
+    {
+        return $this->hasMany('App\Models\Hrmis\ApplicantExperience', 'applicant_id');
+    }
+
     public function eligibilities()
     {
         return $this->hasMany('App\Models\Hrmis\ApplicantEligibility', 'applicant_id');
+    }
+
+    public function attachments()
+    {
+        return $this->hasMany('App\Models\Hrmis\ApplicantAttachment', 'applicant_id');
     }
 }

@@ -13,12 +13,12 @@ class CreateApplicantsAttachmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('applicants_attachments', function (Blueprint $table) {
+        Schema::create('applicant_attachments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('filename');
             $table->string('path');
             $table->integer('applicant_id')->unsigned()->nullable();
-            $table->foreign('applicant_id')->references('id')->on('applicants')->onDelete('set null');
+            $table->foreign('applicant_id')->references('id')->on('applicants')->onDelete('cascade');
             $table->timestamps();
         });
     }

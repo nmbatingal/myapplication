@@ -19,7 +19,7 @@ class CreateApplicantsEducationsTable extends Migration
             $table->string('school');
             $table->date('year_graduated')->nullable();
             $table->integer('applicant_id')->unsigned()->nullable();
-            $table->foreign('applicant_id')->references('id')->on('applicants')->onDelete('set null');
+            $table->foreign('applicant_id')->references('id')->on('applicants')->onDelete('cascade');
             $table->timestamps();
         });
     }

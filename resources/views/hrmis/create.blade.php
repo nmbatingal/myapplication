@@ -13,8 +13,8 @@ HRMIS
         <div class="block-header">
             <h2>ADD NEW APPLICANT</h2>
             <ol class="breadcrumb p-l-0">
-              <li><a href="{{ route('hrmis.index') }}">Dashboard</a></li>
-              <li><a href="{{ route('hrmis.applicants') }}">Applicants</a></li>
+              <li><a href="{{ route('applicants.index') }}">Dashboard</a></li>
+              <li><a href="{{ route('applicants.showApplicants') }}">Applicants</a></li>
               <li class="active">Create</li>
             </ol>
         </div>
@@ -25,21 +25,9 @@ HRMIS
                 <div class="card">
                     <div class="header">
                         <h2>NEW APPLICANT FORM <small>Description text here...</small></h2>
-                        <ul class="header-dropdown m-r--5">
-                            <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
-                                </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);">Action</a></li>
-                                    <li><a href="javascript:void(0);">Another action</a></li>
-                                    <li><a href="javascript:void(0);">Something else here</a></li>
-                                </ul>
-                            </li>
-                        </ul>
                     </div>
                     <div class="body">
-                        <form id="form_new_applicant" action="{{ route('hrmis.store') }}" method="POST">
+                        <form id="form_new_applicant" action="{{ route('applicants.store') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <h3>Applicant Information</h3>
                             <fieldset>
@@ -260,10 +248,17 @@ HRMIS
 
                             <h3>Other Details</h3>
                             <fieldset>
+                                <h2 class="card-inside-title">File Attachments</h2>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <textarea class="form-control" name="remarks" rows="6"></textarea>
-                                        <label class="form-label">Remarks</label>
+                                        <input type="file" class="form-control" name="attachment[]" accept=".doc,.docx,.xls,.xlsx,.pdf" multiple required>
+                                    </div>
+                                </div>
+
+                                <h2 class="card-inside-title">Remarks</h2>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <textarea class="form-control" name="remarks" rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>

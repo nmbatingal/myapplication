@@ -22,8 +22,8 @@ class CreateApplicantsTable extends Migration
             $table->char('contact_number', 20);
             $table->string('email')->unique();
             $table->text('remarks')->nullable();
-            $table->integer('status')->unsigned()->nullable();
-            $table->integer('delete_status')->unsigned()->nullable();
+            $table->integer('status')->unsigned()->default(0)->nullable();
+            $table->integer('delete_status')->unsigned()->default(0)->nullable();
             $table->integer('log_id')->unsigned()->nullable();
             $table->foreign('log_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();

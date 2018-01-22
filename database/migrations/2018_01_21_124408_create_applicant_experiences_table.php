@@ -21,7 +21,7 @@ class CreateApplicantExperiencesTable extends Migration
             $table->date('from_date')->nullable();
             $table->date('to_date')->nullable();
             $table->integer('applicant_id')->unsigned()->nullable();
-            $table->foreign('applicant_id')->references('id')->on('applicants')->onDelete('set null');
+            $table->foreign('applicant_id')->references('id')->on('applicants')->onDelete('cascade');
             $table->timestamps();
         });
     }

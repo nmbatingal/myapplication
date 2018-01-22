@@ -25,7 +25,7 @@ class CreateOfficesTable extends Migration
 
         Schema::table('users', function($table) {
             $table->integer('div_unit')->unsigned()->after('mobile_number')->nullable();
-            $table->foreign('div_unit')->references('id')->on('offices')->onDelete('cascade');
+            $table->foreign('div_unit')->references('id')->on('offices')->onDelete('set null');
         });
     }
 
