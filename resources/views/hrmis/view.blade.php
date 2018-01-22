@@ -170,13 +170,13 @@ HRMIS
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Attachments
+                            File Attachments
                         </h2>
                     </div>
                     <div class="body" style="padding: 0 !important">
                         <div class="list-group">
                             @foreach ( $applicant->attachments as $file )
-                                <a href="#" class="list-group-item font-underline col-blue"> {{ $file['filename'] }}</a>
+                                <a href="#" class="list-group-item font-underline col-blue p-t-10 p-b-10"> {{ $file['filename'] }}</a>
                             @endforeach
                         </div>
                     </div>
