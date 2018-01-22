@@ -63,85 +63,104 @@ HRMIS
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <form>
-                                <div role="tabpanel" class="tab-pane fade in active" id="applicant_tab">
-                                    <div class="row">
-                                        <div class="col-md-10 col-md-offset-1">
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group form-float">
-                                                        <label for="fullname">Full name</label>
-                                                        <div class="form-line">
-                                                            <input type="text" class="form-control" value="{{ $applicant['firstname'] .' ' . $applicant['middlename'].' '. $applicant['lastname'] }}" readonly>
-                                                        </div>
+                            <div role="tabpanel" class="tab-pane fade in active" id="applicant_tab">
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group form-float">
+                                                    <label for="fullname">Full name</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $applicant['firstname'] .' ' . $applicant['middlename'].' '. $applicant['lastname'] }}" readonly>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group form-float">
-                                                        <label for="age">Age</label>
-                                                        <div class="form-line">
-                                                            <input type="text" class="form-control" value="{{ $applicant['age'] }}" readonly>
-                                                        </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group form-float">
+                                                    <label for="age">Age</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $applicant['age'] }}" readonly>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-md-10 col-md-offset-1">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group form-float">
-                                                        <label for="contact">Contact</label>
-                                                        <div class="form-line">
-                                                            <input type="text" class="form-control" value="{{ $applicant['contact_number'] }}" readonly>
-                                                            <label class="form-label">Mobile number</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group form-float">
-                                                        <label for="contact">&nbsp;</label>
-                                                        <div class="form-line">
-                                                            <input type="text" class="form-control" value="{{ $applicant['email'] }}" readonly>
-                                                            <label class="form-label">Email</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-10 col-md-offset-1">
-                                            <div class="card">
-                                                <div class="header">
-                                                    <h2>
-                                                        Basic Card Title
-                                                    </h2>
-                                                </div>
-                                                <div class="body" style="padding: 0 !important">
-                                                    <div class="list-group">
-                                                        <button type="button" class="list-group-item">Cras justo odio</button>
-                                                        <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
-                                                        <button type="button" class="list-group-item">Morbi leo risus</button>
-                                                        <button type="button" class="list-group-item">Porta ac consectetur ac</button>
-                                                        <button type="button" class="list-group-item">Vestibulum at eros</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <div class="alert bg-teal alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id
+
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-float">
+                                                    <label for="contact">Contact</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $applicant['contact_number'] }}" readonly>
+                                                        <label class="form-label">Mobile number</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-float">
+                                                    <label for="contact">&nbsp;</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $applicant['email'] }}" readonly>
+                                                        <label class="form-label">Email</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="education_tab">
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group form-float">
+                                                    <label for="fullname">Full name</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $applicant['firstname'] .' ' . $applicant['middlename'].' '. $applicant['lastname'] }}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group form-float">
+                                                    <label for="age">Age</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $applicant['age'] }}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-float">
+                                                    <label for="contact">Contact</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $applicant['contact_number'] }}" readonly>
+                                                        <label class="form-label">Mobile number</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-float">
+                                                    <label for="contact">&nbsp;</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $applicant['email'] }}" readonly>
+                                                        <label class="form-label">Email</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -151,11 +170,15 @@ HRMIS
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Basic Card Title
+                            Attachments
                         </h2>
                     </div>
-                    <div class="body">
-                        Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
+                    <div class="body" style="padding: 0 !important">
+                        <div class="list-group">
+                            @foreach ( $applicant->attachments as $file )
+                                <a href="#" class="list-group-item font-underline col-blue"> {{ $file['filename'] }}</a>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
