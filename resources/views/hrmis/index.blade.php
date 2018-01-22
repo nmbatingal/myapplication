@@ -17,9 +17,9 @@ HRMIS
         <section class="row clearfix">
             <div class="col-md-12">
 
-                    <div class="alert alert-info">
-                        <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-                    </div>
+                <div class="alert alert-info">
+                    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+                </div>
 
                 @if (session('status'))
                     <div class="alert alert-success">

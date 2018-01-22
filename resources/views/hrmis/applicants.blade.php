@@ -25,9 +25,14 @@
             </ol>
         </div>
 
+        @if (session('info'))
+            <div class="alert bg-green" role="alert">
+                {!! session('info') !!}
+            </div>
+        @endif
+
         <!-- table card -->
         <div class="row">
-
             <!-- table card code and example -->
             <div class="col-lg-12">
                 <div class="component-box">
@@ -64,7 +69,11 @@
                                 <tr>
                                     <td></td>
                                     <td>{{ $applicant['lastname'] }}, {{ $applicant['firstname'] }} {{ $applicant['middlename'] ? $applicant['middlename'][0].'.' : '' }}</td>
-                                    <td>Chandler</td>
+                                    <td>
+                                        @foreach ( $applicant->educations as $education )
+                                         {{ $education['program'] }}
+                                        @endforeach
+                                    </td>
                                     <td>Sales Assistant</td>
                                     <td>San Francisco</td>
                                     <td>59</td>

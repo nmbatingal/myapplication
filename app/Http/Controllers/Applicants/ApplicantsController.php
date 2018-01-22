@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Applicants;
 
 use App\Models\Hrmis\Applicants as Applicants;
-use App\Models\Hrmis\ApplicantsEducation as Education;
+use App\Models\Hrmis\ApplicantEducation as Education;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -62,7 +62,7 @@ class ApplicantsController extends Controller
             $education->save();
         }
 
-        return $request;
+        return redirect()->route('hrmis.applicants')->with('info', 'created');
     }
 
     /**

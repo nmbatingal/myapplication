@@ -48,7 +48,7 @@ HRMIS
                                     <div class="col-sm-4">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="firstname">
+                                                <input type="text" class="form-control" name="firstname" autofocus>
                                                 <label class="form-label">Firstname</label>
                                             </div>
                                         </div>
@@ -76,7 +76,7 @@ HRMIS
                                     <div class="col-sm-8">
                                         <div class="form-group form-float">
                                             <div class="form-line masked-input">
-                                                <input type="text" class="form-control mobile-phone-number" name="contact_number" value="+639">
+                                                <input type="text" class="form-control mobile-phone-number" name="contact_number">
                                                 <label class="form-label">Mobile Number</label>
                                             </div>
                                         </div>

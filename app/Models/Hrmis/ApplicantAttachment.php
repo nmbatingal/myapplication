@@ -4,7 +4,7 @@ namespace App\Models\Hrmis;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ApplicantsAttachment extends Model
+class ApplicantAttachment extends Model
 {
     protected $connection = 'mysql';
     

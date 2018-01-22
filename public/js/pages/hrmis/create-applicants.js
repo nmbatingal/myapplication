@@ -41,16 +41,7 @@ $(function () {
             return form.valid();
         },
         onFinished: function (event, currentIndex) {
-            $.ajax({
-                type: $(form).attr('method'),
-                url: $(form).attr('action'),
-                data: $(form).serialize(),
-                success: function(data) {
-                    
-                    alert(data);
-                    //swal("Good job!", "Submitted!", "success");
-                }
-            });
+            form.submit();
         }
     }).validate({
         rules: {
