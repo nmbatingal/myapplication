@@ -21,7 +21,8 @@ class ApplicantsController extends Controller
 
     public function showApplicants()
     {
-        return view('hrmis.applicants');
+        $applicants = Applicants::orderBy('lastname', 'ASC')->get();
+        return view('hrmis.applicants', compact('applicants'));
     }
 
     /**

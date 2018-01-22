@@ -60,9 +60,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ( $applicants as $applicant )
                                 <tr>
                                     <td></td>
-                                    <td>Herrod</td>
+                                    <td>{{ $applicant['lastname'] }}, {{ $applicant['firstname'] }} {{ $applicant['middlename'] ? $applicant['middlename'][0].'.' : '' }}</td>
                                     <td>Chandler</td>
                                     <td>Sales Assistant</td>
                                     <td>San Francisco</td>
@@ -73,6 +74,7 @@
                                                        
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                         </div>
@@ -128,7 +130,7 @@ $(document).ready(function() {
         "searching": true,
         "language": {
             "info": " _START_ - _END_ of _TOTAL_ ",
-            "sLengthMenu": "<span class='custom-select-title'>Rows per page:</span> <span class='custom-select'> _MENU_ </span>",
+            "sLengthMenu": "<span class='custom-select-title'>Rows per page:</span><span> _MENU_ </span>",
             "sSearch": "",
             "sSearchPlaceholder": "Search",
             "paginate": {
