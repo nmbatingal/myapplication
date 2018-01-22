@@ -1,4 +1,4 @@
-@extends('layouts.login')
+@extends('layouts.app')
 
 @section('styles')
 <!-- DataTables css-->
@@ -10,36 +10,18 @@
 <!-- build:[href] components/data-table/css/ -->
 <link rel="stylesheet" type="text/css" href="{{ asset('components/data-table/css/pmd-datatable.css') }}">
 <!-- /build -->
-
-<style type="text/css">
-    thead > tr > th {
-        text-align: center;
-        vertical-align: middle !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-    }
-    .text-center {
-        text-align: right !important;
-    }
-</style>
 @endsection
 
 @section('content')
-<div id="content" class="pmd-content inner-page">
-    <!--tab start-->
-    <div class="container-fluid full-width-container">
-        <!--- Title -->
-        <h1 class="section-title" id="services">
-            <span>Group Settings</span>
-        </h1>
-        <!-- End Title -->
-    
-        <!--breadcrum start-->
-        <ol class="breadcrumb text-left">
-            <li><a href="{{ route('home') }}">Dashboard</a></li>
-            <li class="active">Groups</li>
-        </ol>
-        <!--breadcrum end-->
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>GROUPS</h2>
+            <ol class="breadcrumb p-l-0">
+              <li><a href="{{ route('home') }}">Home</a></li>
+              <li class="active">Groups</li>
+            </ol>
+        </div>
 
         <section class="row component-section">
             <div class="col-md-4">
@@ -140,7 +122,7 @@
             </div>
         </section>
     </div><!-- tab end -->
-</div>
+</section>
 @endsection
 
 @section('scripts')

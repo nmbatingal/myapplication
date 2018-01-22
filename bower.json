@@ -24,6 +24,7 @@
     "materialize": "^0.100.2",
     "material-design-icons": "^3.0.1",
     "jquery": "^3.2.1",
-    "susy": "^3.0.1"
+    "susy": "^3.0.1",
+    "jquery.steps": "^1.1.0"
   }
 }

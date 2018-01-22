@@ -1,54 +1,123 @@
-@extends('layouts.login')
+@extends('layouts.app')
 
 @section('styles')
-<style>
-
-</style>
 @endsection
 
 @section('content')
-<div id="content" class="pmd-content inner-page">
-    <div class="container-fluid full-width-container">
-        <!-- Title -->
-        <h1 class="section-title" id="services">
-            <span>&nbsp;</span>
-        </h1><!-- End Title -->
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+<section class="content">
+    <div class="container-fluid">
+        <!-- #END# Special Class For User Entered Browser -->
+        <div class="row clearfix">
+            <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
                         @if (Auth::check())
-                            <div class="alert alert-info" role="alert">
-                                <p class="">Welcome <strong>{{ Auth::user()->firstname }}</strong>! Start using the system by clicking an application below.</p>
+                            <div class="alert alert-info">
+                                Welcome <strong>{{ Auth::user()->firstname }}</strong>! Start using the system by clicking an application below.
                             </div>
                         @endif
                         @if (session('unauthorize'))
                             <div class="alert alert-danger">
-                                {{ session('unauthorize') }}
+                                {!! session('unauthorize') !!}
                             </div>
                         @endif
                     </div>
                 </div>
+
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="pmd-card pmd-card-default pmd-z-depth">
+                    <div class="col-lg-3">
+                        <div class="card card-default pmd-z-depth">
                             <!-- Card media -->
-                            <div class="pmd-card-media">
+                            <div class="card-media">
                                 <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
                             </div>
-                            
-                            <!-- Card header -->
-                            <div class="pmd-card-title ellipsis">
-                                <h2 class="pmd-card-title-text">HRMIS</h2>
-                                <span class="pmd-card-subtitle-text subtitle">
-                                    {{ mb_strimwidth("lurem ipsum", 0, 80, "...") }}
-                                </span>  
+
+                            <div class="header">
+                                <h2><a href="{{ route('hrmis.index') }}">HRMIS</a> <small>Description text here...</small></h2>
+                                <ul class="header-dropdown m-r-0">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <i class="material-icons col-blue">info_outline</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('hrmis.index') }}">
+                                            <i class="material-icons col-green">launch</i>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                            
-                            <!-- Card action -->
-                            <div class="pmd-card-actions">
-                                <a href="{{ route('hrmis.index') }}" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Open Application</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card card-default pmd-z-depth">
+                            <!-- Card media -->
+                            <div class="card-media">
+                                <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
+                            </div>
+
+                            <div class="header">
+                                <h2><a href="{{ route('hrmis.index') }}">HRMIS</a> <small>Description text here...</small></h2>
+                                <ul class="header-dropdown m-r-0">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <i class="material-icons col-blue">info_outline</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('hrmis.index') }}">
+                                            <i class="material-icons col-green">launch</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card card-default pmd-z-depth">
+                            <!-- Card media -->
+                            <div class="card-media">
+                                <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
+                            </div>
+
+                            <div class="header">
+                                <h2><a href="{{ route('hrmis.index') }}">HRMIS</a> <small>Description text here...</small></h2>
+                                <ul class="header-dropdown m-r-0">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <i class="material-icons col-blue">info_outline</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('hrmis.index') }}">
+                                            <i class="material-icons col-green">launch</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card card-default pmd-z-depth">
+                            <!-- Card media -->
+                            <div class="card-media">
+                                <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
+                            </div>
+
+                            <div class="header">
+                                <h2><a href="{{ route('hrmis.index') }}">HRMIS</a> <small>Description text here...</small></h2>
+                                <ul class="header-dropdown m-r-0">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <i class="material-icons col-blue">info_outline</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('hrmis.index') }}">
+                                            <i class="material-icons col-green">launch</i>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -58,8 +127,8 @@
 
         <br>
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+        <div class="row clearfix">
+            <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-2">
                         <div class="pmd-card pmd-card-default pmd-z-depth">
@@ -93,11 +162,8 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 @endsection
 
 @section('script')
-<script>
-
-</script>
 @endsection

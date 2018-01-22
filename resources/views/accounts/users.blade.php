@@ -1,4 +1,4 @@
-@extends('layouts.login')
+@extends('layouts.app')
 
 @section('styles')
 <!-- DataTables css-->
@@ -16,21 +16,15 @@
 @endsection
 
 @section('content')
-<div id="content" class="pmd-content inner-page">
-    <!--tab start-->
-    <div class="container-fluid full-width-container">
-        <!--- Title -->
-        <h1 class="section-title" id="services">
-            <span>User Accounts</span>
-        </h1>
-        <!-- End Title -->
-    
-        <!--breadcrum start-->
-        <ol class="breadcrumb text-left">
-            <li><a href="{{ route('home') }}">Home</a></li>
-            <li class="active">User Accounts</li>
-        </ol>
-        <!--breadcrum end-->
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>USERS</h2>
+            <ol class="breadcrumb p-l-0">
+              <li><a href="{{ route('home') }}">Home</a></li>
+              <li class="active">Users</li>
+            </ol>
+        </div>
 
         <section class="row component-section">
             <div class="col-md-4">

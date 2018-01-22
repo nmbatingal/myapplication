@@ -1,97 +1,206 @@
-<!--Start Nav bar -->
-<nav class="navbar navbar-inverse navbar-fixed-top pmd-navbar pmd-z-depth">
-
+<!-- Top Bar -->
+<nav class="navbar">
     <div class="container-fluid">
-        <div class="pmd-navbar-right-icon pull-right navigation">
-            <!-- Notifications -->
-            <div class="dropdown notification icons pmd-dropdown">
-            
-                <a href="javascript:void(0)" title="Notification" class="dropdown-toggle pmd-ripple-effect"  data-toggle="dropdown" role="button" aria-expanded="true">
-                    <div data-badge="3" class="material-icons md-light md-24 pmd-sm pmd-badge pmd-badge-overlap">notifications_none</div>
-                </a>
-            
-                <div class="dropdown-menu dropdown-menu-right pmd-card pmd-card-default pmd-z-depth" role="menu">
-                    <!-- Card header -->
-                    <div class="pmd-card-title">
-                        <div class="media-body media-middle">
-                            <a href="notifications.html" class="pull-right">3 new notifications</a>
-                            <h3 class="pmd-card-title-text">Notifications</h3>
-                        </div>
-                    </div>
-                    
-                    <!-- Notifications list -->
-                    <ul class="list-group pmd-list-avatar pmd-card-list">
-                        <li class="list-group-item hidden">
-                            <p class="notification-blank">
-                                <span class="dic dic-notifications-none"></span> 
-                                <span>You don´t have any notifications</span>
-                            </p>
-                        </li>
-                        <li class="list-group-item unread">
-                            <a href="javascript:void(0)">
-                                <div class="media-left">
-                                    <span class="avatar-list-img40x40">
-                                        <img alt="40x40" data-src="holder.js/40x40" class="img-responsive" src="{{ asset('propeller/themes/images/profile-1.png') }}" data-holder-rendered="true">
-                                    </span>
-                                </div>
-                                <div class="media-body">
-                                    <span class="list-group-item-heading"><span>Prathit</span> posted a new challanegs</span>
-                                    <span class="list-group-item-text">5 Minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="javascript:void(0)">
-                                <div class="media-left">
-                                    <span class="avatar-list-img40x40">
-                                        <img alt="40x40" data-src="holder.js/40x40" class="img-responsive" src="{{ asset('propeller/themes/images/profile-2.png') }}" data-holder-rendered="true">
-                                    </span>
-                                </div>
-                                <div class="media-body">
-                                    <span class="list-group-item-heading"><span>Keel</span> Cloned 2 challenges.</span>
-                                    <span class="list-group-item-text">15 Minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item unread">
-                            <a href="javascript:void(0)">
-                                <div class="media-left">
-                                    <span class="avatar-list-img40x40">
-                                        <img alt="40x40" data-src="holder.js/40x40" class="img-responsive" src="{{ asset('propeller/themes/images/profile-3.png') }}" data-holder-rendered="true">
-                                    </span>
-                                </div>
-                            
-                                <div class="media-body">
-                                    <span class="list-group-item-heading"><span>John</span> posted new collection.</span>
-                                    <span class="list-group-item-text">25 Minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item unread">
-                            <a href="javascript:void(0)">
-                                <div class="media-left">
-                                    <span class="avatar-list-img40x40">
-                                        <img alt="40x40" data-src="holder.js/40x40" class="img-responsive" src="{{ asset('propeller/themes/images/profile-4.png') }}" data-holder-rendered="true">
-                                    </span>
-                                </div>
-                                <div class="media-body">
-                                    <span class="list-group-item-heading"><span>Valerii</span> Shared 5 collection.</span>
-                                    <span class="list-group-item-text">30 Minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul><!-- End notifications list -->
-                </div>
-            </div> 
-            <!-- End notifications -->
-        </div>
-
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pull-left margin-r8 pmd-sidebar-toggle"><i class="material-icons md-24">menu</i></a>   
-            <a href="javascript:void(0);" class="navbar-brand">
-                @yield('header-title')
-            </a>
+            <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+            <a href="javascript:void(0);" class="bars"></a>
+            <a class="navbar-brand" href="{{ route('home') }}">myApplication</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Call Search -->
+                <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                <!-- #END# Call Search -->
+                <!-- Notifications -->
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="material-icons">notifications</i>
+                        <span class="label-count">7</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">NOTIFICATIONS</li>
+                        <li class="body">
+                            <ul class="menu">
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <div class="icon-circle bg-light-green">
+                                            <i class="material-icons">person_add</i>
+                                        </div>
+                                        <div class="menu-info">
+                                            <h4>12 new members joined</h4>
+                                            <p>
+                                                <i class="material-icons">access_time</i> 14 mins ago
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <div class="icon-circle bg-cyan">
+                                            <i class="material-icons">add_shopping_cart</i>
+                                        </div>
+                                        <div class="menu-info">
+                                            <h4>4 sales made</h4>
+                                            <p>
+                                                <i class="material-icons">access_time</i> 22 mins ago
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <div class="icon-circle bg-red">
+                                            <i class="material-icons">delete_forever</i>
+                                        </div>
+                                        <div class="menu-info">
+                                            <h4><b>Nancy Doe</b> deleted account</h4>
+                                            <p>
+                                                <i class="material-icons">access_time</i> 3 hours ago
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <div class="icon-circle bg-orange">
+                                            <i class="material-icons">mode_edit</i>
+                                        </div>
+                                        <div class="menu-info">
+                                            <h4><b>Nancy</b> changed name</h4>
+                                            <p>
+                                                <i class="material-icons">access_time</i> 2 hours ago
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <div class="icon-circle bg-blue-grey">
+                                            <i class="material-icons">comment</i>
+                                        </div>
+                                        <div class="menu-info">
+                                            <h4><b>John</b> commented your post</h4>
+                                            <p>
+                                                <i class="material-icons">access_time</i> 4 hours ago
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <div class="icon-circle bg-light-green">
+                                            <i class="material-icons">cached</i>
+                                        </div>
+                                        <div class="menu-info">
+                                            <h4><b>John</b> updated status</h4>
+                                            <p>
+                                                <i class="material-icons">access_time</i> 3 hours ago
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <div class="icon-circle bg-purple">
+                                            <i class="material-icons">settings</i>
+                                        </div>
+                                        <div class="menu-info">
+                                            <h4>Settings updated</h4>
+                                            <p>
+                                                <i class="material-icons">access_time</i> Yesterday
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer">
+                            <a href="javascript:void(0);">View All Notifications</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- #END# Notifications -->
+                <!-- Tasks -->
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="material-icons">flag</i>
+                        <span class="label-count">9</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">TASKS</li>
+                        <li class="body">
+                            <ul class="menu tasks">
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <h4>
+                                            Footer display issue
+                                            <small>32%</small>
+                                        </h4>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-pink" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 32%">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <h4>
+                                            Make new buttons
+                                            <small>45%</small>
+                                        </h4>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-cyan" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <h4>
+                                            Create new dashboard
+                                            <small>54%</small>
+                                        </h4>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 54%">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <h4>
+                                            Solve transition issue
+                                            <small>65%</small>
+                                        </h4>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <h4>
+                                            Answer GitHub questions
+                                            <small>92%</small>
+                                        </h4>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 92%">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer">
+                            <a href="javascript:void(0);">View All Tasks</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- #END# Tasks -->
+                <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
+            </ul>
         </div>
     </div>
-</nav><!--End Nav bar -->
+</nav>
+<!-- #Top Bar -->

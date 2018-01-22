@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Applicants;
 
+use App\Models\Hrmis\Applicants as Applicants;
+use App\Models\Hrmis\ApplicantsEducation as Education;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,12 +16,12 @@ class ApplicantsController extends Controller
      */
     public function index()
     {
-        return view('psbrs.index');
+        return view('hrmis.index');
     }
 
     public function showApplicants()
     {
-        return view('psbrs.applicants');
+        return view('hrmis.applicants');
     }
 
     /**
@@ -29,7 +31,7 @@ class ApplicantsController extends Controller
      */
     public function create()
     {
-        //
+        return view('hrmis.create');
     }
 
     /**
@@ -40,7 +42,26 @@ class ApplicantsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $applicant = new Applicants();
+
+        $applicant->lastname  = $request['lastname'];
+        $applicant->firstname = $request['firstname'];
+        $applicant->middlename = $request['middlename'];
+        $applicant->contact_number = $request['contact_number'];
+        $applicant->email = $request['email'];
+        $applicant->save();
+
+        if ( !empty($request['program']) ) {
+            $education             = new Education();
+
+            $education->program         = $request['program'];
+            $education->school          = $request['school'];
+            $education->year_graduated  = $request['year_graduated'];
+            $education->hasApplicant()->associate($applicant);
+            $education->save();
+        }
+
+        return $request;
     }
 
     /**

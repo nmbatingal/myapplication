@@ -29,7 +29,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('accounts/users', 'UsersController');
         Route::resource('accounts/groups', 'GroupsController');
 
-
         //Route::get('/accounts/groups', 'GroupsController@index')->name('accounts.groups');      // group
         //Route::post('/accounts/groups/store', 'GroupsController@store')->name('accounts.group.store'); // store new group
     });

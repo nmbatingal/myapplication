@@ -30,6 +30,6 @@ class CreateApplicantsAttachmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('applicants_attachments');
+        Schema::dropIfExists('applicant_attachments');
     }
 }
