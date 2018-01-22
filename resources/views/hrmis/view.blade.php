@@ -112,54 +112,84 @@ HRMIS
                                     </div>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade in" id="education_tab">
-                                <div class="row">
-                                    <div class="col-md-10 col-md-offset-1">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <div class="form-group form-float">
-                                                    <label for="fullname">Full name</label>
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" value="{{ $applicant['firstname'] .' ' . $applicant['middlename'].' '. $applicant['lastname'] }}" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group form-float">
-                                                    <label for="age">Age</label>
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" value="{{ $applicant['age'] }}" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-10 col-md-offset-1">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group form-float">
-                                                    <label for="contact">Contact</label>
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" value="{{ $applicant['contact_number'] }}" readonly>
-                                                        <label class="form-label">Mobile number</label>
-                                                    </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="education_tab">
+                                @foreach ( $applicant->educations as $education)
+                                    <div class="row">
+                                        <div class="col-md-10 col-md-offset-1">
+                                            <div class="form-group form-float">
+                                                <label for="fullname">Program</label>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" value="{{ $education['program'] }}" readonly>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group form-float">
-                                                    <label for="contact">&nbsp;</label>
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" value="{{ $applicant['email'] }}" readonly>
-                                                        <label class="form-label">Email</label>
-                                                    </div>
+
+                                            <div class="form-group form-float">
+                                                <label for="fullname">School</label>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" value="{{ $education['school'] }}" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-float">
+                                                <label for="fullname">School</label>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" value="{{ $education['year_graduated'] }}" readonly>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade in" id="training_tab">
+                                @if ( !$applicant->trainings )
+                                    @foreach ( $applicant->trainings as $training )
+                                        <div class="row">
+                                            <div class="col-md-10 col-md-offset-1">
+                                                <div class="form-group form-float">
+                                                    <label for="fullname">Activity title</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $training['title'] }}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="row">
+                                        <div class="col-md-10 col-md-offset-1">
+                                            <div class="list-group">
+                                                <a href="#" class="list-group-item text-center disabled">no data available</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade in" id="experience_tab">
+                                @if ( !$applicant->trainings )
+                                    @foreach ( $applicant->trainings as $training )
+                                        <div class="row">
+                                            <div class="col-md-10 col-md-offset-1">
+                                                <div class="form-group form-float">
+                                                    <label for="fullname">Activity title</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $training['title'] }}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="row">
+                                        <div class="col-md-10 col-md-offset-1">
+                                            <div class="list-group">
+                                                <a href="#" class="list-group-item text-center disabled">no data available</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
