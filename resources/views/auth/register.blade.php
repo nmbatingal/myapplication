@@ -43,65 +43,72 @@
 
         <div class="card">
             <div class="body">
-                <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                <form id="sign_up" method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
+                    <div class="msg">Sign up now to use the application</div>
 
-                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <label for="name" class="col-md-4 control-label">Name</label>
-
-                        <div class="col-md-6">
-                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                            @if ($errors->has('name'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('name') }}</strong>
-                                </span>
-                            @endif
+                    <label class="control-label">Account Information</label>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="firstname" autofocus value="{{ @old('firstname') }}">
+                            <label class="form-label">Firstname</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="middlename" value="{{ @old('middlename') }}">
+                            <label class="form-label">Middlename</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="lastname" value="{{ @old('lastname') }}">
+                            <label class="form-label">Lastname</label>
                         </div>
                     </div>
 
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                            @if ($errors->has('email'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                            @endif
+                    <label class="control-label">Contact Details</label>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="email" class="form-control" name="email">
+                            <label class="form-label">Email</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line masked-input">
+                            <input name="contact_number" type="text" class="form-control mobile-phone-number" value="+639">
+                            <label class="form-label">Contact number</label>
                         </div>
                     </div>
 
-                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label for="password" class="col-md-4 control-label">Password</label>
-
-                        <div class="col-md-6">
-                            <input id="password" type="password" class="form-control" name="password" required>
-
-                            @if ($errors->has('password'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                            @endif
+                    <label class="control-label">Other Details</label>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" name="username" class="form-control" value="{{ @old('username') }}">
+                            <label class="form-label">Username</label>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                        <div class="col-md-6">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <select class="form-control" name="division_unit" required>
+                                <option value=""></option>
+                                @foreach( $offices as $office )
+                                    <option value="{{ $office['id'] }}">{{ $office['div_name'] }}</option>
+                                @endforeach
+                            </select>
+                            <label class="form-label">Unit Assignment</label>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-md-6 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary">
-                                Register
-                            </button>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input id="position" name="position" type="text" class="form-control">
+                            <label class="form-label">Position</label>
                         </div>
+                    </div>
+                  
+                    <div class="pmd-card-footer card-footer-no-border card-footer-p16 text-center">
+                        <button class="btn waves-effect btn-primary btn-block" type="submit">Sign up</button>
+                        <a href="{{ route('login') }}" class="btn waves-effect btn-default btn-block" type="submit">Return to login</a>
                     </div>
                 </form>
             </div>
@@ -120,9 +127,10 @@
     <!-- Validation Plugin Js -->
     <script src="{{ asset('plugins/jquery-validation/jquery.validate.js') }}"></script>
 
+    <script src="{{ asset('components/jquery-inputmask/jquery.inputmask.bundle.js') }}" type="text/javascript"></script>
     <!-- Custom Js -->
     <script src="{{ asset('js/admin.js') }}"></script>
-    <script src="{{ asset('js/pages/examples/sign-in.js') }}"></script>
+    <script src="{{ asset('js/pages/examples/sign-up.js') }}"></script>
 </body>
 
 </html>

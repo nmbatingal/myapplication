@@ -44,13 +44,19 @@
         <div class="card">
             <div class="body">
 
-                <form id="sign_in" class="form-login" method="POST" action="{{ route('login') }}">
+                <form id="sign_up" class="form-login" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
                     <div class="msg">Sign in to start your session</div>
 
                     @if ($errors->has('username'))
                         <div class="alert alert-danger">
-                            <strong>Invalid username or password.</strong>
+                            <p class="text-center">Invalid username or password.</p>
+                        </div>
+                    @endif
+
+                    @if(session('info'))
+                        <div class="alert alert-warning">
+                            <p class="text-center">{{ session('info') }}</p>
                         </div>
                     @endif
 
@@ -84,7 +90,7 @@
                             <a href="{{ route('register') }}">Signup Now!</a>
                         </div>
                         <div class="col-xs-6 align-right">
-                            <a href="forgot-password.html">Forgot Password?</a>
+                            <a href="#">Forgot Password?</a>
                         </div>
                     </div>
                 </form>

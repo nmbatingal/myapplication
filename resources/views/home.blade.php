@@ -26,135 +26,99 @@
 
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="card card-default pmd-z-depth">
-                            <!-- Card media -->
-                            <div class="card-media">
-                                <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
+                        <div class="info-box">
+                            <div class="icon bg-blue">
+                                <i class="material-icons">people</i>
                             </div>
-
-                            <div class="header">
-                                <h2><a href="{{ route('applicants.index') }}">HRMIS</a> <small>Description text here...</small></h2>
-                                <ul class="header-dropdown m-r-0">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <i class="material-icons col-blue">info_outline</i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('applicants.index') }}">
-                                            <i class="material-icons col-green">launch</i>
-                                        </a>
-                                    </li>
-                                </ul>
+                            <div class="content">
+                                <div class="text">GROUPS</div>
+                                <a href="{{ route('groups.index') }}" class="btn-link font-underline col-blue" type="button">Open settings</a>
+                            </div>
+                        </div>
+                        <div class="info-box">
+                            <div class="icon bg-red">
+                                <i class="material-icons">face</i>
+                            </div>
+                            <div class="content">
+                                <div class="text">USERS</div>
+                                <a href="{{ route('users.index') }}" class="btn-link font-underline col-red" type="button">Open settings</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="card card-default pmd-z-depth">
-                            <!-- Card media -->
-                            <div class="card-media">
-                                <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
-                            </div>
 
-                            <div class="header">
-                                <h2><a href="{{ route('applicants.index') }}">HRMIS</a> <small>Description text here...</small></h2>
-                                <ul class="header-dropdown m-r-0">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <i class="material-icons col-blue">info_outline</i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('applicants.index') }}">
-                                            <i class="material-icons col-green">launch</i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card card-default pmd-z-depth">
-                            <!-- Card media -->
-                            <div class="card-media">
-                                <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
-                            </div>
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card card-default pmd-z-depth">
+                                    <!-- Card media -->
+                                    <div class="card-media">
+                                        <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
+                                    </div>
 
-                            <div class="header">
-                                <h2><a href="{{ route('applicants.index') }}">HRMIS</a> <small>Description text here...</small></h2>
-                                <ul class="header-dropdown m-r-0">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <i class="material-icons col-blue">info_outline</i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('applicants.index') }}">
-                                            <i class="material-icons col-green">launch</i>
-                                        </a>
-                                    </li>
-                                </ul>
+                                    <div class="header">
+                                        <h2><a href="{{ route('applicants.index') }}">HRMIS</a> <small>Description text here...</small></h2>
+                                        <ul class="header-dropdown m-r-0">
+                                            <li>
+                                                <a href="javascript:void(0);">
+                                                    <i class="material-icons col-blue">info_outline</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('applicants.index') }}">
+                                                    <i class="material-icons col-green">launch</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card card-default pmd-z-depth">
-                            <!-- Card media -->
-                            <div class="card-media">
-                                <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
-                            </div>
+                            <div class="col-md-4">
+                                <div class="card card-default pmd-z-depth">
+                                    <!-- Card media -->
+                                    <div class="card-media">
+                                        <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
+                                    </div>
 
-                            <div class="header">
-                                <h2><a href="{{ route('applicants.index') }}">HRMIS</a> <small>Description text here...</small></h2>
-                                <ul class="header-dropdown m-r-0">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <i class="material-icons col-blue">info_outline</i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('applicants.index') }}">
-                                            <i class="material-icons col-green">launch</i>
-                                        </a>
-                                    </li>
-                                </ul>
+                                    <div class="header">
+                                        <h2><a href="#">Application</a> <small>Description text here...</small></h2>
+                                        <ul class="header-dropdown m-r-0">
+                                            <li>
+                                                <a href="javascript:void(0);">
+                                                    <i class="material-icons col-blue">info_outline</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);">
+                                                    <i class="material-icons col-green">launch</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <div class="col-md-4">
+                                <div class="card card-default pmd-z-depth">
+                                    <!-- Card media -->
+                                    <div class="card-media">
+                                        <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
+                                    </div>
 
-        <br>
-
-        <div class="row clearfix">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="pmd-card pmd-card-default pmd-z-depth">
-
-                            <!-- Card header -->
-                            <div class="pmd-card-title ellipsis">
-                                <h2 class="pmd-card-title-text">Groups</h2>
-                            </div>
-                            
-                            <!-- Card action -->
-                            <div class="pmd-card-actions">
-                                <a href="{{ route('groups.index') }}" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Open</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="pmd-card pmd-card-default pmd-z-depth">
-
-                            <!-- Card header -->
-                            <div class="pmd-card-title ellipsis">
-                                <h2 class="pmd-card-title-text">Users</h2>
-                            </div>
-                            
-                            <!-- Card action -->
-                            <div class="pmd-card-actions">
-                                <a href="{{ route('users.index') }}" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Open</a>
+                                    <div class="header">
+                                        <h2><a href="#">Application</a> <small>Description text here...</small></h2>
+                                        <ul class="header-dropdown m-r-0">
+                                            <li>
+                                                <a href="javascript:void(0);">
+                                                    <i class="material-icons col-blue">info_outline</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);">
+                                                    <i class="material-icons col-green">launch</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
