@@ -110,6 +110,13 @@
     <!-- Validation Plugin Js -->
     <script src="{{ asset('plugins/jquery-validation/jquery.validate.js') }}"></script>
 
+    <!--BACKSTRETCH-->
+    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+    <script type="text/javascript" src="{{ asset('js/jquery.backstretch.min.js') }}"></script>
+    <script>
+        var $image = "{{ asset('img/login-bg.jpg') }}";
+        $.backstretch($image, {transitionDuration: 500});
+    </script>
     <!-- Custom Js -->
     <script src="{{ asset('js/admin.js') }}"></script>
     <script src="{{ asset('js/pages/examples/sign-in.js') }}"></script>
