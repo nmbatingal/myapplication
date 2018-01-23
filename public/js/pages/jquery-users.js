@@ -109,7 +109,7 @@ $(function () {
         },
         submitHandler: function(form) { 
             //submit via ajax
-            var id    = $('input[name=u_id]').val();
+            /*var id    = $('input[name=u_id]').val();
 
             $.ajax({
                 method: "PUT", 
@@ -124,7 +124,9 @@ $(function () {
                         //console.log(data);
                     }
                 }
-            });
+            });*/
+
+            form.submit();
 
             //console.log( $(form).attr('action') );
 

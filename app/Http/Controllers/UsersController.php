@@ -131,7 +131,7 @@ class UsersController extends Controller
 
         $user = User::findOrFail($id);
 
-        $user->__is = $val;
+        $user->__isAdmin = $val;
         $user->save();
 
         return response()->json("success");

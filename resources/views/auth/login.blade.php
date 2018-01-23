@@ -56,7 +56,7 @@
 
                     @if(session('info'))
                         <div class="alert alert-warning">
-                            <p class="text-center">{{ session('info') }}</p>
+                            <p class="text-center">{!! session('info') !!}</p>
                         </div>
                     @endif
 
