@@ -13,7 +13,7 @@
 
 //Route::get('/', function () { return view('auth.login'); });
 
-Route::get('/', 'auth\LoginController@showLoginForm')->name('login');
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 
 Auth::routes();
 
@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function() {
         //Route::post('/accounts/groups/store', 'GroupsController@store')->name('accounts.group.store'); // store new group
     });
 
-    Route::get('hrmis/applicants/all', 'applicants\ApplicantsController@showApplicants')->name('applicants.showApplicants');
-    Route::resource('hrmis/applicants', 'applicants\ApplicantsController');
+    Route::get('hrmis/applicants/all', 'Applicants\ApplicantsController@showApplicants')->name('applicants.showApplicants');
+    Route::resource('hrmis/applicants', 'Applicants\ApplicantsController');
 
 });
