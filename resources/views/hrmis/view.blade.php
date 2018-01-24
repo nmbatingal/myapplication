@@ -62,7 +62,7 @@ HRMIS
                         </ul>
 
                         <!-- Tab panes -->
-                        <div class="tab-content">
+                        <div class="tab-content m-t-15">
                             <div role="tabpanel" class="tab-pane fade in active" id="applicant_tab">
                                 <div class="row">
                                     <div class="col-md-10 col-md-offset-1">
