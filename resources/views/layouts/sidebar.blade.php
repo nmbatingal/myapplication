@@ -35,6 +35,19 @@
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>
+                </li> 
+                <li class="header">SETTINGS</li>
+                <li class="">
+                    <a href="{{ route('groups.index') }}">
+                        <i class="material-icons">settings</i>
+                        <span>Group</span>
+                    </a>
+                </li> 
+                <li class="">
+                    <a href="{{ route('users.index') }}">
+                        <i class="material-icons">settings</i>
+                        <span>Users</span>
+                    </a>
                 </li>           
             </ul>
         </div>

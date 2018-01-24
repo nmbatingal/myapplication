@@ -1,17 +1,12 @@
 @extends('layouts.app')
 
 @section('styles')
-<!-- DataTables css-->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
-<!-- Propeller dataTables css-->
-
+<!-- Bootstrap Select Css -->
+<link href="{{ asset('plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet" />
 <!-- build:[href] components/file-upload/css/ -->
 <link rel="stylesheet" type="text/css" href="{{ asset('components/file-upload/css/upload-file.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('components/file-upload/css/image-upload.css') }}">
 <!-- /build -->
-
 <link rel="stylesheet" type="text/css" href="{{ asset('bower/bootstrap-switch-master/dist/css/bootstrap3/bootstrap-switch.css') }}">
 @endsection
 
@@ -26,62 +21,122 @@
             </ol>
         </div>
 
-        <section class="row component-section">
+        <div class="row">
             <div class="col-md-4">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group pmd-textfield">
-                            <div class="input-group"> 
-                                <div class="input-group-addon"><i class="material-icons md-dark pmd-sm">search</i></div>
-                                <input type="text" class="form-control" placeholder="Search...">
+                <div class="card">
+                    @if( count($users) > 0 )
+                        @foreach($users as $user)
+                            <ul class="list-group pmd-z-depth pmd-list pmd-card-list">
+                                <li class="list-group-item">
+                                    <a href="javascript:void(0);">
+                                        <div class="media-body">
+                                            <h3 class="list-group-item-heading">{{ $user['firstname'] }} {{ !empty($user['middlename']) ? $user['middlename'][0].'. ' : '' }}{{ $user['lastname'] }}</h3>
+                                            <span class="list-group-item-text">{{ $user['position'] }} - {{ $user->hasOffice['div_name'] }}</span>
+                                        </div>
+                                        <div class="media-right"> 
+                                            <div class="pull-right">
+                                                @if ( $user['__isAdmin'] > 0 )
+                                                    <span class="badge badge-warning">admin</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        @endforeach
+                    @else
+                        <ul class="list-group pmd-z-depth pmd-list pmd-card-list">
+                            <li class="list-group-item">
+                                <div class="media-body media-left">
+                                    <i class="material-icons media-left pmd-sm">error_outline</i>
+                                    <span class="media-body">no record found</span>
+                                </div>
+                            </li>
+                        </ul>
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h2>PERSONAL INFORMATION</h2>
+                    </div>
+                    <div class="body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                
+                            </div>
+                            <div class="col-md-9">
+                                <form id="form-group" class="form-horizontal" action="{{ route('groups.store') }}"  method="POST">
+                                    {{ csrf_field() }}
+                                    <div class="row clearfix">
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                            <label for="email_address_2">Division Unit</label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" id="" name="div_name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                            <label for="email_address_2">Acronym</label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" id="" name="acronym">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                            <label for="email_address_2">Office Head</label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <select class="form-control show-tick">
+                                                        <option value="">-- Please select --</option>
+                                                        @foreach( $users as $user )
+                                                            <option value="{{ $user['id'] }}">{{ $user['firstname'] }} {{ $user['middlename'][0] }}. {{ $user['lastname'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                            <label for="email_address_2">Position</label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                <input type="text" class="form-control" id="" name="position">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5 m-t-15">
+                                            <button type="submit" class="btn btn-success waves-effect">Save</button>
+                                            <button type="reset" class="btn btn-default btn-link waves-effect">Reset</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="pmd-card pmd-z-depth">
-                            @if( count($users) > 0 )
-                                @foreach($users as $user)
-                                    <ul class="list-group pmd-z-depth pmd-list pmd-card-list">
-                                        <li class="list-group-item">
-                                            <div class="media-left">
-                                                <a href="javascript:void(0);" class="avatar-list-img">
-                                                    <img alt="40x40" data-src="holder.js/40x40" class="img-responsive" src="{{ asset($user['__img']) }}" data-holder-rendered="true">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <a href="{{ route('users.show', ['id'=> $user['id']]) }}" class="list-user"> 
-                                                    <h3 class="list-group-item-heading"><b>{{ $user['firstname'] }} {{ !empty($user['middlename']) ? $user['middlename'][0].'. ' : '' }}{{ $user['lastname'] }}</b></h3>
-                                                    <span class="list-group-item-text">{{ $user['position'] }} - {{ $user->hasOffice['div_name'] }}</span>
-                                                </a>
-                                            </div>
-                                            <div class="media-right"> 
-                                                <div class="pull-right">
-                                                    @if ( $user['__isAdmin'] > 0 )
-                                                        <span class="badge badge-warning">admin</span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                @endforeach
-                            @else
-                                <ul class="list-group pmd-z-depth pmd-list pmd-card-list">
-                                    <li class="list-group-item">
-                                        <div class="media-body media-left">
-                                            <i class="material-icons media-left pmd-sm">error_outline</i>
-                                            <span class="media-body">no record found</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            @endif
-                        </div>
-                    </div>
-                </div>
             </div>
+        </div>
 
+        <section class="row component-section">
             <div class="col-md-8">
                 <div class="pmd-card pmd-z-depth">
                     <div class="pmd-card-body">
@@ -219,19 +274,9 @@
 @endsection
 
 @section('scripts')
+<!-- Select Plugin Js -->
+<script src="{{ asset('plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
 <script src="{{ asset('components/file-upload/js/upload-image.js') }}"></script>
 <script src="{{ asset('bower/bootstrap-switch-master/dist/js/bootstrap-switch.js') }}"></script>
 <script src="{{ asset('js/pages/jquery-users.js') }}" type="text/javascript"></script>
-<script>
-
-    $("#form-user").on('submit', function(e) {
-
-           /*e.preventDefault();
-
-           var form = $(this);
-
-           console.log(form.serializeArray());*/
-    });
-
-</script>
 @endsection

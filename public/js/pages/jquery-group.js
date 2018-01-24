@@ -5,25 +5,19 @@ $(function () {
             div_name    : "required",
             acronym     : "required",
         },
-        onfocusout: function(element) {
-            this.element(element);  
+        messages : {
+            div_name    : "Please enter a division unit name."
         },
-        onkeyup: function(element) {
-            $(element).valid();
+        highlight: function (input) {
+            console.log(input);
+            $(input).parents('.form-line').addClass('error');
         },
-        highlight: function (element) {
-            $(element).parents('.form-group').addClass('has-success').removeClass('has-error');
-            $(element).parents('.form-group').addClass('has-error').removeClass('has-success');
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
         },
-        unhighlight: function (element) {
-            $(element).parents('.form-group').addClass('has-error').removeClass('has-success');
-            $(element).parents('.form-group').addClass('has-success').removeClass('has-error');
-        },
-        errorElement: "p",
         errorPlacement: function (error, element) {
-            error.addClass( "help-block" );
-
-            $(element).parents('.group-input').append(error);
+            $(element).parents('.input-group').append(error);
+            $(element).parents('.form-group').append(error);
         }
     });
 
