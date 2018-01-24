@@ -101,27 +101,6 @@
     <!-- Jquery Validation Plugin Css -->
     <script src="{{ asset('plugins/jquery-validation/jquery.validate.js') }}"></script>
 
-    <script>
-
-        /*$(document).ready(function() {
-            var sPath =window.location.href;
-            var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-
-            $(".left-nav a").each(function() {
-
-                var href = $(this).attr('href');
-                if(sPath === href) {
-                    $(this).parents("li").addClass("active");
-                }
-                $(this).find("a[href='"+sPath+"']").parents(".dropdown").addClass("open");
-                $(this).find("a[href='"+sPath+"']").parents(".dropdown").find('.dropdown-menu').css("display", "block");
-                $(this).find("a[href='"+sPath+"']").parents(".dropdown").find('a.dropdown-toggle').addClass("active");
-                $(this).find("a[href='"+sPath+"']").addClass("active");
-            });
-        });*/
-        
-    </script>
-
     @yield('scripts')
 
     <!-- Custom Js -->
