@@ -1,5 +1,7 @@
 $(function () {
     
+    var $form = $('#form-user');
+
     /* toggle switch button */
     $("input[name=u_active]").bootstrapSwitch({
         size    : "sm",
@@ -8,11 +10,14 @@ $(function () {
         offText : "No",
         offColor: "danger"
     });
+
     $("input[name=u_active]").on('switchChange.bootstrapSwitch', function (event, state) {
+
         var id    = $('input[name=u_id]').val();
+
         $.ajax({
-            type: 'POST',
-            url: '/accounts/users/status',
+            type: $form.attr('method'),
+            url : $form.attr('action') + '/status',
             data: {
                 '_token' : $('input[name=_token]').val(),
                 'id'     : id,
@@ -33,10 +38,12 @@ $(function () {
         offColor: "danger"
     });
     $("input[name=u_admin]").on('switchChange.bootstrapSwitch', function (event, state) {
+        
         var id    = $('input[name=u_id]').val();
+        
         $.ajax({
-            type: 'POST',
-            url: '/accounts/users/admin',
+            type: $form.attr('method'),
+            url : $form.attr('action') + '/admin',
             data: {
                 '_token' : $('input[name=_token]').val(),
                 'id'     : id,
@@ -46,14 +53,19 @@ $(function () {
                 //
             }
         });
+
+        var form = $('#form-user');
+        form.submit();
     });
 
     /* reset user password */
     $('a#resetPassword').on('click', function() {
+        
         var id    = $('input[name=u_id]').val();
+        
         $.ajax({
-            type: 'POST',
-            url: '/accounts/users/reset',
+            type: $form.attr('method'),
+            url : $form.attr('action') + '/reset',
             data: {
                 '_token' : $('input[name=_token]').val(),
                 'id'     : id
@@ -109,7 +121,7 @@ $(function () {
         },
         submitHandler: function(form) { 
             //submit via ajax
-            var id    = $('input[name=u_id]').val();
+            /*var id    = $('input[name=u_id]').val();
 
             $.ajax({
                 method: "PUT", 
@@ -124,7 +136,9 @@ $(function () {
                         //console.log(data);
                     }
                 }
-            });
+            });*/
+
+            form.submit();
 
             //console.log( $(form).attr('action') );
 

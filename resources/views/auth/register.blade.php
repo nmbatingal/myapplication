@@ -1,77 +1,144 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Propeller Admin Dashboard">
+    <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport">
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+    <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+    <!-- Bootstrap Core Css -->
+    <link href="{{ asset('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="{{ asset('plugins/node-waves/waves.css') }}" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="{{ asset('plugins/animate-css/animate.css') }}" rel="stylesheet" />
+    
+    @yield('styles')
+
+    <!-- Custom Css -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+</head>
+
+<body class="login-page">
+    <div class="login-box">
+
+        <div class="logo">
+            <a href="javascript:void(0);">My<b>Application</b></a>
+            <!-- <small>Admin BootStrap Based - Material Design</small> -->
+        </div>
+
+        <div class="card">
+            <div class="body">
+                <form id="sign_up" method="POST" action="{{ route('register') }}">
+                    {{ csrf_field() }}
+                    <div class="msg">Sign up now to use the application</div>
+
+                    <label class="control-label">Account Information</label>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="firstname" autofocus value="{{ @old('firstname') }}">
+                            <label class="form-label">Firstname</label>
                         </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="middlename" value="{{ @old('middlename') }}">
+                            <label class="form-label">Middlename</label>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="lastname" value="{{ @old('lastname') }}">
+                            <label class="form-label">Lastname</label>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
+                    <label class="control-label">Contact Details</label>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="email" class="form-control" name="email">
+                            <label class="form-label">Email</label>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line masked-input">
+                            <input name="contact_number" type="text" class="form-control mobile-phone-number" value="+639">
+                            <label class="form-label">Contact number</label>
                         </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <label class="control-label">Other Details</label>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" name="username" class="form-control" value="{{ @old('username') }}">
+                            <label class="form-label">Username</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <select class="form-control" name="division_unit" required>
+                                <option value=""></option>
+                                @foreach( $offices as $office )
+                                    <option value="{{ $office['id'] }}">{{ $office['div_name'] }}</option>
+                                @endforeach
+                            </select>
+                            <label class="form-label">Unit Assignment</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input id="position" name="position" type="text" class="form-control">
+                            <label class="form-label">Position</label>
+                        </div>
+                    </div>
+                  
+                    <div class="pmd-card-footer card-footer-no-border card-footer-p16 text-center">
+                        <button class="btn waves-effect btn-primary btn-block" type="submit">Sign up</button>
+                        <a href="{{ route('login') }}" class="btn waves-effect btn-default btn-block" type="submit">Return to login</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
-@endsection
+
+    <!-- Jquery Core Js -->
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.js') }}"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="{{ asset('plugins/node-waves/waves.js') }}"></script>
+
+    <!-- Validation Plugin Js -->
+    <script src="{{ asset('plugins/jquery-validation/jquery.validate.js') }}"></script>
+
+    <script src="{{ asset('components/jquery-inputmask/jquery.inputmask.bundle.js') }}" type="text/javascript"></script>
+    
+    <!--BACKSTRETCH-->
+    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+    <script type="text/javascript" src="{{ asset('js/jquery.backstretch.min.js') }}"></script>
+    <script>
+        var $image = "{{ asset('img/login-bg.jpg') }}";
+        $.backstretch($image, {transitionDuration: 500});
+    </script>
+    <!-- Custom Js -->
+    <script src="{{ asset('js/admin.js') }}"></script>
+    <script src="{{ asset('js/pages/examples/sign-up.js') }}"></script>
+</body>
+
+</html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Offices;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -28,6 +29,18 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        $offices = Offices::orderBy('div_name', 'ASC')->get();
+
+        return view('auth.register', compact('offices'));
+    }
 
     /**
      * Create a new controller instance.
@@ -63,7 +76,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'username'      => $data['signup_username'],
+            'username'      => $data['username'],
             'password'      => bcrypt('dostcaraga'),
             'lastname'      => ucwords($data['lastname']),
             'firstname'     => ucwords($data['firstname']),

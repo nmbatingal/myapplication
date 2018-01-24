@@ -102,7 +102,7 @@
                             
                             <div class="col-lg-9 custom-col-9">
                                 <form id="form-user" class="form-horizontal" action="{{ route('users.update', '') }}" method="POST">
-                                    {{ csrf_field() }}
+                                    {!! csrf_field() !!}
                                     <input type="hidden" name="u_id">
                                     <h3 class="heading">Personal Information</h3>
                                     <div class="row">

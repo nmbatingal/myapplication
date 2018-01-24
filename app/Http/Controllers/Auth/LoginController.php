@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\User;
-use App\Offices;
 
 class LoginController extends Controller
 {
@@ -30,8 +29,6 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        $offices = Offices::orderBy('div_name', 'ASC')->get();
-
         return view('auth.login', compact('offices'));
     }
 
