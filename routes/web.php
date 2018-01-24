@@ -22,10 +22,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['middleware' => 'checkAdmin'], function() {
+        
         // ACCOUNTS
         Route::post('/accounts/users/status', 'UsersController@changeStatus')->name('users.switchStatus');  // switch user status
         Route::post('/accounts/users/admin', 'UsersController@changeAdmin')->name('users.switchAdmin');     // switch user admin
         Route::post('/accounts/users/reset', 'UsersController@resetPassword')->name('users.reset');         // reset user password
+
         Route::resource('accounts/users', 'UsersController');
         Route::resource('accounts/groups', 'GroupsController');
 

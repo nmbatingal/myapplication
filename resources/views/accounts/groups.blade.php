@@ -23,16 +23,100 @@
             </ol>
         </div>
 
-        <section class="row component-section">
-            <div class="col-md-4">
-                <div class="form-group pmd-textfield">
-                    <div class="input-group masked-input"> 
-                        <div class="input-group-addon"><i class="material-icons md-dark pmd-sm">search</i></div>
-                        <input type="text" class="form-control" placeholder="Search...">
+        <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                DEFAULT MEDIA
+                                <small>The default media displays a media object (images, video, audio) to the left or right of a content block.</small>
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="javascript:void(0);">
+                                        <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+                                    ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra
+                                    turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis
+                                    in faucibus.
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+                                    ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra
+                                    turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis
+                                    in faucibus.
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#">
+                                                <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Nested media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla
+                                            vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
+                                            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+                                            fringilla. Donec lacinia congue felis in faucibus.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h4 class="media-heading">Media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+                                    ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra
+                                    turpis.
+                                </div>
+                                <div class="media-right">
+                                    <a href="#">
+                                        <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+                                    ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra
+                                    turpis.
+                                </div>
+                                <div class="media-right">
+                                    <a href="#">
+                                        <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
         <section class="row component-section">
             <div class="col-md-4">

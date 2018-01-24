@@ -1,6 +1,7 @@
 $(function () {
     skinChanger();
     activateNotificationAndTasksScroll();
+    bodyScroll();
 
     setSkinListHeightAndScroll(true);
     setSettingListHeightAndScroll(true);
@@ -69,6 +70,19 @@ function setSettingListHeightAndScroll(isFirstTime) {
 function activateNotificationAndTasksScroll() {
     $('.navbar-right .dropdown-menu .body .menu').slimscroll({
         height: '254px',
+        color: 'rgba(0,0,0,0.5)',
+        size: '4px',
+        alwaysVisible: false,
+        borderRadius: '0',
+        railBorderRadius: '0'
+    });
+}
+
+//Activate notification and task dropdown on top right menu
+function bodyScroll() {
+
+    $('body').slimScroll({
+        height: ($(window).height()) + 'px',
         color: 'rgba(0,0,0,0.5)',
         size: '4px',
         alwaysVisible: false,
