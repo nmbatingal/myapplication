@@ -134,6 +134,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery.backstretch.min.js') }}"></script>
     <script>
         var $image = "{{ asset('img/login-bg.jpg') }}";
+        
         $.backstretch($image, {transitionDuration: 500});
     </script>
     <!-- Custom Js -->
