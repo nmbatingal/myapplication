@@ -60,9 +60,9 @@ $(function () {
             remarks     : "required",*/
             "attachment[]" : {
                 required  : true,
-                //accept    : ".doc,.docx,.xls,.xlsx,.pdf"
-                //extension  : "doc|docx|pdf",
-                //filesize   : 2000
+                // accept    : "text/*",
+                // extension  : "doc|docx|pdf",
+                // filesize   : 2000
             }
         },
         messages : {
