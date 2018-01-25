@@ -45,7 +45,7 @@ $(function () {
         }
     }).validate({
         rules: {
-            firstname   : "required",
+            /*firstname   : "required",
             lastname    : "required",
             sex         : "required",
             email       : {
@@ -57,7 +57,19 @@ $(function () {
             },
             program     : "required",
             school      : "required",
-            remarks     : "required",
+            remarks     : "required",*/
+            "attachment[]" : {
+                required  : true,
+                //accept    : ".doc,.docx,.xls,.xlsx,.pdf"
+                //extension  : "doc|docx|pdf",
+                //filesize   : 2000
+            }
+        },
+        messages : {
+            "attachment[]" : {
+               required : "Please upload atleast 1 document",
+               //extension: "Only document file is allowed!"
+            }
         },
         highlight: function (input) {
             $(input).parents('.form-line').addClass('error');

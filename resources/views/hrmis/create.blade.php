@@ -260,7 +260,7 @@
                                 <h2 class="card-inside-title">File Attachments</h2>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="file" class="form-control" name="attachment[]" accept=".doc,.docx,.xls,.xlsx,.pdf" multiple required>
+                                        <input type="file" class="form-control" name="attachment[]" accept=".doc,.docx,.xls,.xlsx,.pdf" multiple>
                                     </div>
                                 </div>
 
