@@ -68,6 +68,27 @@ class RegisterController extends Controller
     }
 
     /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+
+        //return $this->registered($request, $user) ?: redirect($this->redirectPath());
+
+        return redirect('/login')->with('info', 'Confirm user credentials to the <strong>system administrator</strong> first before using your account.');
+
+
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
