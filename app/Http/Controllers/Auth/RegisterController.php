@@ -73,7 +73,7 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function register(Request $request)
+    /*public function register(Request $request)
     {
         $this->validator($request->all())->validate();
 
@@ -84,9 +84,7 @@ class RegisterController extends Controller
         //return $this->registered($request, $user) ?: redirect($this->redirectPath());
 
         return redirect('/login')->with('info', 'Confirm user credentials to the <strong>system administrator</strong> first before using your account.');
-
-
-    }
+    }*/
 
     /**
      * Create a new user instance after a valid registration.
