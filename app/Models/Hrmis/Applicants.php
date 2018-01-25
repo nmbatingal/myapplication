@@ -12,7 +12,7 @@ class Applicants extends Model
 
     protected $fillable = [
         'lastname', 'firstname', 'middlename', 
-        'contact_number', 'email', 'age', 
+        'contact_number', 'email', 'age', 'sex', 
         'remarks', 'status', 'added_by',  
     ];
 

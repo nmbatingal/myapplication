@@ -50,14 +50,15 @@ class ApplicantsController extends Controller
     {
         $applicant = new Applicants();
 
-        $applicant->lastname  = $request['lastname'];
-        $applicant->firstname = $request['firstname'];
-        $applicant->middlename = $request['middlename'];
+        $applicant->lastname    = $request['lastname'];
+        $applicant->firstname   = $request['firstname'];
+        $applicant->middlename  = $request['middlename'];
         $applicant->contact_number = $request['contact_number'];
-        $applicant->age       = $request['age'];
-        $applicant->email     = $request['email'];
-        $applicant->log_id    = Auth::user()->id;
-        $applicant->remarks   = $request['remarks'];
+        $applicant->age         = $request['age'];
+        $applicant->sex         = $request['sex'];
+        $applicant->email       = $request['email'];
+        $applicant->log_id      = Auth::user()->id;
+        $applicant->remarks     = $request['remarks'];
         $applicant->save();
 
         if ( !empty($request['program']) ) {

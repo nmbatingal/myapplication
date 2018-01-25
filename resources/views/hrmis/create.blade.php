@@ -59,17 +59,17 @@
                                     </div>
                                 </div>
 
-                                <h2 class="card-inside-title">Contact</h2>
+                                <h2 class="card-inside-title">Sex</h2>
                                 <div class="row clearfix">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-4">
                                         <div class="form-group form-float">
-                                            <div class="form-line masked-input">
-                                                <input type="text" class="form-control mobile-phone-number" name="contact_number">
-                                                <label class="form-label">Mobile Number</label>
-                                            </div>
+                                            <input name="sex" type="radio" id="radio_1" value="1" />
+                                            <label for="radio_1">Male</label>
+                                            <input name="sex" type="radio" id="radio_2" value="2" />
+                                            <label for="radio_2">Female</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="number" class="form-control" name="age" min="0">
@@ -78,8 +78,18 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <h2 class="card-inside-title">Contact</h2>
                                 <div class="row clearfix">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-float">
+                                            <div class="form-line masked-input">
+                                                <input type="text" class="form-control mobile-phone-number" name="contact_number">
+                                                <label class="form-label">Mobile Number</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="email" class="form-control" name="email">
@@ -88,7 +98,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </fieldset>
 
                             <h3>Education</h3>
@@ -147,7 +156,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="from_date_training">
+                                                <input id="date-start-training" type="text" class="form-control" name="from_date_training">
                                                 <label class="form-label">From date</label>
                                             </div>
                                         </div>
@@ -155,7 +164,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="to_date_training">
+                                                <input id="date-end-training" type="text" class="form-control" name="to_date_training">
                                                 <label class="form-label">To date</label>
                                             </div>
                                         </div>
@@ -194,7 +203,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="from_date_agency">
+                                                <input id="date-start-work" type="text" class="form-control" name="from_date_agency">
                                                 <label class="form-label">From date</label>
                                             </div>
                                         </div>
@@ -202,7 +211,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="to_date_agency">
+                                                <input id="date-end-work" type="text" class="form-control" name="to_date_agency">
                                                 <label class="form-label">To date</label>
                                             </div>
                                         </div>
@@ -238,7 +247,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="exam_date">
+                                                <input type="text" class="datepicker form-control" name="exam_date">
                                                 <label class="form-label">Exam date</label>
                                             </div>
                                         </div>
@@ -284,13 +293,43 @@
 <script src="{{ asset('js/pages/hrmis/create-applicants.js') }}"></script>
 <script>
     $(document).ready(function() {
-
-        $('.dtp-buttons')
-
+        /* DATE PICKER*/
         $('.datepicker').bootstrapMaterialDatePicker({
             clearButton: true,
             weekStart: 0,
             time: false
+        });
+
+        /* DATE TRAINING */
+        $('#date-end-training').bootstrapMaterialDatePicker({ 
+            clearButton: true,
+            weekStart: 0,
+            time: false
+        });
+        $('#date-start-training').bootstrapMaterialDatePicker({
+            clearButton: true,
+            weekStart: 0,
+            time: false 
+        }).on('change', function(e, date) {
+            $('#date-end-training').bootstrapMaterialDatePicker('setMinDate', date);
+        });
+
+        /* DATE WORK */
+        $('#date-end-work').bootstrapMaterialDatePicker({ 
+            clearButton: true,
+            weekStart: 0,
+            time: false
+        });
+        $('#date-start-work').bootstrapMaterialDatePicker({
+            clearButton: true,
+            weekStart: 0,
+            time: false 
+        }).on('change', function(e, date) {
+            $('#date-end-work').bootstrapMaterialDatePicker('setMinDate', date);
+        });
+
+        $('.dtp-buttons').each(function(){
+            $(this).find('button').addClass('col-black');
         });
     });
 </script>

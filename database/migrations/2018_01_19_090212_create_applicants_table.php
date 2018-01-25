@@ -18,6 +18,7 @@ class CreateApplicantsTable extends Migration
             $table->string('lastname', 50);
             $table->string('firstname', 50);
             $table->string('middlename', 50)->nullable();
+            $table->integer('sex')->nullable();
             $table->integer('age')->nullable();
             $table->char('contact_number', 20);
             $table->string('email')->unique();
