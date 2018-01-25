@@ -103,10 +103,22 @@
                             <h3>Education</h3>
                             <fieldset>
                                 <h2 class="card-inside-title">Program Information</h2>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" name="program" class="form-control">
-                                        <label class="form-label">Program</label>
+                                <div class="row clearfix">
+                                    <div class="col-sm-9">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" name="program" class="form-control">
+                                                <label class="form-label">Program</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" name="acronym" class="form-control">
+                                                <label class="form-label">Acronym</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row clearfix">
