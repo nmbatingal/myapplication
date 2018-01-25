@@ -89,7 +89,7 @@
                                 <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select class="form-control show-tick">
+                                            <select class="form-control show-tick" name="head">
                                                 <option value="">-- Please select --</option>
                                                 @foreach( $users as $user )
                                                     <option value="{{ $user['id'] }}">{{ $user['firstname'] }} {{ $user['middlename'][0] }}. {{ $user['lastname'] }}</option>
@@ -106,7 +106,7 @@
                                 <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input type="text" class="form-control" id="" name="position">
+                                            <input type="text" class="form-control" id="" name="position">
                                         </div>
                                     </div>
                                 </div>

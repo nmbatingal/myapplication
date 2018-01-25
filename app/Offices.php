@@ -12,7 +12,7 @@ class Offices extends Model
     protected $table = 'offices';
 
     protected $fillable = [
-        'div_name', 'acronym', 'div_head_id', 
+        'div_name', 'acronym', 'div_head_id', 'position',
     ];
 
     public function hasHead()

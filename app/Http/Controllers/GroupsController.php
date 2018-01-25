@@ -46,8 +46,10 @@ class GroupsController extends Controller
     {
         $office = new Offices();
 
-        $office->div_name  = $request['div_name'];
-        $office->acronym   = $request['acronym'];
+        $office->div_name    = $request['div_name'];
+        $office->acronym     = $request['acronym'];
+        $office->div_head_id = $request['head'];
+        $office->position    = $request['position'];
         $office->save();
 
         return redirect()->route('groups.index');
