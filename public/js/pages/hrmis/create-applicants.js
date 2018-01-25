@@ -45,7 +45,7 @@ $(function () {
         }
     }).validate({
         rules: {
-            firstname   : "required",
+            /*firstname   : "required",
             lastname    : "required",
             email       : {
                 required   : true,
@@ -56,7 +56,7 @@ $(function () {
             },
             program     : "required",
             school      : "required",
-            remarks     : "required",
+            remarks     : "required",*/
         },
         highlight: function (input) {
             $(input).parents('.form-line').addClass('error');

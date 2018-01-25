@@ -1,10 +1,10 @@
 @extends('layouts.psbrs.app')
 
 @section('styles')
-@endsection
-
-@section('header-title')
-HRMIS
+<!-- Animation Css -->
+<!-- <link href="{{ asset('plugins/animate-css/animate.css') }}" rel="stylesheet" /> -->
+<!-- Bootstrap Material Datetime Picker Css -->
+<link href="{{ asset('plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -112,7 +112,7 @@ HRMIS
                                     <div class="col-sm-3">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="year_graduated">
+                                                <input type="text" class="datepicker form-control" name="year_graduated">
                                                 <label class="form-label">Year graduated</label>
                                             </div>
                                         </div>
@@ -276,5 +276,22 @@ HRMIS
 @section('scripts')
 <!-- JQuery Steps Plugin Js -->
 <script src="{{ asset('plugins/jquery-steps/jquery.steps.js') }}"></script>
+<!-- Moment Plugin Js -->
+<script src="{{ asset('plugins/momentjs/moment.js') }}"></script>
+<!-- Bootstrap Material Datetime Picker Plugin Js -->
+<script src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+
 <script src="{{ asset('js/pages/hrmis/create-applicants.js') }}"></script>
+<script>
+    $(document).ready(function() {
+
+        $('.dtp-buttons')
+
+        $('.datepicker').bootstrapMaterialDatePicker({
+            clearButton: true,
+            weekStart: 0,
+            time: false
+        });
+    });
+</script>
 @endsection
