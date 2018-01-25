@@ -63,8 +63,18 @@
                     </div>
                     <div class="body">
                         <div class="row">
-                            <div class="col-md-3">
-                                
+                            <div data-provides="fileinput" class="fileinput fileinput-new col-lg-3">
+                                <div data-trigger="fileinput" class="fileinput-preview thumbnail img-circle img-responsive">
+                                    <img id="profile_img" src="{{ asset($user['__img']) }}">
+                                </div>
+                                <div class="action-button"> 
+                                    <span class="btn btn-default btn-raised btn-file ripple-effect">
+                                        <span class="fileinput-new"><i class="material-icons md-light pmd-xs">add</i></span>
+                                        <span class="fileinput-exists"><i class="material-icons md-light pmd-xs">mode_edit</i></span>
+                                        <input type="file" name="u_img">
+                                    </span> 
+                                    <a data-dismiss="fileinput" class="btn btn-default btn-raised btn-file ripple-effect fileinput-exists" href="javascript:void(0);"><i class="material-icons md-light pmd-xs">close</i></a>
+                                </div>
                             </div>
                             <div class="col-md-9">
                                 <form id="form-group" class="form-horizontal" action="{{ route('groups.store') }}"  method="POST">
