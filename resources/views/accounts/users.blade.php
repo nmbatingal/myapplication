@@ -167,7 +167,7 @@
                                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" id="" name="position">
+                                                    <input type="text" class="form-control u_position" id="" name="position">
                                                 </div>
                                             </div>
                                         </div>
@@ -188,7 +188,7 @@
                                             <h2 class="card-inside-title"></h2>
                                             <div class="demo-switch">
                                                 <div class="switch">
-                                                    <label>OFF<input type="checkbox" name=""><span class="lever"></span>ACTIVE</label>
+                                                    <label>OFF<input type="checkbox" class="u_active"><span class="lever"></span>ACTIVE</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -202,7 +202,7 @@
                                             <h2 class="card-inside-title"></h2>
                                             <div class="demo-switch">
                                                 <div class="switch">
-                                                    <label>OFF<input type="checkbox" name=""><span class="lever"></span>ADMIN</label>
+                                                    <label>OFF<input type="checkbox" class="u_admin"><span class="lever"></span>ADMIN</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -219,9 +219,10 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('components/jquery-inputmask/jquery.inputmask.bundle.js') }}" type="text/javascript"></script>
 <!-- Select Plugin Js -->
-<script src="{{ asset('plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
+<!-- <script src="{{ asset('plugins/bootstrap-select/js/bootstrap-select.js') }}"></script> -->
 <script src="{{ asset('components/file-upload/js/upload-image.js') }}"></script>
-<script src="{{ asset('bower/bootstrap-switch-master/dist/js/bootstrap-switch.js') }}"></script>
+<!-- <script src="{{ asset('bower/bootstrap-switch-master/dist/js/bootstrap-switch.js') }}"></script> -->
 <script src="{{ asset('js/pages/jquery-users.js') }}" type="text/javascript"></script>
 @endsection

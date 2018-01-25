@@ -3,16 +3,7 @@ $(function () {
     var $form = $('#form-user');
 
     /* toggle switch button */
-    $("input[name=u_active]").bootstrapSwitch({
-        size    : "sm",
-        onText  : "Yes",
-        onColor : "success",
-        offText : "No",
-        offColor: "danger"
-    });
-
-    $("input[name=u_active]").on('switchChange.bootstrapSwitch', function (event, state) {
-
+    $('input.u_active').on('change', function() {
         var id    = $('input[name=u_id]').val();
 
         $.ajax({
@@ -21,7 +12,7 @@ $(function () {
             data: {
                 '_token' : $('input[name=_token]').val(),
                 'id'     : id,
-                'value'  : $('input[name=u_active]:checked').val()
+                'value'  : $('input.u_active:checked').val()
             },
             success: function(data) {
                 //
@@ -30,14 +21,7 @@ $(function () {
     });
 
     /* toggle switch button */
-    $("input[name='u_admin']").bootstrapSwitch({
-        size    : "sm",
-        onText  : "Yes",
-        onColor : "success",
-        offText : "No",
-        offColor: "danger"
-    });
-    $("input[name=u_admin]").on('switchChange.bootstrapSwitch', function (event, state) {
+    $('input.u_admin').on('change', function() {
         
         var id    = $('input[name=u_id]').val();
         
@@ -47,15 +31,13 @@ $(function () {
             data: {
                 '_token' : $('input[name=_token]').val(),
                 'id'     : id,
-                'value'  : $('input[name=u_admin]:checked').val()
+                'value'  : $('input.u_admin:checked').val()
             },
             success: function(data) {
                 //
             }
         });
 
-        var form = $('#form-user');
-        form.submit();
     });
 
     /* reset user password */
@@ -92,10 +74,11 @@ $(function () {
             $('select[name=u_unit]').val(data['div_unit']);
             $('input.u_position').val(data['position']);
 
-            $('input[name="u_active"]').bootstrapSwitch('state', data['__isActive']);
-            $('input[name="u_admin"]').bootstrapSwitch('state', data['__isAdmin']);
+            $('input.u_active').prop('checked', !!data['__isActive']);
+            $('input.u_admin').prop('checked', !!data['__isAdmin']);
 
-            $('#form_button').removeClass('hidden');
+            $('select[name=u_unit]').selectpicker('refresh');
+            
         });
     });
     
@@ -120,29 +103,7 @@ $(function () {
             email       : "Please enter a valid email address",
         },
         submitHandler: function(form) { 
-            //submit via ajax
-            /*var id    = $('input[name=u_id]').val();
-
-            $.ajax({
-                method: "PUT", 
-                url: $(form).attr('action') + '/' + id,
-                data: $(form).serialize(),
-                success: function(data) {
-
-                    if ((data.errors)) {
-                        alert("ERROR!");
-                    } else {
-                        location.reload();
-                        //console.log(data);
-                    }
-                }
-            });*/
-
             form.submit();
-
-            //console.log( $(form).attr('action') );
-
-            //return false;
         },
         onfocusout: function(element) {
             this.element(element);  
@@ -150,25 +111,20 @@ $(function () {
         onkeyup: function(element) {
             $(element).valid();
         },
-        highlight: function (element) {
-            $(element).parents('.form-group').addClass('has-success').removeClass('has-error');
-            $(element).parents('.form-group').addClass('has-error').removeClass('has-success');
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
         },
-        unhighlight: function (element) {
-            $(element).parents('.form-group').addClass('has-error').removeClass('has-success');
-            $(element).parents('.form-group').addClass('has-success').removeClass('has-error');
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
         },
-        errorElement: "p",
         errorPlacement: function (error, element) {
-            error.addClass( "help-block" );
-
-            $(element).parents('.col-sm-9').append(error);
+            $(element).parents('.input-group').append(error);
+            $(element).parents('.form-group').append(error);
         }
     });
 
-    /* on form reset */
-    $('button.reset').on('click', function() {
-        $('.u_username').text('');
-        $('#form_button').addClass('hidden');
-    });
+    //Masked Input ============================================================================================================================
+    var $demoMaskedInput = $('.masked-input');
+
+    $demoMaskedInput.find('.mobile-phone-number').inputmask('+63 999 999 9999', { placeholder: '+__ ___ ___ ____' });
 });

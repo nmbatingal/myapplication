@@ -30,20 +30,20 @@
         <div class="menu">
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="active">
+                <li class="{{ Request::is('home') ? 'active' : '' }}">
                     <a href="{{ route('home') }}">
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>
                 </li> 
                 <li class="header">SETTINGS</li>
-                <li class="">
+                <li class="{{ Request::is('accounts/groups') ? 'active' : '' }}">
                     <a href="{{ route('groups.index') }}">
                         <i class="material-icons">settings</i>
                         <span>Group</span>
                     </a>
                 </li> 
-                <li class="">
+                <li class="{{ Request::is('accounts/users') ? 'active' : '' }}">
                     <a href="{{ route('users.index') }}">
                         <i class="material-icons">settings</i>
                         <span>Users</span>
