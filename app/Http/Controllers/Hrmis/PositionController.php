@@ -36,7 +36,8 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        return redirect()->route('positions.index')->with('info', 'Position successfully added.');
     }
 
     /**
