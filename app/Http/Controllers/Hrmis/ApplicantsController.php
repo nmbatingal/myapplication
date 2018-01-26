@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Applicants;
+namespace App\Http\Controllers\Hrmis;
 
 use Auth;
 use App\Models\Hrmis\Applicants as Applicants;
@@ -21,13 +21,13 @@ class ApplicantsController extends Controller
      */
     public function index()
     {
-        return view('hrmis.index');
+        return view('hrmis.applicants.index');
     }
 
     public function showApplicants()
     {
         $applicants = Applicants::orderBy('lastname', 'ASC')->get();
-        return view('hrmis.applicants', compact('applicants'));
+        return view('hrmis.applicants.applicants', compact('applicants'));
     }
 
     /**
@@ -37,7 +37,7 @@ class ApplicantsController extends Controller
      */
     public function create()
     {
-        return view('hrmis.create');
+        return view('hrmis.applicants.create');
     }
 
     /**
@@ -133,7 +133,7 @@ class ApplicantsController extends Controller
     {
         $applicant = Applicants::findOrFail($id);
         
-        return view('hrmis.view', compact('applicant'));
+        return view('hrmis.applicants.view', compact('applicant'));
     }
 
     /**

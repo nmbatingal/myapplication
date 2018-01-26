@@ -1,40 +1,118 @@
-@extends('layouts.psbrs.app')
+@extends('layouts.hrmis.app')
 
 @section('styles')
-
 <!-- Google icon -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<!-- DataTables css-->
 
+<!-- Bootstrap Tagsinput Css -->
+<link href="{{ asset('plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet">
+
+<!-- DataTables css-->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
+
 <!-- build:[href] components/data-table/css/ -->
 <link rel="stylesheet" type="text/css" href="{{ asset('components/data-table/css/pmd-datatable.css') }}">
 <!-- /build -->
+<style>
+    span.tag {
+        font-size: 12px;
+    }
+</style>
 @endsection
 
 @section('content')
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>APPLICANTS</h2>
+            <h2>POSITIONS</h2>
             <ol class="breadcrumb p-l-0">
               <li><a href="{{ route('applicants.index') }}">Dashboard</a></li>
-              <li class="active">Applicants</li>
+              <li class="active">Positions</li>
             </ol>
         </div>
 
-        @if (session('info'))
-            <div class="alert bg-green" role="alert">
-                {!! session('info') !!}
-            </div>
-        @endif
+        <section class="row clearfix">
+            <div class="col-lg-5">
+                <div class="card">
+                    <div class="header bg-green">
+                        <h2>Add New Position Opening</h2>
+                    </div>
+                    <form>
+                        <div class="body">
+                            <h2 class="card-inside-title">Position Details</h2>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control">
+                                            <label class="form-label">Title</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control">
+                                            <label class="form-label">Acronym</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control">
+                                            <label class="form-label">Salary grade</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-        <!-- table card -->
-        <div class="row">
-            <!-- table card code and example -->
-            <div class="col-lg-12">
+                            <h2 class="card-inside-title">Item No</h2>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" data-role="tagsinput">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2 class="card-inside-title">Publication No</h2>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" data-role="tagsinput">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2 class="card-inside-title">Position Requirements</h2>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" data-role="tagsinput">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="body">
+                            <button type="submit" class="btn btn-md btn-success waves-effect">Submit</button>
+                            <button type="reset" class="btn btn-md btn-default waves-effect">Clear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-7">
                 <div class="component-box">
                     <!-- table card example -->
                     <div  class="pmd-card pmd-z-depth pmd-card-custom-view">
@@ -46,80 +124,39 @@
                                     <col>
                                     <col>
                                     <col>
-                                    <col>
-                                    <col>
-                                    <col width="5%">
                                 </colgroup>
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Name</th>
-                                        <th>Education</th>
-                                        <th>Trainings</th>
-                                        <th>Experience</th>
-                                        <th>Eligibility</th>
-                                        <th>Date Filed</th>
+                                        <th>Title</th>
+                                        <th>Acronym</th>
+                                        <th>Salary Grade</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ( $applicants as $applicant )
-                                    <tr data-key="{{ $applicant['id'] }}">
+                                    <tr data-key="">
                                         <td></td>
-                                        <td>
-                                            <a href="{{ route('applicants.show', ['id' => $applicant['id'] ]) }}">
-                                                {{ $applicant['lastname'] }}, {{ $applicant['firstname'] }} {{ $applicant['middlename'] ? $applicant['middlename'][0].'.' : '' }}
-                                            </a>
-                                        </td>
-                                        <td>
-                                            @foreach ( $applicant->educations as $education )
-                                                {{ $education['program'] }} <br>
-                                                <small>{{ $education['school'] }} - {{ date("M Y", strtotime( $education['year_graduated'] )) }}</small> 
-                                                <br>
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @foreach ( $applicant->trainings as $training )
-                                                {{ $training['title'] }} <br>
-                                                <small>{{ $training['conducted_by'] }} - {{ date("M Y", strtotime( $training['to_date'] )) }}</small> 
-                                                <br>
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @foreach ( $applicant->experiences as $experience )
-                                                {{ $experience['position'] }} <br>
-                                                <small>{{ $experience['agency'] }} - {{ date("M Y", strtotime( $experience['to_date'] )) }}</small> 
-                                                <br>
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @foreach ( $applicant->eligibilities as $eligibility )
-                                                {{ $eligibility['title'] }}
-                                                <br>
-                                            @endforeach
-                                        </td>
-                                        <td>{{ date("M-d-Y", strtotime( $applicant['created_at'] )) }}</td>
-                                        <td>
-                                            @if($applicant['status'] == 0)
-                                                <span class="label bg-red">not yet interviewed</span>
-                                            @endif
-                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>aaas</td>
                                     </tr>
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div> <!-- table card example end -->
-                
                 </div>
-            </div> <!-- table card code and example end -->
-        </div> <!-- table card end -->
+            </div>
+        </section>
 
     </div><!-- tab end -->
 </div>
 @endsection
 
 @section('scripts')
+<!-- Bootstrap Tags Input Plugin Js -->
+<script src="{{ asset('plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
 <!-- Datatable js -->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 <!-- Datatable Bootstrap -->
@@ -132,6 +169,7 @@
 <script>
 //Propeller Customised Javascript code 
 $(document).ready(function() {
+
     $('#applicant-checkbox').DataTable({
         responsive: false,
         columnDefs: [ 
@@ -139,11 +177,7 @@ $(document).ready(function() {
                 orderable: false,
                 className: 'select-checkbox',
                 targets:0,
-            },/*{
-                orderable: false,
-                className: 'pmd-table-row-action',
-                targets:8,
-            } */
+            },
         ],
         select: {
             style: 'multi',
@@ -166,9 +200,8 @@ $(document).ready(function() {
             },
         },
         dom:
-            "<'pmd-card-title'<'data-table-title'><'search-paper pmd-textfield'f>>" +
-            "<'pmd-card-actions'<'data-table-actions'>>" +
-            "<'custom-select-info'<'custom-select-item'><'custom-select-action'>>" +
+            "<'pmd-card-title'<'data-table-title'>>" +
+            "<'pmd-card-actions'<'search-paper pmd-textfield'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'pmd-card-footer' <'pmd-datatable-pagination' l i p>>",
     });
@@ -194,13 +227,14 @@ $(document).ready(function() {
             $(this).closest('.dataTables_wrapper').find('.custom-select-info').hide();
         }
     } );
-    $("div.data-table-title").html('<h2 class="pmd-card-title-text">List of Applicants</h2>');
-    $("div.data-table-actions").html('<a id="btn-create-new" onclick="createNewApplicant()" class="btn pmd-btn-raise pmd-ripple-effect btn-success">Create new applicant</a>');
-    $(".custom-select-action").html('<button id="createNewSelection" class="btn btn-sm pmd-btn-fab pmd-btn-flat waves-effect btn-default" type="button"><i class="material-icons pmd-sm">event</i></button>');
+
+    $("div.data-table-title").html('<h2 class="pmd-card-title-text">List of Positions for Hiring</h2>');
+
 } );
 </script>
-<script src="{{ asset('js/pages/hrmis/applicants.js') }}"></script>
+
 <script type="text/javascript">
+
     function createNewApplicant() {
         window.location = "{{ route('applicants.create') }}";
     }

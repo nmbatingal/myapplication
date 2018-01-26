@@ -35,7 +35,9 @@ Route::group(['middleware' => 'auth'], function() {
         //Route::post('/accounts/groups/store', 'GroupsController@store')->name('accounts.group.store'); // store new group
     });
 
-    Route::get('hrmis/applicants/all', 'Applicants\ApplicantsController@showApplicants')->name('applicants.showApplicants');
-    Route::resource('hrmis/applicants', 'Applicants\ApplicantsController');
+    /*** HRMIS-APPLICANTS CONTROLLER ***/
+    Route::get('hrmis/applicants/all', 'Hrmis\ApplicantsController@showApplicants')->name('applicants.showApplicants');
+    Route::resource('hrmis/applicants', 'Hrmis\ApplicantsController');  // Resource controller for applicants
+    Route::resource('hrmis/positions', 'Hrmis\PositionController');   // Resource controller for positions
 
 });

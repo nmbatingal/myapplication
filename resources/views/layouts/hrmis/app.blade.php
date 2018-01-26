@@ -77,9 +77,9 @@
     </div>
     <!-- #END# Search Bar -->
 
-    @include('layouts.psbrs.header')
+    @include('layouts.hrmis.header')
 
-    @include('layouts.psbrs.sidebar')
+    @include('layouts.hrmis.sidebar')
 
     @yield('content')
 

@@ -1,4 +1,4 @@
-@extends('layouts.psbrs.app')
+@extends('layouts.hrmis.app')
 
 @section('styles')
 <!-- Animation Css -->

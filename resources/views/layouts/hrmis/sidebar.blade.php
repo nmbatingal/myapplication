@@ -43,6 +43,12 @@
                         <span>Applicants</span>
                     </a>
                 </li>
+                <li class="{{ Request::is('hrmis/positions') ? 'active' : '' }} {{ Request::is('hrmis/positions/*') ? 'active' : '' }}">
+                    <a href="{{ route('positions.index') }}">
+                        <i class="material-icons">work</i>
+                        <span>Positions</span>
+                    </a>
+                </li>
                 <li class="header">MAIN NAVIGATION</li>
                 <li>
                     <a href="{{ route('home') }}">

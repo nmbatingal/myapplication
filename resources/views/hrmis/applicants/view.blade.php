@@ -1,10 +1,6 @@
-@extends('layouts.psbrs.app')
+@extends('layouts.hrmis.app')
 
 @section('styles')
-@endsection
-
-@section('header-title')
-HRMIS
 @endsection
 
 @section('content')
