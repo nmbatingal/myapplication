@@ -9,6 +9,7 @@ use App\Models\Hrmis\ApplicantTraining as Training;
 use App\Models\Hrmis\ApplicantExperience as Experience;
 use App\Models\Hrmis\ApplicantEligibility as Eligibility;
 use App\Models\Hrmis\ApplicantAttachment as FileApplicant;
+use App\Models\Hrmis\PositionHiring as Positions;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +28,8 @@ class ApplicantsController extends Controller
     public function showApplicants()
     {
         $applicants = Applicants::orderBy('lastname', 'ASC')->get();
-        return view('hrmis.applicants.applicants', compact('applicants'));
+        $positions  = Positions::orderBy('title', 'ASC')->get();
+        return view('hrmis.applicants.applicants', compact('applicants', 'positions'));
     }
 
     /**

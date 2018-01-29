@@ -5,12 +5,30 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- DataTables css-->
 
+<!-- Bootstrap Select Css -->
+<link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
 <!-- build:[href] components/data-table/css/ -->
 <link rel="stylesheet" type="text/css" href="{{ asset('components/data-table/css/pmd-datatable.css') }}">
 <!-- /build -->
+<style>
+    table#table-lineup {
+        counter-reset: rowNumber;
+    }
+
+    table#table-lineup tbody tr {
+        counter-increment: rowNumber;
+    }
+
+    table#table-lineup tbody tr td:first-child::before {
+        content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5em;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -69,7 +87,8 @@
                                     <tr data-key="{{ $applicant['id'] }}">
                                         <td></td>
                                         <td>
-                                            <a href="{{ route('applicants.show', ['id' => $applicant['id'] ]) }}">
+                                            <input type="hidden" name="id[]" value="{{ $applicant['id'] }}">
+                                            <a href="{{ route('applicants.show', ['id' => $applicant['id'] ]) }}" target="_blank">
                                                 {{ $applicant['lastname'] }}, {{ $applicant['firstname'] }} {{ $applicant['middlename'] ? $applicant['middlename'][0].'.' : '' }}
                                             </a>
                                         </td>
@@ -114,34 +133,66 @@
         </div> <!-- table card end -->
 
         <!-- Basic Card -->
-        <div class="row clearfix">
+        <div id="selection-card" class=" row clearfix">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="header bg-blue">
-                        <h2>Selection Line-up of Applicants</h2>
+                    <div class="header">
+                        <h2>CREATE NEW LINEUP OF APPLICANTS</h2>
                     </div>
                     <div class="body">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="header bg-cyan">
-                                        <h2>
-                                            Position Offering
-                                        </h2>
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="header bg-blue">
+                                            <h2>Selection Details</h2>
+                                        </div>
+                                        <div class="body">
+                                            <h2 class="card-inside-title">Position Title</h2>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <select class="form-control show-tick" data-live-search="true">
+                                                        <option>-- Please Select --</option>
+                                                            @foreach( $positions as $position )
+                                                                <option value="{{ $position['id'] }}">{{ $position['title'] }} ({{ strtoupper($position['acronym']) }})</option>
+                                                            @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <h2 class="card-inside-title">Date of Interview</h2>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="date_interview" autofocus>
+                                                    <label class="form-label">Date of interview</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="body">
-                                        Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="card">
+                                        <div class="header bg-blue">
+                                            <h2>Selected Applicants</h2>
+                                        </div>
+                                        <div class="body padding-0">
+                                            <div class="body table-responsive">
+                                                <table id="table-lineup" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Applicant Name</th>
+                                                            <th>Sex</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-8">
-                                <div class="card">
-                                    <div class="body">
-                                        Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -152,6 +203,9 @@
 @endsection
 
 @section('scripts')
+<!-- Select Plugin Js -->
+<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
 <!-- Datatable js -->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 <!-- Datatable Bootstrap -->
@@ -170,7 +224,7 @@ $(document).ready(function() {
             {
                 orderable: false,
                 className: 'select-checkbox',
-                targets:0,
+                targets: 0,
             },/*{
                 orderable: false,
                 className: 'pmd-table-row-action',
