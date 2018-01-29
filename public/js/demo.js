@@ -84,7 +84,7 @@ function bodyScroll() {
     $('body').slimScroll({
         height: ($(window).height()) + 'px',
         color: 'rgba(0,0,0,0.5)',
-        size: '4px',
+        size: '8px',
         alwaysVisible: false,
         borderRadius: '0',
         railBorderRadius: '0'

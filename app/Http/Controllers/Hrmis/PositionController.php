@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Hrmis;
 
-use App\Models\Hrmis\PositionHiring;
+use App\Models\Hrmis\PositionHiring as Position;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +15,8 @@ class PositionController extends Controller
      */
     public function index()
     {
-        return view('hrmis.positions.index');
+        $positions = Position::orderBy('title', 'ASC')->get();
+        return view('hrmis.positions.index', compact('positions'));
     }
 
     /**
@@ -36,7 +37,21 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
+        $position = new Position();
         
+        $position->title              = $request['title'];
+        $position->acronym            = $request['acronym'];
+        $position->slots              = $request['slots'];
+        $position->sal_grade          = $request['sal_grade'];
+        $position->item_no            = $request['item_no'];
+        $position->publication_no     = $request['publication_no'];
+        $position->education_reqs     = $request['education_req'];
+        $position->experience_reqs    = $request['experience_req'];
+        $position->training_reqs      = $request['training_req'];
+        $position->eligibilities      = $request['eligibility_req'];
+
+        $position->save();
+
         return redirect()->route('positions.index')->with('info', 'Position successfully added.');
     }
 

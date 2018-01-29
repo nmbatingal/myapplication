@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="row clearfix">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="acronym">
@@ -68,7 +68,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="slots">
+                                            <label class="form-label">Slots</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="sal_grade">
@@ -159,27 +167,33 @@
                                 <colgroup>
                                     <col>
                                     <col>
-                                    <col>
-                                    <col>
-                                    <col>
+                                    <col width="15%">
+                                    <col width="10%">
+                                    <col width="15%">
                                 </colgroup>
                                 <thead>
                                     <tr>
                                         <th></th>
                                         <th>Title</th>
-                                        <th>Acronym</th>
                                         <th>Salary Grade</th>
+                                        <th>Slots</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr data-key="">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>aaas</td>
-                                    </tr>
+                                    @foreach ( $positions as $position )
+                                        <tr data-key="{{ $position['id'] }}">
+                                            <td></td>
+                                            <td>{{ $position['title'] }} ({{ strtoupper($position['acronym']) }})</td>
+                                            <td>{{ $position['sal_grade'] }}</td>
+                                            <td>{{ $position['slots'] }}</td>
+                                            <td>
+                                                @if($position['status'] == 1)
+                                                    <span class="label bg-green">available</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -207,6 +221,9 @@
 <!-- Datatable select js-->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
 <!-- Propeller Data table js-->
+
+<script src="{{ asset('js/pages/hrmis/position-index.js') }}"></script>
+
 <script>
 //Propeller Customised Javascript code 
 $(document).ready(function() {

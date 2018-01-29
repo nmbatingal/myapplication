@@ -42,6 +42,7 @@
                                 <colgroup>
                                     <col>
                                     <col>
+                                    <col width="5%">
                                     <col>
                                     <col>
                                     <col>
@@ -54,6 +55,7 @@
                                     <tr>
                                         <th></th>
                                         <th>Name</th>
+                                        <th>Sex</th>
                                         <th>Education</th>
                                         <th>School</th>
                                         <th>Eligibility</th>
@@ -70,6 +72,9 @@
                                             <a href="{{ route('applicants.show', ['id' => $applicant['id'] ]) }}">
                                                 {{ $applicant['lastname'] }}, {{ $applicant['firstname'] }} {{ $applicant['middlename'] ? $applicant['middlename'][0].'.' : '' }}
                                             </a>
+                                        </td>
+                                        <td>
+                                            {{ $applicant['sex'] == 1 ? 'Male' : 'Female' }}
                                         </td>
                                         <td>
                                             @foreach ( $applicant->educations as $education )
