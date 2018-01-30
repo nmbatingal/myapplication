@@ -23,7 +23,7 @@ $(function () {
         },
     });*/
 
-    $('#createNewSelection').on('click', function() {
+    /*$('#createNewSelection').on('click', function() {
 
         var table = $('#applicant-checkbox').DataTable();
         var ids   = table.rows('.selected').data();
@@ -45,7 +45,7 @@ $(function () {
 
         }
 
-    });
+    });*/
 
     $('#applicant-checkbox tbody').on('click', 'tr', function () {
 

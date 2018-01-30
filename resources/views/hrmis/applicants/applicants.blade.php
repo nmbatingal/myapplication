@@ -175,72 +175,28 @@
             </div> <!-- table card code and example end -->
         </div> <!-- table card end -->
 
-        <!-- Basic Card -->
-        <div id="selection-card" class=" row clearfix">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="header">
-                        <h2>CREATE NEW LINEUP OF APPLICANTS</h2>
+        <!-- Large Size -->
+        <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" data-backdrop="static" >
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h4 class="modal-title" id="largeModalLabel">CREATE SELECTION LINEUP OF APPLICANTS</h4>
                     </div>
-                    <div class="body">
-                        <form>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="card">
-                                        <div class="header bg-blue">
-                                            <h2>Selection Details</h2>
-                                        </div>
-                                        <div class="body">
-                                            <h2 class="card-inside-title">Position Title</h2>
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <select class="form-control show-tick" data-live-search="true">
-                                                        <option>-- Please Select --</option>
-                                                            @foreach( $positions as $position )
-                                                                <option value="{{ $position['id'] }}">{{ $position['title'] }} ({{ strtoupper($position['acronym']) }})</option>
-                                                            @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <h2 class="card-inside-title">Date of Interview</h2>
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="date_interview" autofocus>
-                                                    <label class="form-label">Date of interview</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="card">
-                                        <div class="header bg-blue">
-                                            <h2>Selected Applicants</h2>
-                                        </div>
-                                        <div class="body padding-0">
-                                            <div class="body table-responsive">
-                                                <table id="table-lineup" class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Applicant Name</th>
-                                                            <th>Sex</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="modal-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
+                        vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
+                        Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
+                        nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
+                        Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success waves-effect">SAVE CHANGES</button>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- #END# Basic Card -->
+
     </div><!-- tab end -->
 </div>
 @endsection
@@ -259,144 +215,143 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
 <!-- Propeller Data table js-->
 <script>
-//Propeller Customised Javascript code 
-$(document).ready(function() {
-    var applicantList = $('#applicant-checkbox').DataTable({
-        /*"search": {
-            "caseInsensitive": false
-        },*/
-        responsive: false,
-        columnDefs: [ 
-            {
-                orderable: false,
-                className: 'select-checkbox',
-                targets: 0,
+    //Propeller Customised Javascript code 
+    $(document).ready(function() {
+        var applicantList = $('#applicant-checkbox').DataTable({
+            /*"search": {
+                "caseInsensitive": false
+            },*/
+            responsive: false,
+            columnDefs: [ 
+                {
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets: 0,
+                },
+            ],
+            select: {
+                style: 'multi',
+                selector: 'td:first-child'
             },
-        ],
-        select: {
-            style: 'multi',
-            selector: 'td:first-child'
-        },
-        order: [ 1, 'asc' ],
-        bFilter: true,
-        bLengthChange: true,
-        pagingType: "simple",
-        "paging": true,
-        "searching": true,
-        "language": {
-            "info": " _START_ - _END_ of _TOTAL_ ",
-            "sLengthMenu": "<span class='custom-select-title'>Rows per page:</span><span> _MENU_ </span>",
-            //"sSearch": "",
-            //"sSearchPlaceholder": "Search",
-            "paginate": {
-                "sNext": " ",
-                "sPrevious": " "
+            order: [ 1, 'asc' ],
+            bFilter: true,
+            bLengthChange: true,
+            pagingType: "simple",
+            "paging": true,
+            "searching": true,
+            "language": {
+                "info": " _START_ - _END_ of _TOTAL_ ",
+                "sLengthMenu": "<span class='custom-select-title'>Rows per page:</span><span> _MENU_ </span>",
+                //"sSearch": "",
+                //"sSearchPlaceholder": "Search",
+                "paginate": {
+                    "sNext": " ",
+                    "sPrevious": " "
+                },
             },
-        },
-        dom:
-            "<'pmd-card-title'<'data-table-title'>>" +
-            "<'pmd-card-actions'<'data-table-actions'>>" +
-            "<'custom-select-info'<'custom-select-item'><'custom-select-action'>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'pmd-card-footer' <'pmd-datatable-pagination' l i p>>",
-    });
-    /// Select value
-    $('.custom-select-info').hide();
-    
-    $('#applicant-checkbox tbody').on( 'click', 'tr', function () {
-        if ( $(this).hasClass('selected') ) {
-            var rowinfo = $(this).closest('.dataTables_wrapper').find('.select-info').text();
-            $(this).closest('.dataTables_wrapper').find('.custom-select-info .custom-select-item').text(rowinfo);
-            if ($(this).closest('.dataTables_wrapper').find('.custom-select-info .custom-select-item').text() != null){
-                $(this).closest('.dataTables_wrapper').find('.custom-select-info').show();
-                //show delet button
-            } else{
+            dom:
+                "<'pmd-card-title'<'data-table-title'>>" +
+                "<'pmd-card-actions'<'data-table-actions'>>" +
+                "<'custom-select-info'<'custom-select-item'><'custom-select-action'>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'pmd-card-footer' <'pmd-datatable-pagination' l i p>>",
+        });
+        /// Select value
+        $('.custom-select-info').hide();
+        
+        $('#applicant-checkbox tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                var rowinfo = $(this).closest('.dataTables_wrapper').find('.select-info').text();
+                $(this).closest('.dataTables_wrapper').find('.custom-select-info .custom-select-item').text(rowinfo);
+                if ($(this).closest('.dataTables_wrapper').find('.custom-select-info .custom-select-item').text() != null){
+                    $(this).closest('.dataTables_wrapper').find('.custom-select-info').show();
+                    //show delet button
+                } else{
+                    $(this).closest('.dataTables_wrapper').find('.custom-select-info').hide();
+                }
+            }
+            else {
+                var rowinfo = $(this).closest('.dataTables_wrapper').find('.select-info').text();
+                $(this).closest('.dataTables_wrapper').find('.custom-select-info .custom-select-item').text(rowinfo);
+            }
+            if($('#applicant-checkbox').find('.selected').length == 0){
                 $(this).closest('.dataTables_wrapper').find('.custom-select-info').hide();
             }
-        }
-        else {
-            var rowinfo = $(this).closest('.dataTables_wrapper').find('.select-info').text();
-            $(this).closest('.dataTables_wrapper').find('.custom-select-info .custom-select-item').text(rowinfo);
-        }
-        if($('#applicant-checkbox').find('.selected').length == 0){
-            $(this).closest('.dataTables_wrapper').find('.custom-select-info').hide();
-        }
+        } );
+        $("div.data-table-title").html('<h2 class="pmd-card-title-text">List of Applicants</h2>');
+        $("div.data-table-actions").html('<a id="btn-create-new" onclick="createNewApplicant()" class="btn pmd-btn-raise pmd-ripple-effect btn-success">Create new applicant</a>');
+        $(".custom-select-action").html('<button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#largeModal"><i class="material-icons">event</i> <span>Create selection</span></button>');
+
+        $('#global-search').keyup( function() {
+              applicantList.search( $(this).val() ).draw() ;
+        });
+
+        /* SEARCH COLUMN SEX*/
+        applicantList.columns([2]).every( function () {
+            var column = this;
+         
+            // Create the select list and search operation
+            var select = $('#sex-search')
+                .on( 'change', function () {
+                    column
+                        .search( $(this).val(), true, true, false)
+                        .draw();
+                } );
+         
+            this
+                .cache( 'search' )
+                .sort()
+                .unique()
+                .each( function ( d ) {
+                    select.append( $('<option value="'+d+'">'+d+'</option>') );
+                    console.log(d);
+                } );
+        } );
+
+        /* SEARCH COLUMN PROGRAM*/
+        applicantList.columns([3]).every( function () {
+            var column = this;
+         
+            // Create the select list and search operation
+            var select = $('#program-search')
+                .on( 'change', function () {
+                    column
+                        .search( $(this).val(), true, true, false)
+                        .draw();
+                } );
+         
+            this
+                .cache( 'search' )
+                .sort()
+                .unique()
+                .each( function ( d ) {
+                    select.append( $('<option value="'+d+'">'+d+'</option>') );
+                    console.log(d);
+                } );
+        } );
+
+        /* SEARCH COLUMN STATUS*/
+        applicantList.columns([7]).every( function () {
+            var column = this;
+         
+            // Create the select list and search operation
+            var select = $('#status-search')
+                .on( 'change', function () {
+                    column
+                        .search( $(this).val(), true, true, false)
+                        .draw();
+                } );
+         
+            this
+                .cache( 'search' )
+                .sort()
+                .unique()
+                .each( function ( d ) {
+                    select.append( $('<option value="'+d+'">'+d+'</option>') );
+                    console.log(d);
+                } );
+        } );
     } );
-    $("div.data-table-title").html('<h2 class="pmd-card-title-text">List of Applicants</h2>');
-    $("div.data-table-actions").html('<a id="btn-create-new" onclick="createNewApplicant()" class="btn pmd-btn-raise pmd-ripple-effect btn-success">Create new applicant</a>');
-    $(".custom-select-action").html('<button id="createNewSelection" class="btn btn-sm pmd-btn-fab pmd-btn-flat waves-effect btn-default" type="button"><i class="material-icons pmd-sm">event</i></button>');
-
-    $('#global-search').keyup( function() {
-          applicantList.search( $(this).val() ).draw() ;
-    });
-
-    /* SEARCH COLUMN SEX*/
-    applicantList.columns([2]).every( function () {
-        var column = this;
-     
-        // Create the select list and search operation
-        var select = $('#sex-search')
-            .on( 'change', function () {
-                column
-                    .search( $(this).val(), true, true, false)
-                    .draw();
-            } );
-     
-        this
-            .cache( 'search' )
-            .sort()
-            .unique()
-            .each( function ( d ) {
-                select.append( $('<option value="'+d+'">'+d+'</option>') );
-                console.log(d);
-            } );
-    } );
-
-    /* SEARCH COLUMN PROGRAM*/
-    applicantList.columns([3]).every( function () {
-        var column = this;
-     
-        // Create the select list and search operation
-        var select = $('#program-search')
-            .on( 'change', function () {
-                column
-                    .search( $(this).val(), true, true, false)
-                    .draw();
-            } );
-     
-        this
-            .cache( 'search' )
-            .sort()
-            .unique()
-            .each( function ( d ) {
-                select.append( $('<option value="'+d+'">'+d+'</option>') );
-                console.log(d);
-            } );
-    } );
-
-    /* SEARCH COLUMN STATUS*/
-    applicantList.columns([7]).every( function () {
-        var column = this;
-     
-        // Create the select list and search operation
-        var select = $('#status-search')
-            .on( 'change', function () {
-                column
-                    .search( $(this).val(), true, true, false)
-                    .draw();
-            } );
-     
-        this
-            .cache( 'search' )
-            .sort()
-            .unique()
-            .each( function ( d ) {
-                select.append( $('<option value="'+d+'">'+d+'</option>') );
-                console.log(d);
-            } );
-    } );
-
-} );
 </script>
 
 <script src="{{ asset('js/pages/hrmis/applicants.js') }}"></script>
@@ -405,11 +360,5 @@ $(document).ready(function() {
     function createNewApplicant() {
         window.location = "{{ route('applicants.create') }}";
     }
-
-    // $('button[type=button]').remove();
-    /*$('button#btn-selection').on('click', function() {
-        alert("THIS!");
-    });*/
-
 </script>
 @endsection
