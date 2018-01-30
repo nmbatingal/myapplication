@@ -183,11 +183,61 @@
                         <h4 class="modal-title" id="largeModalLabel">CREATE SELECTION LINEUP OF APPLICANTS</h4>
                     </div>
                     <div class="modal-body">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
-                        vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-                        Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-                        nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-                        Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="header bg-blue">
+                                            <h2>Selection Details</h2>
+                                        </div>
+                                        <div class="body">
+                                            <h2 class="card-inside-title">Position Title</h2>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <select class="form-control show-tick" data-live-search="true">
+                                                        <option>-- Please Select --</option>
+                                                            @foreach( $positions as $position )
+                                                                <option value="{{ $position['id'] }}">{{ $position['title'] }} ({{ strtoupper($position['acronym']) }})</option>
+                                                            @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <h2 class="card-inside-title">Date of Interview</h2>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="date_interview" autofocus>
+                                                    <label class="form-label">Date of interview</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="header bg-blue">
+                                            <h2>Selected Applicants</h2>
+                                        </div>
+                                        <div class="body padding-0">
+                                            <div class="body table-responsive">
+                                                <table id="table-lineup" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Applicant Name</th>
+                                                            <th>Sex</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success waves-effect">SAVE CHANGES</button>
