@@ -11,7 +11,7 @@ class ApplicantEducation extends Model
     protected $table = 'applicant_educations';
 
     protected $fillable = [
-        'program', 'school', 'year_graduated', 'applicant_id',
+        'program', 'acronym', 'school', 'year_graduated', 'applicant_id',
     ];
 
     public function hasApplicant()

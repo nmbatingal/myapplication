@@ -67,6 +67,7 @@ class ApplicantsController extends Controller
             $education = new Education();
 
             $education->program         = $request['program'];
+            $education->acronym         = $request['acronym'];
             $education->school          = $request['school'];
             $education->year_graduated  = $request['year_graduated'];
             $education->hasApplicant()->associate($applicant);

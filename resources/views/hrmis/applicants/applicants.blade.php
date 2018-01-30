@@ -48,6 +48,47 @@
             </div>
         @endif
 
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-12" style="margin-bottom: -10px;">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">search</i>
+                                    </span>
+                                    <div class="form-line">
+                                        <input id="global-search" type="text" class="form-control date" placeholder="Global search">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="card-inside-title" style="margin: 10px; ">Custom Search Fields</h2>
+
+                        <div class="row clearfix" style="height: 50px;">
+                            <div class="col-sm-2">
+                                <select id="sex-search" class="form-control show-tick">
+                                    <option value="">-- Select sex --</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                <select id="program-search" class="form-control show-tick">
+                                    <option value="">-- Select program --</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <select id="status-search" class="form-control show-tick">
+                                    <option value="">-- Select status --</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- table card -->
         <div class="row">
             <!-- table card code and example -->
@@ -97,7 +138,7 @@
                                         </td>
                                         <td>
                                             @foreach ( $applicant->educations as $education )
-                                                {{ $education['program'] }} <br>
+                                                {{ $education['program'] }} ({{ $education['acronym'] }})
                                             @endforeach
                                         </td>
                                         <td>
@@ -112,8 +153,10 @@
                                         </td>
                                         <td>{{ date("M-d-Y", strtotime( $applicant['created_at'] )) }}</td>
                                         <td>
-                                            @if($applicant['status'] == 0)
-                                                <span class="label bg-red">not yet interviewed</span>
+                                            @if( $applicant['status'] == 0 )
+                                                <span class="label bg-red">Not yet interviewed</span>
+                                            @elseif( $applicant['status'] == 1 )
+                                                <span class="label bg-green">Interviewed</span>
                                             @endif
                                         </td>
                                         <td>
@@ -218,18 +261,17 @@
 <script>
 //Propeller Customised Javascript code 
 $(document).ready(function() {
-    $('#applicant-checkbox').DataTable({
+    var applicantList = $('#applicant-checkbox').DataTable({
+        /*"search": {
+            "caseInsensitive": false
+        },*/
         responsive: false,
         columnDefs: [ 
             {
                 orderable: false,
                 className: 'select-checkbox',
                 targets: 0,
-            },/*{
-                orderable: false,
-                className: 'pmd-table-row-action',
-                targets:8,
-            } */
+            },
         ],
         select: {
             style: 'multi',
@@ -244,8 +286,8 @@ $(document).ready(function() {
         "language": {
             "info": " _START_ - _END_ of _TOTAL_ ",
             "sLengthMenu": "<span class='custom-select-title'>Rows per page:</span><span> _MENU_ </span>",
-            "sSearch": "",
-            "sSearchPlaceholder": "Search",
+            //"sSearch": "",
+            //"sSearchPlaceholder": "Search",
             "paginate": {
                 "sNext": " ",
                 "sPrevious": " "
@@ -253,7 +295,7 @@ $(document).ready(function() {
         },
         dom:
             "<'pmd-card-title'<'data-table-title'>>" +
-            "<'pmd-card-actions'<'search-paper pmd-textfield'f><'data-table-actions'>>" +
+            "<'pmd-card-actions'<'data-table-actions'>>" +
             "<'custom-select-info'<'custom-select-item'><'custom-select-action'>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'pmd-card-footer' <'pmd-datatable-pagination' l i p>>",
@@ -281,11 +323,84 @@ $(document).ready(function() {
         }
     } );
     $("div.data-table-title").html('<h2 class="pmd-card-title-text">List of Applicants</h2>');
-    $("div.data-table-actions").html('<a id="btn-create-new" onclick="createNewApplicant()" class="btn pmd-btn-raise pmd-ripple-effect btn-success">Create new applicant</a><a id="btn-create-new" onclick="" class="btn pmd-btn-raise pmd-ripple-effect btn-primary">Selection line-up list</a>');
+    $("div.data-table-actions").html('<a id="btn-create-new" onclick="createNewApplicant()" class="btn pmd-btn-raise pmd-ripple-effect btn-success">Create new applicant</a>');
     $(".custom-select-action").html('<button id="createNewSelection" class="btn btn-sm pmd-btn-fab pmd-btn-flat waves-effect btn-default" type="button"><i class="material-icons pmd-sm">event</i></button>');
+
+    $('#global-search').keyup( function() {
+          applicantList.search( $(this).val() ).draw() ;
+    });
+
+    /* SEARCH COLUMN SEX*/
+    applicantList.columns([2]).every( function () {
+        var column = this;
+     
+        // Create the select list and search operation
+        var select = $('#sex-search')
+            .on( 'change', function () {
+                column
+                    .search( $(this).val(), true, true, false)
+                    .draw();
+            } );
+     
+        this
+            .cache( 'search' )
+            .sort()
+            .unique()
+            .each( function ( d ) {
+                select.append( $('<option value="'+d+'">'+d+'</option>') );
+                console.log(d);
+            } );
+    } );
+
+    /* SEARCH COLUMN PROGRAM*/
+    applicantList.columns([3]).every( function () {
+        var column = this;
+     
+        // Create the select list and search operation
+        var select = $('#program-search')
+            .on( 'change', function () {
+                column
+                    .search( $(this).val(), true, true, false)
+                    .draw();
+            } );
+     
+        this
+            .cache( 'search' )
+            .sort()
+            .unique()
+            .each( function ( d ) {
+                select.append( $('<option value="'+d+'">'+d+'</option>') );
+                console.log(d);
+            } );
+    } );
+
+    /* SEARCH COLUMN STATUS*/
+    applicantList.columns([7]).every( function () {
+        var column = this;
+     
+        // Create the select list and search operation
+        var select = $('#status-search')
+            .on( 'change', function () {
+                column
+                    .search( $(this).val(), true, true, false)
+                    .draw();
+            } );
+     
+        this
+            .cache( 'search' )
+            .sort()
+            .unique()
+            .each( function ( d ) {
+                select.append( $('<option value="'+d+'">'+d+'</option>') );
+                console.log(d);
+            } );
+    } );
+
 } );
 </script>
+
 <script src="{{ asset('js/pages/hrmis/applicants.js') }}"></script>
+
 <script type="text/javascript">
     function createNewApplicant() {
         window.location = "{{ route('applicants.create') }}";

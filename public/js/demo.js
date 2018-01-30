@@ -1,7 +1,7 @@
 $(function () {
     skinChanger();
     activateNotificationAndTasksScroll();
-    bodyScroll();
+    //bodyScroll();
 
     setSkinListHeightAndScroll(true);
     setSettingListHeightAndScroll(true);
