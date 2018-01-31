@@ -40,4 +40,9 @@ class Applicants extends Model
     {
         return $this->hasMany('App\Models\Hrmis\ApplicantAttachment', 'applicant_id');
     }
+    
+    public function selectionLists()
+    {
+        return $this->hasMany('App\Models\Hrmis\ApplicantLineupGroup', 'applicant_id');
+    }
 }

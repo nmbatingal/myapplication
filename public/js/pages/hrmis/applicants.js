@@ -1,34 +1,11 @@
 $(function () {
+    
+    var form = $('#form-selection-lineup').show();
 
-    /*** DATATABLE APPLICANTS ***/
-    /*$('#table-applicants-list').DataTable({
-        responsive: true,
-        mark: {
-            element: 'span',
-            className: 'bg-blue'
-        },
-        columnDefs: [{
-            targets: 0,
-            searchable: false,
-            orderable: false,
-            className: 'text-center',
-            render: function (data, type, full, meta){
-                return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data).html() + '">';
-            }
-        }],
-        order: [[1, 'asc']],
-        select: {
-            style:    'multi',
-            selector: 'td:first-child'
-        },
-    });*/
-
-    /*$('#createNewSelection').on('click', function() {
+    $("#selectionLineup").on("show.bs.modal", function () {
 
         var table = $('#applicant-checkbox').DataTable();
         var ids   = table.rows('.selected').data();
-
-        $('div#selection-card').removeClass('hidden');
 
         if (ids.length > 0) {
 
@@ -40,22 +17,29 @@ $(function () {
                                     '<i>remove</i>' +
                                 '</td>' +
                             '</tr>';
+
                 $("#table-lineup tbody").append(markup);
             });
-
         }
+    });
 
-    });*/
+    $("#selectionLineup").on("hidden.bs.modal", function () {
+        $("#table-lineup tbody").empty();
+    });
 
-    $('#applicant-checkbox tbody').on('click', 'tr', function () {
-
-        var table = $('#applicant-checkbox').DataTable();
-        var ids   = table.rows('.selected').data();
-
-        if ( ids.length < 1 ) {
-            $('div#selection-card').addClass('hidden');
-            $("#table-lineup tbody").empty();
-        }
-
-    } );
+    /*** FORM SELECTION VALIDATE ***/
+    form.validate({
+        rules: {
+            date_interview  : "required",
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        },
+    });
 });

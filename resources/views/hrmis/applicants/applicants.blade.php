@@ -5,6 +5,8 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- DataTables css-->
 
+<!-- Bootstrap Material Datetime Picker Css -->
+<link href="{{ asset('plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" />
 <!-- Bootstrap Select Css -->
 <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
@@ -176,14 +178,15 @@
         </div> <!-- table card end -->
 
         <!-- Large Size -->
-        <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" data-backdrop="static" >
+        <div class="modal fade" id="selectionLineup" tabindex="-1" role="dialog" data-backdrop="static" >
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header ">
                         <h4 class="modal-title" id="largeModalLabel">CREATE SELECTION LINEUP OF APPLICANTS</h4>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form id="form-selection-lineup" action="{{ route('lineup.store') }}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="modal-body">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card">
@@ -194,8 +197,8 @@
                                             <h2 class="card-inside-title">Position Title</h2>
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <select class="form-control show-tick" data-live-search="true">
-                                                        <option>-- Please Select --</option>
+                                                    <select class="form-control show-tick" data-live-search="true" name="position" required>
+                                                        <option value="">-- Please Select --</option>
                                                             @foreach( $positions as $position )
                                                                 <option value="{{ $position['id'] }}">{{ $position['title'] }} ({{ strtoupper($position['acronym']) }})</option>
                                                             @endforeach
@@ -205,8 +208,7 @@
                                             <h2 class="card-inside-title">Date of Interview</h2>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="date_interview" autofocus>
-                                                    <label class="form-label">Date of interview</label>
+                                                    <input type="text" class="datepicker form-control" name="date_interview">
                                                 </div>
                                             </div>
                                         </div>
@@ -237,12 +239,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success waves-effect">SAVE CHANGES</button>
-                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success waves-effect">SAVE CHANGES</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -263,10 +265,23 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
 <!-- Datatable select js-->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
-<!-- Propeller Data table js-->
+<!-- Moment Plugin Js -->
+<script src="{{ asset('plugins/momentjs/moment.js') }}"></script>
+<!-- Bootstrap Material Datetime Picker Plugin Js -->
+<script src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
 <script>
-    //Propeller Customised Javascript code 
     $(document).ready(function() {
+        /* DATE PICKER*/
+        $('.datepicker').bootstrapMaterialDatePicker({
+            clearButton: true,
+            weekStart: 0,
+            time: false
+        });
+
+        $('.dtp-buttons').each(function(){
+            $(this).find('button').addClass('col-black');
+        });
+
         var applicantList = $('#applicant-checkbox').DataTable({
             /*"search": {
                 "caseInsensitive": false
@@ -330,7 +345,7 @@
         } );
         $("div.data-table-title").html('<h2 class="pmd-card-title-text">List of Applicants</h2>');
         $("div.data-table-actions").html('<a id="btn-create-new" onclick="createNewApplicant()" class="btn pmd-btn-raise pmd-ripple-effect btn-success">Create new applicant</a>');
-        $(".custom-select-action").html('<button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#largeModal"><i class="material-icons">event</i> <span>Create selection</span></button>');
+        $(".custom-select-action").html('<button id="insertSelection" type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#selectionLineup"><i class="material-icons">event</i> <span>Create selection</span></button>');
 
         $('#global-search').keyup( function() {
               applicantList.search( $(this).val() ).draw() ;
@@ -354,7 +369,6 @@
                 .unique()
                 .each( function ( d ) {
                     select.append( $('<option value="'+d+'">'+d+'</option>') );
-                    console.log(d);
                 } );
         } );
 
@@ -376,7 +390,6 @@
                 .unique()
                 .each( function ( d ) {
                     select.append( $('<option value="'+d+'">'+d+'</option>') );
-                    console.log(d);
                 } );
         } );
 
@@ -398,7 +411,6 @@
                 .unique()
                 .each( function ( d ) {
                     select.append( $('<option value="'+d+'">'+d+'</option>') );
-                    console.log(d);
                 } );
         } );
     } );
@@ -410,5 +422,11 @@
     function createNewApplicant() {
         window.location = "{{ route('applicants.create') }}";
     }
+
+    /*$('#form-selection-lineup').on('submit', function(e) {
+        e.preventDefault();
+
+        console.log($(this).serializeArray());
+    });*/
 </script>
 @endsection
