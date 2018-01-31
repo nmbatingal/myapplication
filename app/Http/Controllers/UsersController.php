@@ -147,4 +147,13 @@ class UsersController extends Controller
 
         return response()->json("success");
     }
+
+    /*** SHOW PROFILE ***/
+    public function profile($id)
+    {
+        $user   = User::find($id);
+        $offices = Offices::orderBy('div_name', 'ASC')->get();
+
+        return view('accounts.profile', compact('user', 'offices'));
+    }
 }

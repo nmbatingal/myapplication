@@ -12,7 +12,7 @@
                 <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right">
-                        <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                        <li><a href="{{ route( 'profile.show', ['id' => Auth::user()->id ]) }}"><i class="material-icons">person</i>Profile</a></li>
                         <li role="seperator" class="divider"></li>
                         <li>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">  <i class="material-icons">input</i>Log Out
@@ -26,29 +26,31 @@
             </div>
         </div>
         <!-- #User Info -->
+        
         <!-- Menu -->
         <div class="menu">
             <ul class="list">
-                <li class="header">MAIN NAVIGATION</li>
+                <li class="header">MAIN MENU</li>
                 <li class="{{ Request::is('home') ? 'active' : '' }}">
                     <a href="{{ route('home') }}">
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>
                 </li> 
-                <li class="header">SETTINGS</li>
-                <li class="{{ Request::is('accounts/groups') ? 'active' : '' }}">
-                    <a href="{{ route('groups.index') }}">
+                <li class="{{ Request::is('accounts/*') ? 'active' : '' }}">
+                    <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">settings</i>
-                        <span>Group</span>
+                        <span>Settings</span>
                     </a>
-                </li> 
-                <li class="{{ Request::is('accounts/users') ? 'active' : '' }}">
-                    <a href="{{ route('users.index') }}">
-                        <i class="material-icons">settings</i>
-                        <span>Users</span>
-                    </a>
-                </li>           
+                    <ul class="ml-menu">
+                        <li class="{{ Request::is('accounts/groups') ? 'active' : '' }}">
+                            <a href="{{ route('groups.index') }}">Group</a>
+                        </li>
+                        <li class="{{ Request::is('accounts/users') ? 'active' : '' }}">
+                            <a href="{{ route('users.index') }}">User Accounts</a>
+                        </li>
+                    </ul>
+                </li>          
             </ul>
         </div>
         <!-- #Menu -->

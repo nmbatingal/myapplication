@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function() {
 
+    Route::get('/accounts/profile/{id}', 'UsersController@profile')->name('profile.show');
+
     Route::group(['middleware' => 'checkAdmin'], function() {
         
         // ACCOUNTS
@@ -39,6 +41,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('hrmis/applicants/all', 'Hrmis\ApplicantsController@showApplicants')->name('applicants.showApplicants');
     Route::resource('hrmis/applicants', 'Hrmis\ApplicantsController');  // Resource controller for applicants
     Route::resource('hrmis/applicants/lineup', 'Hrmis\SelectionLineupController');  // Resource controller for applicants
+
     Route::resource('hrmis/positions', 'Hrmis\PositionController');   // Resource controller for positions
 
 });
