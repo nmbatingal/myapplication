@@ -23,7 +23,8 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {   
-        if (Auth::user()->__isAdmin != 1 ) {
+        if  (Auth::user()->__isAdmin != 1 ) {
+            
             return redirect()->route('home')->with('unauthorize', 'Sorry, you have no administrator privileges to perform this action.');
         }
 
