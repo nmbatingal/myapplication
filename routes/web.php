@@ -21,7 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function() {
 
-    Route::get('/accounts/profile/{id}', 'UsersController@profile')->name('profile.show');
+    Route::get('/accounts/profile/{id}/edit', 'UsersController@profile')->name('profile.edit');
+    Route::post('/accounts/profile/{id}', 'UsersController@profileUpdate')->name('profile.update');
+    Route::post('/accounts/profile/password/{id}', 'UsersController@profilePasswordUpdate')->name('profile.passwordUpdate');
 
     Route::group(['middleware' => 'checkAdmin'], function() {
         

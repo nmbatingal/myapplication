@@ -156,4 +156,32 @@ class UsersController extends Controller
 
         return view('accounts.profile', compact('user', 'offices'));
     }
+
+    /*** SHOW PROFILE ***/
+    public function profileUpdate(Request $request, $id)
+    {
+        $user   = User::find($id);
+
+        $user->lastname      = $request['u_lname'];
+        $user->firstname     = $request['u_fname'];
+        $user->middlename    = $request['u_mname'];
+        $user->email         = $request['u_email'];
+        $user->mobile_number = $request['u_contact'];
+        $user->div_unit      = $request['u_unit'];
+        $user->position      = $request['u_position'];
+        $user->save();
+
+        return redirect()->route('home')->with('info', 'Account successfully updated!');
+    }
+
+    /*** SHOW PROFILE ***/
+    public function profilePasswordUpdate(Request $request, $id)
+    {
+        $user   = User::find($id);
+
+        $user->password = bcrypt($request['u_password']);
+        $user->save();
+
+        return redirect()->route('home')->with('success', 'Password successfully updated!');
+    }
 }

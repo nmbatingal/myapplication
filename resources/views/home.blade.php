@@ -16,6 +16,19 @@
                                 Welcome <strong>{{ Auth::user()->firstname }}</strong>! Start using the system by clicking an application below.
                             </div>
                         @endif
+
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {!! session('success') !!}
+                            </div>
+                        @endif
+
+                        @if ( Hash::check('dostcaraga', Auth::user()->password ) )
+                            <div class="alert alert-warning">
+                                <strong>Warning!</strong> Change your default system password <a href="{{ route( 'profile.edit', [ 'id' => Auth::user()->id ]) }}" class="alert-link">here</a> and update your information.
+                            </div>
+                        @endif
+
                         @if (session('unauthorize'))
                             <div class="alert alert-danger">
                                 {!! session('unauthorize') !!}

@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="header">
+                    <div class="header bg-blue">
                         <h2>PERSONAL INFORMATION</h2>
                     </div>
                     <div class="body">
@@ -43,9 +43,9 @@
                                 </div>
                             </div>
                             <div class="col-md-9">
-                                <form id="form-user" class="form-horizontal" method="POST">
+                                <form id="form-profile" action="{{ route('profile.update', ['id' => $user['id']]) }}" class="form-horizontal" method="POST">
                                     {{ csrf_field() }}
-                                    <input type="hidden" name="u_id">
+
                                     <div class="row clearfix">
                                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                             <label for="username">Username</label>
@@ -137,7 +137,7 @@
                                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control u_position" id="" name="position" value="{{ $user['position'] }}">
+                                                    <input type="text" class="form-control u_position" id="" name="u_position" value="{{ $user['position'] }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -145,36 +145,57 @@
 
                                     <div class="row clearfix">
                                         <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5 m-t-15">
-                                            <button type="submit" class="btn btn-success waves-effect">Save</button>
-                                            <a class="btn pmd-ripple-effect btn-link" id="resetPassword"><span class="text-danger font-underline">Password Reset</span></a>
+                                            <button type="submit" class="btn btn-primary waves-effect">Update</button>
                                         </div>
                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="header bg-blue">
+                        <h2>UPDATE PASSWORD</h2>
+                    </div>
+                    <div class="body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="form-password" class="form-horizontal" action="{{ route( 'profile.passwordUpdate', ['id' => $user['id']] ) }}" method="POST">
+                                    {{ csrf_field() }}
 
-                                    <div class="row clearfix m-t-35">
-                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                            <label for="">User Settings</label>
+                                    <input type="hidden" name="u_id">
+
+                                    <div class="row clearfix">
+                                        <div class="col-lg-3 col-md-4 col-sm-4 form-control-label">
+                                            <label for="firstname">Password</label>
                                         </div>
-                                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                            <h2 class="card-inside-title"></h2>
-                                            <div class="demo-switch">
-                                                <div class="switch">
-                                                    <label>OFF<input type="checkbox" class="u_active"><span class="lever"></span>ACTIVE</label>
+                                        <div class="col-lg-9">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="password" class="form-control u_password" name="u_password" placeholder="Enter your password">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                            <label for=""></label>
+                                        <div class="col-lg-3 col-md-4 col-sm-4 form-control-label">
+                                            <label for="firstname">Confirm</label>
                                         </div>
-                                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                            <h2 class="card-inside-title"></h2>
-                                            <div class="demo-switch">
-                                                <div class="switch">
-                                                    <label>OFF<input type="checkbox" class="u_admin"><span class="lever"></span>ADMIN</label>
+                                        <div class="col-lg-9">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="password" class="form-control u_confirm" name="u_confirm" placeholder="Confirm your password">
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row clearfix">
+                                        <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5 m-t-15">
+                                            <button type="submit" class="btn btn-primary waves-effect">Update</button>
                                         </div>
                                     </div>
                                 </form>
@@ -191,4 +212,5 @@
 @section('scripts')
 <script src="{{ asset('components/jquery-inputmask/jquery.inputmask.bundle.js') }}" type="text/javascript"></script>
 <script src="{{ asset('components/file-upload/js/upload-image.js') }}"></script>
+<script src="{{ asset('js/pages/jquery-profile.js') }}" type="text/javascript"></script>
 @endsection
