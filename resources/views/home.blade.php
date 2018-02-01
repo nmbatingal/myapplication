@@ -57,6 +57,24 @@
                                 <a href="{{ route('users.index') }}" class="btn-link font-underline col-red" type="button">Open settings</a>
                             </div>
                         </div>
+                        <div class="info-box">
+                            <div class="icon bg-orange">
+                                <i class="material-icons">vpn_key</i>
+                            </div>
+                            <div class="content">
+                                <div class="text">ROLES</div>
+                                <a href="{{ route('role.index') }}" class="btn-link font-underline col-red" type="button">Open settings</a>
+                            </div>
+                        </div>
+                        <div class="info-box">
+                            <div class="icon bg-teal">
+                                <i class="material-icons">lock</i>
+                            </div>
+                            <div class="content">
+                                <div class="text">PERMISSIONS</div>
+                                <a href="{{ route('permission.index') }}" class="btn-link font-underline col-red" type="button">Open settings</a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-lg-9">

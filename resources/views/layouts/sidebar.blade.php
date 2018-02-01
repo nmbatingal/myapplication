@@ -49,6 +49,22 @@
                         <li class="{{ Request::is('accounts/users') ? 'active' : '' }}">
                             <a href="{{ route('users.index') }}">User Accounts</a>
                         </li>
+
+
+                         <li class="{{ Request::is('accounts/roles/*') ? 'active' : '' }}">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Roles & Permissions</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class="{{ Request::is('accounts/roles/permission') ? 'active' : '' }} {{ Request::is('accounts/roles/permission/*') ? 'active' : '' }}">
+                                    <a href="{{ route('permission.index') }}">Permissions</a>
+                                </li>
+                                <li class="{{ Request::is('accounts/roles/role') ? 'active' : '' }} {{ Request::is('accounts/roles/role/*') ? 'active' : '' }}">
+                                    <a href="{{ route('role.index') }}">Roles</a>
+                                </li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </li>          
             </ul>
