@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+// use App\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -12,6 +13,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        // $role_admin = Role::where('name', 'admin')->first();
+
         $users = [
             [
                 'username'      => 'admin',
@@ -26,6 +29,7 @@ class UsersTableSeeder extends Seeder
 
         foreach ($users as $user) {
             User::create($user);
+                // ->roles()->attach($role_admin);
         }
     }
 }

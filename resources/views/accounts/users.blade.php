@@ -54,6 +54,9 @@
                             </li>
                         </ul>
                     @endif
+                    <nav class="text-center">
+                        {!! $users->links('pagination') !!}
+                    </nav>
                 </div>
             </div>
             <div class="col-md-8">

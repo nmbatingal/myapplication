@@ -94,7 +94,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'username'      => $data['username'],
             'password'      => bcrypt('dostcaraga'),
             'lastname'      => ucwords($data['lastname']),
@@ -105,5 +105,11 @@ class RegisterController extends Controller
             'div_unit'      => $data['division_unit'], 
             'position'      => $data['position'],
         ]);
+
+        /*$user
+            ->roles()
+            ->attach(Role::where('name', 'member')->first());*/
+
+        return $user;
     }
 }

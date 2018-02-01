@@ -21,7 +21,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users   = User::orderBy('firstname', 'ASC')->get();
+        $users   = User::orderBy('firstname', 'ASC')->paginate(7);
         $offices = Offices::orderBy('div_name', 'ASC')->get();
 
         return view('accounts.users', compact('users', 'offices'));

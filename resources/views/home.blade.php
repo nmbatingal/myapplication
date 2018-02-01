@@ -25,7 +25,7 @@
 
                         @if ( Hash::check('dostcaraga', Auth::user()->password ) )
                             <div class="alert alert-warning">
-                                <strong>Warning!</strong> Change your default system password <a href="{{ route( 'profile.edit', [ 'id' => Auth::user()->id ]) }}" class="alert-link">here</a> and update your information.
+                                <strong>Warning!</strong> Update your default system password and your personal information <a href="{{ route( 'profile.edit', [ 'id' => Auth::user()->id ]) }}" class="alert-link">here</a>.
                             </div>
                         @endif
 

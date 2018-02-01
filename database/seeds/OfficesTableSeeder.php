@@ -14,20 +14,20 @@ class OfficesTableSeeder extends Seeder
     {
         $offices = [
             [
-                'div_name' => 'Technical Service Provider',
-                'acronym'  => 'TSS',
-            ],
-            [
-                'div_name' => 'Field Operations Division',
-                'acronym'  => 'FOD',
+                'div_name' => 'Office of the Regional Director',
+                'acronym'  => 'ORD',
             ],
             [
                 'div_name' => 'Finance and Administrative Services',
                 'acronym'  => 'FAS',
             ],
             [
-                'div_name' => 'Office of the Regional Director',
-                'acronym'  => 'ORD',
+                'div_name' => 'Field Operations Division',
+                'acronym'  => 'FOD',
+            ],
+            [
+                'div_name' => 'Technical Service Provider',
+                'acronym'  => 'TSS',
             ],
         ];
 

@@ -47,6 +47,9 @@
                             </li>
                         </ul>
                     @endif
+                    <nav class="text-center">
+                        {!! $groups->links('pagination') !!}
+                    </nav>
                 </div>
             </div>
 

@@ -21,7 +21,7 @@ class GroupsController extends Controller
     public function index()
     {
         $users   = User::orderBy('firstname', 'ASC')->get();
-        $groups = Offices::orderBy('acronym', 'ASC')->get();
+        $groups = Offices::orderBy('acronym', 'ASC')->paginate(7);
 
         return view('accounts.groups', compact('users', 'groups'));
     }
