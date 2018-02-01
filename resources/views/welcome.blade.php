@@ -9,7 +9,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>MyApplication</title>
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
         <!-- Google icon -->

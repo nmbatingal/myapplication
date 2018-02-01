@@ -37,16 +37,32 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+
+
                 <li class="{{ Request::is('hrmis/applicants/*') ? 'active' : '' }}">
-                    <a href="{{ route('applicants.showApplicants') }}">
+                    <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">people</i>
                         <span>Applicants</span>
                     </a>
-                </li>
+                    <ul class="ml-menu">
+                        <li class="{{ Request::is('hrmis/applicants/all') ? 'active' : '' }}">
+                            <a href="{{ route('applicants.showApplicants') }}">List of Applicants</a>
+                        </li>
+                        <li class="{{ Request::is('hrmis/applicants/create') ? 'active' : '' }}">
+                            <a href="{{ route('applicants.create') }}">Create New Applicants</a>
+                        </li>
+                        <li class="{{ Request::is('hrmis/applicants/create') ? 'active' : '' }}">
+                            <a href="{{ route('applicants.create') }}">Selection Lineup</a>
+                        </li>
+                    </ul>
+                </li> 
+
+
+
                 <li class="{{ Request::is('hrmis/positions') ? 'active' : '' }} {{ Request::is('hrmis/positions/*') ? 'active' : '' }}">
                     <a href="{{ route('positions.index') }}">
                         <i class="material-icons">work</i>
-                        <span>Positions</span>
+                        <span>Hiring Position</span>
                     </a>
                 </li>
                 <li class="header">MAIN NAVIGATION</li>

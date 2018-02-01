@@ -11,7 +11,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>ADD NEW APPLICANT</h2>
+            <h2>CREATE NEW APPLICANT</h2>
             <ol class="breadcrumb p-l-0">
               <li><a href="{{ route('applicants.index') }}">Dashboard</a></li>
               <li><a href="{{ route('applicants.showApplicants') }}">Applicants</a></li>
