@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="col-md-9">
-                                <form id="form-user" class="form-horizontal" action="{{ route('users.update', '') }}" method="POST">
+                                <form id="form-user" class="form-horizontal" action="{{ route('users.update', '') }}" method="GET">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="u_id">
                                     <div class="row clearfix">
@@ -163,6 +163,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="row clearfix">
                                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                             <label for="email_address_2">Position</label>
@@ -172,6 +173,24 @@
                                                 <div class="form-line">
                                                     <input type="text" class="form-control u_position" id="" name="position">
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <h2 class="card-inside-title">Account Role</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                            <label>&nbsp;</label>
+                                        </div>
+
+                                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                            <div class="form-group">
+                                                @foreach ($roles as $role)
+
+                                                    <input name="roles[]" type="checkbox" id="{{ $role->name }}" value="{{ $role->id }}" />
+                                                    {{ Form::label($role->name, ucfirst($role->name)) }}<br>
+
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>

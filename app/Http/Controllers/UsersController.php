@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use App\Offices;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -23,8 +26,9 @@ class UsersController extends Controller
     {
         $users   = User::orderBy('firstname', 'ASC')->paginate(7);
         $offices = Offices::orderBy('div_name', 'ASC')->get();
+        $roles   = Role::get();
 
-        return view('accounts.users', compact('users', 'offices'));
+        return view('accounts.users', compact('users', 'offices', 'roles'));
     }
 
     /**
@@ -93,11 +97,11 @@ class UsersController extends Controller
         $user->mobile_number   = $request['u_contact'];
         $user->div_unit        = $request['u_unit'];
         $user->position        = $request['u_position'];
+
+        // $roles = $request['roles'];
         $user->save();
 
-        //return redirect()->route('users.index');
-        
-        return response()->json("success");
+        return redirect()->route('users.index');
     }
 
     /**

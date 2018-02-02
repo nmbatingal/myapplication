@@ -79,6 +79,10 @@ $(function () {
 
             $('select[name=u_unit]').selectpicker('refresh');
             
+            /*$('#form-user').attr('action', function(i, value) {
+                return value + "/" + data['id'];
+            });*/
+
         });
     });
     
@@ -103,7 +107,27 @@ $(function () {
             email       : "Please enter a valid email address",
         },
         submitHandler: function(form) { 
-            form.submit();
+            // form.submit();
+            //submit via ajax
+            var id    = $('input[name=u_id]').val();
+
+            $.ajax({
+                type: "GET",
+                url: $(form).attr('action') + '/' + id,
+                data: $(form).serialize(),
+                success: function(data) {
+
+                    if ((data.errors)) {
+                        alert("ERROR!");
+                    } else {
+                        console.log(data);
+                    }
+                }
+            });
+
+            //console.log($('[name=u_img]').val());
+
+            return false;
         },
         onfocusout: function(element) {
             this.element(element);  
