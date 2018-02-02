@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Input;
 
 class UsersController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('cors');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -24,11 +19,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users   = User::orderBy('firstname', 'ASC')->paginate(7);
-        $offices = Offices::orderBy('div_name', 'ASC')->get();
-        $roles   = Role::get();
+        $users   = User::orderBy('firstname', 'ASC')->get();
 
-        return view('accounts.users', compact('users', 'offices', 'roles'));
+        return view('accounts.users.index', compact('users'));
     }
 
     /**
@@ -61,8 +54,9 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-
+        
         return response()->json($user);
+
     }
 
     /**
@@ -74,8 +68,10 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        $offices = Offices::orderBy('div_name', 'ASC')->get();
+        $roles   = Role::get();
 
-        return response()->json($user);
+        return view('accounts.users.update', compact('user', 'offices', 'roles'));
     }
 
     /**
@@ -85,9 +81,8 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $id   = $request['u_id'];
         $user = User::findOrFail($id);
 
         $user->firstname       = $request['u_fname'];
@@ -98,8 +93,34 @@ class UsersController extends Controller
         $user->div_unit        = $request['u_unit'];
         $user->position        = $request['u_position'];
 
-        // $roles = $request['roles'];
         $user->save();
+
+        return redirect()->route('users.index');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateAccountSettings(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->__isActive = $request['u_active'] ? 1 : 0;
+        $user->__isAdmin  = $request['u_admin']  ? 1 : 0;
+
+        $roles = $request['roles'];
+        $user->save();
+
+        if (isset($roles)) {        
+            $user->roles()->sync($roles);  //If one or more role is selected associate user to roles          
+        }        
+        else {
+            $user->roles()->detach(); //If no role is selected remove exisiting role associated to a user
+        }
 
         return redirect()->route('users.index');
     }
@@ -115,35 +136,8 @@ class UsersController extends Controller
         //
     }
 
-    public function changeStatus() 
+    public function resetPassword($id) 
     {
-        $id   = Input::get('id');
-        $val  = Input::get('value') ? 1 : 0;
-
-        $user = User::findOrFail($id);
-
-        $user->__isActive = $val;
-        $user->save();
-
-        return response()->json("success");
-    }
-
-    public function changeAdmin() 
-    {
-        $id   = Input::get('id');
-        $val  = Input::get('value') ? 1 : 0;
-
-        $user = User::findOrFail($id);
-
-        $user->__isAdmin = $val;
-        $user->save();
-
-        return response()->json("success");
-    }
-
-    public function resetPassword() 
-    {
-        $id   = Input::get('id');
         $user = User::findOrFail($id);
 
         $user->password = bcrypt('dostcaraga');

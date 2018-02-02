@@ -2,44 +2,6 @@ $(function () {
     
     var $form = $('#form-user');
 
-    /* toggle switch button */
-    $('input.u_active').on('change', function() {
-        var id    = $('input[name=u_id]').val();
-
-        $.ajax({
-            type: $form.attr('method'),
-            url : $form.attr('action') + '/status',
-            data: {
-                '_token' : $('input[name=_token]').val(),
-                'id'     : id,
-                'value'  : $('input.u_active:checked').val()
-            },
-            success: function(data) {
-                //
-            }
-        });
-    });
-
-    /* toggle switch button */
-    $('input.u_admin').on('change', function() {
-        
-        var id    = $('input[name=u_id]').val();
-        
-        $.ajax({
-            type: $form.attr('method'),
-            url : $form.attr('action') + '/admin',
-            data: {
-                '_token' : $('input[name=_token]').val(),
-                'id'     : id,
-                'value'  : $('input.u_admin:checked').val()
-            },
-            success: function(data) {
-                //
-            }
-        });
-
-    });
-
     /* reset user password */
     $('a#resetPassword').on('click', function() {
         
@@ -59,7 +21,7 @@ $(function () {
     });
 
     /* on user click */
-	$('.list-user').on('click', function(e) {
+    $('.list-user').on('click', function(e) {
         e.preventDefault();
 
         $.get( $(this).attr('href') , function( data ) {
@@ -107,27 +69,7 @@ $(function () {
             email       : "Please enter a valid email address",
         },
         submitHandler: function(form) { 
-            // form.submit();
-            //submit via ajax
-            var id    = $('input[name=u_id]').val();
-
-            $.ajax({
-                type: "GET",
-                url: $(form).attr('action') + '/' + id,
-                data: $(form).serialize(),
-                success: function(data) {
-
-                    if ((data.errors)) {
-                        alert("ERROR!");
-                    } else {
-                        console.log(data);
-                    }
-                }
-            });
-
-            //console.log($('[name=u_img]').val());
-
-            return false;
+            form.submit();
         },
         onfocusout: function(element) {
             this.element(element);  

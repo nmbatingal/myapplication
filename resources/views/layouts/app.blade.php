@@ -100,6 +100,8 @@
     <!-- Jquery Validation Plugin Css -->
     <script src="{{ asset('plugins/jquery-validation/jquery.validate.js') }}"></script>
 
+    <script src="{{ asset('js/tooltips-popovers.js') }} "></script>
+
     @yield('scripts')
 
     <!-- Custom Js -->

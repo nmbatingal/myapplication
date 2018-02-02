@@ -25,24 +25,27 @@
 
                         {{ Form::model($role, array('route' => array('role.update', $role->id), 'method' => 'PUT')) }}
 
-                        <div class="form-group">
-                            {{ Form::label('name', 'Role Name') }}
-                            {{ Form::text('name', null, array('class' => 'form-control')) }}
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                {{ Form::text('name', null, ['class' => 'form-control']) }}
+                                {{ Form::label('name', 'Role Name', ['class' => 'form-label']) }}
+                            </div>
                         </div>
 
                         <h5><b>Assign Permissions</b></h5>
+
                         @foreach ($permissions as $permission)
 
-                            {{Form::checkbox('permissions[]',  $permission->id, $role->permissions ) }}
+                            {{Form::checkbox('permissions[]',  $permission->id, $role->permissions, ['id' => $permission->name] ) }}
                             
                             {{Form::label($permission->name, ucfirst($permission->name)) }}<br>
 
                         @endforeach
+
                         <br>
                         {{ Form::submit('Edit', array('class' => 'btn btn-primary')) }}
 
                         {{ Form::close() }}
-
                     </div>
                 </div>
             </div>

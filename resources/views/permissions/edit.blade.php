@@ -25,9 +25,11 @@
 
                         {{ Form::model($permission, array('route' => array('permission.update', $permission->id), 'method' => 'PUT')) }}{{-- Form model binding to automatically populate our fields with permission data --}}
 
-                        <div class="form-group">
-                            {{ Form::label('name', 'Permission Name') }}
-                            {{ Form::text('name', null, array('class' => 'form-control')) }}
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                {{ Form::text('name', null, ['class' => 'form-control']) }}
+                                {{ Form::label('name', 'Permission Name', ['class' => 'form-label']) }}
+                            </div>
                         </div>
                         <br>
                         {{ Form::submit('Edit', array('class' => 'btn btn-primary')) }}

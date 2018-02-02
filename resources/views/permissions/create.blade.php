@@ -37,8 +37,10 @@
                             <h4>Assign Permission to Roles</h4>
 
                             @foreach ($roles as $role) 
-                                {{ Form::checkbox('roles[]',  $role->id ) }}
-                                {{ Form::label($role->name, ucfirst($role->name)) }}<br>
+
+                                {{ Form::checkbox('roles[]',  $role->id, false, ['id' => $role->name] ) }}
+                                {{ Form::label($role->name, ucfirst($role->name)) }}
+                                <br>
 
                             @endforeach
                         @endif

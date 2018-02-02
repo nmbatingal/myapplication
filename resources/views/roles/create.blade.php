@@ -34,12 +34,13 @@
 
                         <h5><b>Assign Permissions</b></h5>
 
-                            @foreach ($permissions as $i => $permission)
+                        @foreach ($permissions as $permission)
 
-                                <input name="permissions[]" type="checkbox" id="{{ $permission->name }}" value="{{ $permission->id }}" />
-                                {{ Form::label($permission->name, ucfirst($permission->name)) }}<br>
+                            {{Form::checkbox('permissions[]',  $permission->id, false, ['id' => $permission->name] ) }}
 
-                            @endforeach
+                            {{ Form::label($permission->name, ucfirst($permission->name)) }}<br>
+
+                        @endforeach
 
                         {{ Form::button('Add', ['class' => 'btn btn-success waves-effect', 'type' => 'submit']) }}
                         {{ Form::close() }}
