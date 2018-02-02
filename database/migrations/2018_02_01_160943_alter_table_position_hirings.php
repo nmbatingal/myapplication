@@ -13,7 +13,7 @@ class AlterTableUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table) {
+        Schema::table('position_hirings', function($table) {
             $table->integer('slots')->after('eligibilities')->nullable();
             $table->integer('status')->after('slots')->default(1)->nullable();
         });
@@ -26,6 +26,6 @@ class AlterTableUsers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('position_hirings');
     }
 }
