@@ -45,11 +45,11 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //Validate name and permissions field
-        $this->validate($request, [
+        /*$this->validate($request, [
             'name'=>'required|unique:roles|max:10',
             'permissions' =>'required',
             ]
-        );
+        );*/
 
         $name = $request['name'];
         $role = new Role();

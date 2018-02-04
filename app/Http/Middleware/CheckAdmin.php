@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Auth;
 use Closure;
+use App\User;
 use Illuminate\Contracts\Auth\Guard;
 
 class CheckAdmin
@@ -23,9 +24,14 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {   
-        if  (Auth::user()->__isAdmin != 1 ) {
-            
-            return redirect()->route('home')->with('unauthorize', 'Sorry, you have no administrator privileges to perform this action.');
+        $user = User::all()->count();
+
+        if (!($user == 1)) {
+
+            if (!Auth::user()->hasRole('System Admin') || !Auth::user()->__isAdmin == 1) //If user does //not have this role
+            {
+                return redirect()->route('home')->with('unauthorize', 'Sorry, you have no administrator privileges to perform this action.');
+            }
         }
 
         return $next($request);

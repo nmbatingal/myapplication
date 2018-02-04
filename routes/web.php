@@ -45,7 +45,10 @@ Route::group(['middleware' => 'auth'], function() {
     /*** HRMIS-APPLICANTS CONTROLLER ***/
     Route::get('hrmis/applicants/all', 'Hrmis\ApplicantsController@showApplicants')->name('applicants.showApplicants');
     Route::resource('hrmis/applicants', 'Hrmis\ApplicantsController');  // Resource controller for applicants
-    Route::resource('hrmis/applicants/lineup', 'Hrmis\SelectionLineupController');  // Resource controller for applicants
+
+
+    Route::get('hrmis/lineup/{id}/print', 'Hrmis\SelectionLineupController@printLineup')->name('lineup.print.lineup');
+    Route::resource('hrmis/lineup', 'Hrmis\SelectionLineupController');  // Resource controller for applicants
 
     Route::resource('hrmis/positions', 'Hrmis\PositionController');   // Resource controller for positions
 

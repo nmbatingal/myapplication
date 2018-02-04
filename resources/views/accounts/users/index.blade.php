@@ -66,6 +66,7 @@
                                 <th>Group</th>
                                 <th>Active</th>
                                 <th>Admin</th>
+                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -101,6 +102,9 @@
                                             @if ( $user['__isAdmin'] > 0 )
                                                 <span class="label label-warning">admin</span>
                                             @endif
+                                        </td>
+                                        <td>
+                                            {{ $user->roles()->pluck('name')->implode(' ') }}
                                         </td>
                                         <td class="text-center">
                                             <a href="{{ route('users.edit', ['id' => $user['id']]) }}" class="btn btn-xs btn-primary waves-effect" data-toggle="tooltip" data-placement="top" title="Edit">

@@ -22,7 +22,7 @@ class Offices extends Model
 
     public function officeCount($id)
     {
-    	$userCount = User::where('div_unit', $id)->count();
+        $userCount = User::where('div_unit', $id)->count();
         return $userCount;
     }
 }

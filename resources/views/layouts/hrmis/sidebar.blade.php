@@ -51,13 +51,16 @@
                         <li class="{{ Request::is('hrmis/applicants/create') ? 'active' : '' }}">
                             <a href="{{ route('applicants.create') }}">Create New Applicants</a>
                         </li>
-                        <li class="{{ Request::is('hrmis/applicants/create') ? 'active' : '' }}">
-                            <a href="{{ route('applicants.create') }}">Selection Lineup</a>
-                        </li>
                     </ul>
                 </li> 
 
 
+                <li class="{{ Request::is('hrmis/lineup') ? 'active' : '' }} {{ Request::is('hrmis/lineup/*') ? 'active' : '' }}">
+                    <a href="{{ route('lineup.index') }}">
+                        <i class="material-icons">view_list</i>
+                        <span>Selection Lineup</span>
+                    </a>
+                </li>
 
                 <li class="{{ Request::is('hrmis/positions') ? 'active' : '' }} {{ Request::is('hrmis/positions/*') ? 'active' : '' }}">
                     <a href="{{ route('positions.index') }}">
@@ -65,11 +68,12 @@
                         <span>Hiring Position</span>
                     </a>
                 </li>
+
                 <li class="header">MAIN NAVIGATION</li>
                 <li>
                     <a href="{{ route('home') }}">
-                        <i class="material-icons">home</i>
-                        <span>Home</span>
+                        <i class="material-icons">arrow_back</i>
+                        <span>Return</span>
                     </a>
                 </li>           
             </ul>

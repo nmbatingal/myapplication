@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-3">
+                    <!-- <div class="col-lg-3">
                         <div class="info-box">
                             <div class="icon bg-blue">
                                 <i class="material-icons">people</i>
@@ -75,11 +75,11 @@
                                 <a href="{{ route('permission.index') }}" class="btn-link font-underline col-red" type="button">Open settings</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-lg-9">
+                    <div class="col-sm-12">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="card card-default pmd-z-depth">
                                     <!-- Card media -->
                                     <div class="card-media">
@@ -103,7 +103,31 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                <div class="card card-default pmd-z-depth">
+                                    <!-- Card media -->
+                                    <div class="card-media">
+                                        <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
+                                    </div>
+
+                                    <div class="header">
+                                        <h2><a href="{{ route('lineup.index') }}">HRMIS</a> <small>Description text here...</small></h2>
+                                        <ul class="header-dropdown m-r-0">
+                                            <li>
+                                                <a href="javascript:void(0);">
+                                                    <i class="material-icons col-blue">info_outline</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('applicants.index') }}">
+                                                    <i class="material-icons col-green">launch</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
                                 <div class="card card-default pmd-z-depth">
                                     <!-- Card media -->
                                     <div class="card-media">
@@ -127,7 +151,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="card card-default pmd-z-depth">
                                     <!-- Card media -->
                                     <div class="card-media">

@@ -16,7 +16,8 @@ class SelectionLineupController extends Controller
      */
     public function index()
     {
-        //
+        $lineups = ApplicantLineup::all();
+        return view('hrmis.lineup.index', compact('lineups'));
     }
 
     /**
@@ -51,7 +52,7 @@ class SelectionLineupController extends Controller
             $groupList->save();
         }
 
-        return redirect()->route('applicants.showApplicants')->with('info', 'Applicant Lineup Successfully Saved!');
+        return redirect()->route('lineup.index')->with('info', 'Applicant Lineup Successfully Saved!');
     }
 
     /**
@@ -62,7 +63,18 @@ class SelectionLineupController extends Controller
      */
     public function show($id)
     {
-        //
+        $position = ApplicantLineup::find($id);
+        $lineups  = ApplicantLineupGroup::where('lineup_id', $id)->get();
+
+        return view('hrmis.lineup.show', compact('position', 'lineups'))->render();
+    }
+
+    public function printLineup($id)
+    {
+        $position = ApplicantLineup::find($id);
+        $lineups  = ApplicantLineupGroup::where('lineup_id', $id)->get();
+
+        return view('hrmis.lineup.print', compact('position', 'lineups'))->render();
     }
 
     /**

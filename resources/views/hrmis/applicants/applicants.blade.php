@@ -100,7 +100,7 @@
                     <div  class="pmd-card pmd-z-depth pmd-card-custom-view">
                         <div class="table-responsive">
 
-                            <table id="applicant-checkbox" class="table pmd-table table-hover table-striped display responsive nowrap" cellspacing="0" width="100%">
+                            <table id="applicant-checkbox" class="table pmd-table table-hover table-striped display responsive" cellspacing="0" width="100%">
                                 <colgroup>
                                     <col>
                                     <col>
