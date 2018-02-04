@@ -55,9 +55,9 @@
                     </div>
                     <div id="requirements_tab" class="panel-collapse collapse" role="tabpanel" aria-labelledby="requirements_tab">
                         <div class="panel-body">
-                            <h2 class="card-inside-title">Education</h2>
                             <div class="row">
                                 <div class="col-sm-12">
+                                    <label class="control-label">Education</label>
                                     <div class="form-group">
                                         <div class="form-line">
                                             <textarea rows="1" class="form-control no-resize auto-growth" name="education_req">{{ $position->hasPosition['education_reqs'] }}</textarea>
@@ -65,9 +65,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <h2 class="card-inside-title">Experience</h2>
+
                             <div class="row">
                                 <div class="col-sm-12">
+                                    <label class="control-label">Experience</label>
                                     <div class="form-group">
                                         <div class="form-line">
                                             <textarea rows="1" class="form-control no-resize auto-growth" name="education_req">{{ $position->hasPosition['experience_reqs'] }}</textarea>
@@ -75,9 +76,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <h2 class="card-inside-title">Trainings</h2>
+
                             <div class="row">
                                 <div class="col-sm-12">
+                                    <label class="control-label">Trainings</label>
                                     <div class="form-group">
                                         <div class="form-line">
                                             <textarea rows="1" class="form-control no-resize auto-growth" name="education_req">{{ $position->hasPosition['training_reqs'] }}</textarea>
@@ -85,9 +87,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <h2 class="card-inside-title">Eligibilities</h2>
+
                             <div class="row">
                                 <div class="col-sm-12">
+                                    <label class="control-label">Eligibilities</label>
                                     <div class="form-group">
                                         <div class="form-line">
                                             <textarea rows="1" class="form-control no-resize auto-growth" name="education_req">{{ $position->hasPosition['eligibilities'] }}</textarea>

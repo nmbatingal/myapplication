@@ -38,6 +38,12 @@
                     </a>
                 </li>
 
+                <li class="{{ Request::is('hrmis/psb') ? 'active' : '' }} {{ Request::is('hrmis/psb/*') ? 'active' : '' }}">
+                    <a href="{{ route('psb.index') }}">
+                        <i class="material-icons">person</i>
+                        <span>PSB Members</span>
+                    </a>
+                </li>
 
                 <li class="{{ Request::is('hrmis/applicants/*') ? 'active' : '' }}">
                     <a href="javascript:void(0);" class="menu-toggle">

@@ -173,7 +173,7 @@
                                 <?php
                                     $education = '';
                                     foreach ( $selection->hasApplicant->educations as $educations ) {
-                                        $education  = $educations['program'] .' - '. $educations['school'] .', '. date("M-d-y", strtotime($educations['year_graduated'])) .'<br />';
+                                        $education  = $educations['program'] .' - '. $educations['school'] .', '. date("M Y", strtotime($educations['year_graduated'])) .'<br />';
                                         echo $education;
                                     }
 
@@ -187,7 +187,7 @@
                                 <?php
                                     $training = '';
                                     foreach ( $selection->hasApplicant->trainings as $trainings ) {
-                                        $training  = $trainings['title'] .' - '.  $trainings['conducted_by'] .', '. date("M-d-y", strtotime($trainings['from_date'])) . '<br />';
+                                        $training  = $trainings['title'] .' - '.  $trainings['conducted_by'] .', '. date("M Y", strtotime($trainings['from_date'])) . '<br />';
                                         echo $training;
                                     }
 

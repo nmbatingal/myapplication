@@ -51,5 +51,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('hrmis/lineup', 'Hrmis\SelectionLineupController');  // Resource controller for applicants
 
     Route::resource('hrmis/positions', 'Hrmis\PositionController');   // Resource controller for positions
+    Route::resource('hrmis/psb', 'Hrmis\PsbController');   // Resource controller for positions
 
 });
