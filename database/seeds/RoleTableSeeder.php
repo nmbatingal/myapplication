@@ -1,7 +1,8 @@
 <?php
 
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Seeder;
-use App\Role;
 
 class RoleTableSeeder extends Seeder
 {
@@ -14,17 +15,16 @@ class RoleTableSeeder extends Seeder
     {
     	$roles = [
             [
-                'name'         => 'admin',
-                'description'  => 'an admin level user',
-            ],
-            [
-                'name'         => 'member',
-                'description'  => 'a member level user',
+                'name' => 'Admin',
             ],
         ];
 
         foreach ($roles as $role) {
-            Role::create($role);
+            $p = Permission::where('name', 'administrator')->firstOrFail();
+
+            Role::create($role)
+                ->givePermissionTo($p);
         }
+
     }
 }

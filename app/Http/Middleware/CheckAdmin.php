@@ -28,7 +28,7 @@ class CheckAdmin
 
         if (!($user == 1)) {
 
-            if (!Auth::user()->hasRole('System Admin') || !Auth::user()->__isAdmin == 1) //If user does //not have this role
+            if (!Auth::user()->hasRole('Admin') || !Auth::user()->__isAdmin == 1) //If user does //not have this role
             {
                 return redirect()->route('home')->with('unauthorize', 'Sorry, you have no administrator privileges to perform this action.');
             }

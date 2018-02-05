@@ -38,7 +38,7 @@
                     </a>
                 </li>
 
-                @role('System Admin')
+                @role('Admin')
                     <li class="{{ Request::is('accounts/*') ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">settings</i>

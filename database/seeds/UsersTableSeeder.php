@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\User;
-// use App\Role;
+use Spatie\Permission\Models\Role;
+use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        // $role_admin = Role::where('name', 'admin')->first();
+        $role_admin = Role::where('name', 'Admin')->first();
 
         $users = [
             [
@@ -28,8 +28,8 @@ class UsersTableSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            User::create($user);
-                // ->roles()->attach($role_admin);
+            User::create($user)
+                ->roles()->sync($role_admin);
         }
     }
 }
