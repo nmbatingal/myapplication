@@ -60,7 +60,7 @@
                                     <label class="control-label">Education</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <textarea rows="1" class="form-control no-resize auto-growth" name="education_req">{{ $position->hasPosition['education_reqs'] }}</textarea>
+                                            <textarea rows="4" class="form-control no-resize auto-growth" name="education_req">{{ $position->hasPosition['education_reqs'] }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                     <label class="control-label">Experience</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <textarea rows="1" class="form-control no-resize auto-growth" name="education_req">{{ $position->hasPosition['experience_reqs'] }}</textarea>
+                                            <textarea rows="4" class="form-control no-resize auto-growth" name="education_req">{{ $position->hasPosition['experience_reqs'] }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@
                                     <label class="control-label">Trainings</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <textarea rows="1" class="form-control no-resize auto-growth" name="education_req">{{ $position->hasPosition['training_reqs'] }}</textarea>
+                                            <textarea rows="4" class="form-control no-resize auto-growth" name="education_req">{{ $position->hasPosition['training_reqs'] }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@
                                     <label class="control-label">Eligibilities</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <textarea rows="1" class="form-control no-resize auto-growth" name="education_req">{{ $position->hasPosition['eligibilities'] }}</textarea>
+                                            <textarea rows="4" class="form-control no-resize auto-growth" name="education_req">{{ $position->hasPosition['eligibilities'] }}</textarea>
                                         </div>
                                     </div>
                                 </div>

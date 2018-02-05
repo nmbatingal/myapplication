@@ -38,47 +38,9 @@
                 </div>
 
                 <div class="row">
-                    <!-- <div class="col-lg-3">
-                        <div class="info-box">
-                            <div class="icon bg-blue">
-                                <i class="material-icons">people</i>
-                            </div>
-                            <div class="content">
-                                <div class="text">GROUPS</div>
-                                <a href="{{ route('groups.index') }}" class="btn-link font-underline col-blue" type="button">Open settings</a>
-                            </div>
-                        </div>
-                        <div class="info-box">
-                            <div class="icon bg-red">
-                                <i class="material-icons">face</i>
-                            </div>
-                            <div class="content">
-                                <div class="text">USERS</div>
-                                <a href="{{ route('users.index') }}" class="btn-link font-underline col-red" type="button">Open settings</a>
-                            </div>
-                        </div>
-                        <div class="info-box">
-                            <div class="icon bg-orange">
-                                <i class="material-icons">vpn_key</i>
-                            </div>
-                            <div class="content">
-                                <div class="text">ROLES</div>
-                                <a href="{{ route('role.index') }}" class="btn-link font-underline col-red" type="button">Open settings</a>
-                            </div>
-                        </div>
-                        <div class="info-box">
-                            <div class="icon bg-teal">
-                                <i class="material-icons">lock</i>
-                            </div>
-                            <div class="content">
-                                <div class="text">PERMISSIONS</div>
-                                <a href="{{ route('permission.index') }}" class="btn-link font-underline col-red" type="button">Open settings</a>
-                            </div>
-                        </div>
-                    </div> -->
-
                     <div class="col-sm-12">
                         <div class="row">
+
                             <div class="col-md-3">
                                 <div class="card card-default pmd-z-depth">
                                     <!-- Card media -->
@@ -87,7 +49,7 @@
                                     </div>
 
                                     <div class="header">
-                                        <h2><a href="{{ route('applicants.index') }}">HRMIS</a> <small>Description text here...</small></h2>
+                                        <h2><a href="{{ route('applicants.index') }}" class="font-bold">HRMIS</a> <small>Description text here...</small></h2>
                                         <ul class="header-dropdown m-r-0">
                                             <li>
                                                 <a href="javascript:void(0);">
@@ -103,6 +65,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-md-3">
                                 <div class="card card-default pmd-z-depth">
                                     <!-- Card media -->
@@ -111,7 +74,7 @@
                                     </div>
 
                                     <div class="header">
-                                        <h2><a href="{{ route('lineup.index') }}">HRMIS</a> <small>Description text here...</small></h2>
+                                        <h2><a href="{{ route('psbrs.index') }}" class="font-bold">PSBRS</a> <small>Personnel Selection Board Rating System...</small></h2>
                                         <ul class="header-dropdown m-r-0">
                                             <li>
                                                 <a href="javascript:void(0);">

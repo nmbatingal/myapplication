@@ -11,7 +11,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>HRMIS | {{ config('app.name', 'Laravel') }}</title>
+    <title>PSBRS | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
@@ -77,9 +77,9 @@
     </div>
     <!-- #END# Search Bar -->
 
-    @include('layouts.hrmis.header')
+    @include('layouts.psboard.header')
 
-    @include('layouts.hrmis.sidebar')
+    @include('layouts.psboard.sidebar')
 
     @yield('content')
 
