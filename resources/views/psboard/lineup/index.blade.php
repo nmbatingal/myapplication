@@ -41,7 +41,7 @@
                                     </div>
                                     <div id="collapse_{{ $lineup['id'] }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{ $lineup['id'] }}">
                                         <div class="panel-body">
-                                            <a href="#" class="btn btn-success waves-effect">Rate Lineup</a>
+                                            <a href="#" class="btn btn-success waves-effect">Rate Line up</a>
                                             <div class="table-responsive">
                                                 <table id="table-lineup-list" class="table table-bordered table-striped table-hover">
                                                     <colgroup>
