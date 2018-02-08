@@ -40,125 +40,7 @@
         @endif
 
         <section class="row clearfix">
-            <div class="col-lg-5">
-                <div class="card">
-                    <div class="header bg-green">
-                        <h2>Add New Position Opening</h2>
-                    </div>
-                    <form id="form_add_position" action="{{ route('positions.store') }}" method="POST">
-                        {{ csrf_field() }}
-                        <div class="body">
-                            <h2 class="card-inside-title">Position Details</h2>
-                            <div class="row clearfix">
-                                <div class="col-sm-12">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="title">
-                                            <label class="form-label">Title</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-sm-4">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="acronym">
-                                            <label class="form-label">Acronym</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="slots">
-                                            <label class="form-label">Slots</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="sal_grade">
-                                            <label class="form-label">Salary grade</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2 class="card-inside-title">Item No</h2>
-                            <div class="row clearfix">
-                                <div class="col-sm-12">
-                                    <div class="form-group form-float">
-                                        <div class="form-line focused">
-                                            <input type="text" class="form-control" data-role="tagsinput" name="item_no">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2 class="card-inside-title">Publication No</h2>
-                            <div class="row clearfix">
-                                <div class="col-sm-12">
-                                    <div class="form-group form-float">
-                                        <div class="form-line focused">
-                                            <input type="text" class="form-control" data-role="tagsinput" name="publication_no">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2 class="card-inside-title">Position Requirements</h2>
-                            <div class="row clearfix">
-                                <div class="col-sm-12">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <textarea rows="1" class="form-control no-resize auto-growth" name="education_req"></textarea>
-                                            <label class="form-label">Education</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-sm-12">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <textarea rows="1" class="form-control no-resize auto-growth" name="experience_req"></textarea>
-                                            <label class="form-label">Experience</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-sm-12">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <textarea rows="1" class="form-control no-resize auto-growth" name="training_req"></textarea>
-                                            <label class="form-label">Training</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-sm-12">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <textarea rows="1" class="form-control no-resize auto-growth" name="eligibility_req"></textarea>
-                                            <label class="form-label">Eligibility</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="body">
-                            <button type="submit" class="btn btn-md btn-success waves-effect">Submit</button>
-                            <button type="reset" class="btn btn-md btn-default waves-effect">Clear</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-lg-7">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="component-box">
                     <!-- table card example -->
                     <div  class="pmd-card pmd-z-depth pmd-card-custom-view">
@@ -221,8 +103,6 @@
 <!-- Datatable select js-->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
 <!-- Propeller Data table js-->
-
-<script src="{{ asset('js/pages/hrmis/position-index.js') }}"></script>
 
 <script>
 //Propeller Customised Javascript code 
@@ -288,7 +168,7 @@ $(document).ready(function() {
         }
     } );
 
-    $("div.data-table-title").html('<h2 class="pmd-card-title-text">List of Positions for Hiring</h2>');
+    $("div.data-table-title").html('<h2 class="pmd-card-title-text">Vacancy List</h2>');
 
 } );
 </script>

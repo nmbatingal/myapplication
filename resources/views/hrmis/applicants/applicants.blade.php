@@ -68,9 +68,8 @@
                         </div>
 
                         <h2 class="card-inside-title" style="margin: 10px; ">Custom Search Fields</h2>
-
                         <div class="row clearfix" style="height: 50px;">
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <select id="sex-search" class="form-control show-tick">
                                     <option value="">-- Select sex --</option>
                                 </select>
@@ -80,12 +79,14 @@
                                     <option value="">-- Select program --</option>
                                 </select>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <select id="status-search" class="form-control show-tick">
                                     <option value="">-- Select status --</option>
                                 </select>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>

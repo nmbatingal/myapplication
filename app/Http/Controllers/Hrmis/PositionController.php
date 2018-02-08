@@ -26,7 +26,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        //
+        return view('hrmis.positions.create');
     }
 
     /**

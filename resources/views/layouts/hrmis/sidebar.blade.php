@@ -38,14 +38,22 @@
                     </a>
                 </li>
 
-                <li class="{{ Request::is('hrmis/psb') ? 'active' : '' }} {{ Request::is('hrmis/psb/*') ? 'active' : '' }}">
-                    <a href="{{ route('psb.index') }}">
-                        <i class="material-icons">person</i>
-                        <span>PSB Members</span>
+                <li class="{{ Request::is('hrmis/positions') ? 'active' : '' }} {{ Request::is('hrmis/positions/*') ? 'active' : '' }}">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">work</i>
+                        <span>Position Vacancy</span>
                     </a>
+                    <ul class="ml-menu">
+                        <li class="{{ Request::is('hrmis/positions') ? 'active' : '' }}">
+                            <a href="{{ route('positions.index') }}">Vacancy List</a>
+                        </li>
+                        <li class="{{ Request::is('hrmis/positions/create') ? 'active' : '' }}">
+                            <a href="{{ route('positions.create') }}">Create New Position</a>
+                        </li>
+                    </ul>
                 </li>
 
-                <li class="{{ Request::is('hrmis/applicants/*') ? 'active' : '' }}">
+                <li class="{{ Request::is('hrmis/applicants/*') ? 'active' : '' }} {{ Request::is('hrmis/lineup') ? 'active' : '' }}">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">people</i>
                         <span>Applicants</span>
@@ -57,21 +65,16 @@
                         <li class="{{ Request::is('hrmis/applicants/create') ? 'active' : '' }}">
                             <a href="{{ route('applicants.create') }}">Create New Applicants</a>
                         </li>
+                        <li class="{{ Request::is('hrmis/lineup') ? 'active' : '' }}">
+                            <a href="{{ route('lineup.index') }}">Selection Lineup</a>
+                        </li>
                     </ul>
                 </li> 
 
-
-                <li class="{{ Request::is('hrmis/lineup') ? 'active' : '' }} {{ Request::is('hrmis/lineup/*') ? 'active' : '' }}">
-                    <a href="{{ route('lineup.index') }}">
-                        <i class="material-icons">view_list</i>
-                        <span>Selection Lineup</span>
-                    </a>
-                </li>
-
-                <li class="{{ Request::is('hrmis/positions') ? 'active' : '' }} {{ Request::is('hrmis/positions/*') ? 'active' : '' }}">
-                    <a href="{{ route('positions.index') }}">
-                        <i class="material-icons">work</i>
-                        <span>Hiring Position</span>
+                <li class="{{ Request::is('hrmis/psb') ? 'active' : '' }} {{ Request::is('hrmis/psb/*') ? 'active' : '' }}">
+                    <a href="{{ route('psb.index') }}">
+                        <i class="material-icons">person_add</i>
+                        <span>PSB Members</span>
                     </a>
                 </li>
 
