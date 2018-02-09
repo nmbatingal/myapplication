@@ -45,10 +45,10 @@ class PositionController extends Controller
         $position->sal_grade          = $request['sal_grade'];
         $position->item_no            = $request['item_no'];
         $position->publication_no     = $request['publication_no'];
-        $position->education_reqs     = $request['education_req'];
-        $position->experience_reqs    = $request['experience_req'];
-        $position->training_reqs      = $request['training_req'];
-        $position->eligibilities      = $request['eligibility_req'];
+        $position->education_reqs     = nl2br($request['education_req']);
+        $position->experience_reqs    = nl2br($request['experience_req']);
+        $position->training_reqs      = nl2br($request['training_req']);
+        $position->eligibilities      = nl2br($request['eligibility_req']);
 
         $position->save();
 

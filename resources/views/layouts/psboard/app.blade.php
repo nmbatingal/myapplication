@@ -101,6 +101,9 @@
     <!-- Jquery Validation Plugin Css -->
     <script src="{{ asset('plugins/jquery-validation/jquery.validate.js') }}"></script>
 
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="{{ asset('plugins/jquery-countto/jquery.countTo.js') }}"></script>
+
     @yield('scripts')
 
     <!-- Custom Js -->

@@ -38,10 +38,10 @@
                     </a>
                 </li>
 
-                <li class="{{ Request::is('psbrs/lineup/selection') ? 'active' : '' }} {{ Request::is('hrmis/lineup/*') ? 'active' : '' }}">
+                <li class="{{ Request::is('psbrs/lineup/selection') ? 'active' : '' }} {{ Request::is('psbrs/lineup/*') ? 'active' : '' }}">
                     <a href="{{ route('selection.index') }}">
                         <i class="material-icons">people</i>
-                        <span>Selection Lineup</span>
+                        <span>Lineup of Applicants</span>
                     </a>
                 </li>
 

@@ -60,7 +60,7 @@ class ApplicantsController extends Controller
         $applicant->sex         = $request['sex'];
         $applicant->email       = $request['email'];
         $applicant->log_id      = Auth::user()->id;
-        $applicant->remarks     = $request['remarks'];
+        $applicant->remarks     = nl2br($request['remarks']);
         $applicant->save();
 
         if ( !empty($request['program']) ) {

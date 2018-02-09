@@ -49,7 +49,8 @@ class SelectionLineupController extends Controller
      */
     public function show($id)
     {
-        //
+        $interviewee = ApplicantLineupGroup::find($id);
+        return view('psboard.lineup.show', compact('interviewee'));
     }
 
     /**

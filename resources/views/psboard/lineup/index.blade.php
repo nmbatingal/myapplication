@@ -15,7 +15,7 @@
         </div>
         
         <div class="row clearfix">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="header">
                         <h2>
@@ -41,21 +41,24 @@
                                     </div>
                                     <div id="collapse_{{ $lineup['id'] }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{ $lineup['id'] }}">
                                         <div class="panel-body">
-                                            <a href="#" class="btn btn-success waves-effect">Rate Line up</a>
                                             <div class="table-responsive">
                                                 <table id="table-lineup-list" class="table table-bordered table-striped table-hover">
                                                     <colgroup>
-                                                        <col width="25%">
                                                         <col>
-                                                        <col width="10%">
-                                                        <col width="10%">
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                        <col width="5%">
                                                     </colgroup>
                                                     <thead>
                                                         <tr>
                                                             <th>Name</th>
                                                             <th>Education</th>
-                                                            <th>Performance Rating</th>
-                                                            <th>Action</th>
+                                                            <th>Relevant Training</th>
+                                                            <th>Work Experience</th>
+                                                            <th>Eligibility</th>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -64,7 +67,9 @@
                                                         @foreach ( $lineups as $lineup )
                                                             <tr>
                                                                 <td>
-                                                                    {{ $lineup->hasApplicant['lastname'] }}, {{ $lineup->hasApplicant['firstname'] }} {{ $lineup->hasApplicant['middlename'] ? $lineup->hasApplicant['middlename'][0].'.' : '' }}
+                                                                    <a href="{{ route('selection.show', ['id' => $lineup['id']]) }}" target="_blank">
+                                                                        {{ $lineup->hasApplicant['lastname'] }}, {{ $lineup->hasApplicant['firstname'] }} {{ $lineup->hasApplicant['middlename'] ? $lineup->hasApplicant['middlename'][0].'.' : '' }}
+                                                                    </a>
                                                                 </td>
                                                                 <td>
                                                                     @foreach ( $lineup->hasApplicant->educations as $education )
@@ -72,8 +77,26 @@
                                                                         {{ $education['school'] }} - {{ date("M Y", strtotime( $education['year_graduated'] )) }}<br>
                                                                     @endforeach
                                                                 </td>
-                                                                <td></td>
-                                                                <td></td>
+                                                                <td>
+                                                                    @foreach ( $lineup->hasApplicant->trainings as $training )
+                                                                        {{ $training['title'] }}<br>
+                                                                        {{ $training['conducted_by'] }} - {{ date("M Y", strtotime( $training['from_date'] )) }}<br>
+                                                                    @endforeach
+                                                                </td>
+                                                                <td>
+                                                                    @foreach ( $lineup->hasApplicant->experiences as $experience )
+                                                                        {{ $experience['position'] }}<br>
+                                                                        {{ $experience['agency'] }} - {{ date("M Y", strtotime( $experience['to_date'] )) }}<br>
+                                                                    @endforeach
+                                                                </td>
+                                                                <td>
+                                                                    @foreach ( $lineup->hasApplicant->eligibilities as $eligibility )
+                                                                        {{ $eligibility['title'] }}<br>
+                                                                    @endforeach
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <a href="{{ route('selection.show', ['id' => $lineup['id']]) }}" class="btn btn-success btn-block waves-effect" target="_blank">Rate</a>
+                                                                </td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>

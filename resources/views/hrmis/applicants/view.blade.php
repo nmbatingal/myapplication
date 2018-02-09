@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            {{ $applicant['firstname'] .' ' . $applicant['middlename'].' '. $applicant['lastname'] }}
+                            <span class="font-32">{{ $applicant['firstname'] }} {{ $applicant['middlename'] ? $applicant['middlename'][0].'.' : ''}} {{ $applicant['lastname'] }}</span>
                         </h2>
                     </div>
                     <div class="body">
@@ -187,6 +187,33 @@
                                     </div>
                                 @endif
                             </div>
+
+                            <div role="tabpanel" class="tab-pane fade in" id="eligibility_tab">
+                                @if ( !$applicant->eligibilities )
+                                    @foreach ( $applicant->eligibilities as $eligibility )
+                                        <div class="row">
+                                            <div class="col-md-10 col-md-offset-1">
+                                                <div class="form-group form-float">
+                                                    <label for="fullname">Title</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $eligibility['title'] }}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="row">
+                                        <div class="col-md-10 col-md-offset-1">
+                                            <div class="list-group">
+                                                <a href="#" class="list-group-item text-center disabled">no data available</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+
+
                         </div>
                     </div>
                 </div>

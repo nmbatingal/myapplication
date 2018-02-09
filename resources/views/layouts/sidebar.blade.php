@@ -37,6 +37,12 @@
                         <span>Home</span>
                     </a>
                 </li>
+                <li class="{{ Request::is('accounts/profile/*') ? 'active' : '' }}">
+                    <a href="{{ route( 'profile.edit', ['id' => Auth::user()->id ]) }}">
+                        <i class="material-icons">face</i>
+                        <span>Profile</span>
+                    </a>
+                </li>
 
                 @role('Admin')
                     <li class="{{ Request::is('accounts/*') ? 'active' : '' }}">

@@ -8,6 +8,8 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('components/file-upload/css/image-upload.css') }}">
 <!-- /build -->
 <!-- <link rel="stylesheet" type="text/css" href="{{ asset('bower/bootstrap-switch-master/dist/css/bootstrap3/bootstrap-switch.css') }}"> -->
+<!-- Dropzone Css -->
+<link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -29,19 +31,21 @@
                     </div>
                     <div class="body">
                         <div class="row">
-                            <div data-provides="fileinput" class="fileinput fileinput-new col-lg-3">
-                                <div data-trigger="fileinput" class="fileinput-preview thumbnail img-circle img-responsive">
-                                    <img id="profile_img" src="{{ asset( $user['__img'] ) }}">
-                                </div>
-                                <div class="action-button"> 
-                                    <span class="btn btn-default btn-raised btn-file ripple-effect">
-                                        <span class="fileinput-new"><i class="material-icons md-light pmd-xs">add</i></span>
-                                        <span class="fileinput-exists"><i class="material-icons md-light pmd-xs">mode_edit</i></span>
-                                        <input type="file" name="u_img">
-                                    </span> 
-                                    <a data-dismiss="fileinput" class="btn btn-default btn-raised btn-file ripple-effect fileinput-exists" href="javascript:void(0);"><i class="material-icons md-light pmd-xs">close</i></a>
-                                </div>
+
+                            <div class="col-md-3">
+                                <form action="/" id="frmImgUpload" class="dropzone" method="post" enctype="multipart/form-data">
+                                    <!-- <div class="dz-message">
+                                        <div class="drag-icon-cph">
+                                            <i class="material-icons">touch_app</i>
+                                        </div>
+                                        <h3>Drop files here or click to upload.</h3>
+                                    </div> -->
+                                    <div class="fallback">
+                                        <input name="file" type="file" />
+                                    </div>
+                                </form>
                             </div>
+
                             <div class="col-md-9">
                                 <form id="form-profile" action="{{ route('profile.update', ['id' => $user['id']]) }}" class="form-horizontal" method="POST">
                                     {{ csrf_field() }}
@@ -210,7 +214,19 @@
 @endsection
 
 @section('scripts')
+<!-- Dropzone Plugin Js -->
+<script src="{{ asset('plugins/dropzone/dropzone.js') }}"></script>
 <script src="{{ asset('components/jquery-inputmask/jquery.inputmask.bundle.js') }}" type="text/javascript"></script>
 <script src="{{ asset('components/file-upload/js/upload-image.js') }}"></script>
 <script src="{{ asset('js/pages/jquery-profile.js') }}" type="text/javascript"></script>
+<script>
+    //Dropzone
+    Dropzone.options.frmImgUpload = {
+        paramName: "file",
+        maxFilesize: 2,
+        maxFiles: 1,
+        acceptedFiles: 'image/*',
+        dictDefaultMessage: 'Drag an image here to upload, or click to select one'
+    };
+</script>
 @endsection

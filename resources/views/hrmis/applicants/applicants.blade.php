@@ -106,6 +106,7 @@
                                     <col>
                                     <col>
                                     <col width="5%">
+                                    <col width="5%">
                                     <col>
                                     <col>
                                     <col>
@@ -119,6 +120,7 @@
                                         <th></th>
                                         <th>Name</th>
                                         <th>Sex</th>
+                                        <th>Age</th>
                                         <th>Education</th>
                                         <th>School</th>
                                         <th>Eligibility</th>
@@ -137,8 +139,11 @@
                                                 {{ $applicant['lastname'] }}, {{ $applicant['firstname'] }} {{ $applicant['middlename'] ? $applicant['middlename'][0].'.' : '' }}
                                             </a>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             {{ $applicant['sex'] == 1 ? 'Male' : 'Female' }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $applicant['age'] }}
                                         </td>
                                         <td>
                                             @foreach ( $applicant->educations as $education )
