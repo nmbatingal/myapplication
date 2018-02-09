@@ -84,7 +84,7 @@
                     <label class="control-label">Other Details</label>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" name="username" class="form-control" value="{{ @old('username') }}">
+                            <input type="text" name="username" class="form-control" value="{{ @old('username') }}" data-url="{{ route('username.exist') }}">
                             <label class="form-label">Username</label>
                         </div>
                     </div>

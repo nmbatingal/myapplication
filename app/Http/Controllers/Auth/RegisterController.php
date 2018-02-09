@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Offices;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -40,6 +41,17 @@ class RegisterController extends Controller
         $offices = Offices::orderBy('div_name', 'ASC')->get();
 
         return view('auth.register', compact('offices'));
+    }
+
+    public function usernameExist(Request $request)
+    {
+        $username = User::where('username', '=', $request['username'])->exists();
+
+        if ( $username ) {
+            echo 'false';
+        } else {
+            echo 'true';
+        }
     }
 
     /**
@@ -112,4 +124,6 @@ class RegisterController extends Controller
 
         return $user;
     }
+
+
 }

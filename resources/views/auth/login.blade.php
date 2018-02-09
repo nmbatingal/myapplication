@@ -44,7 +44,7 @@
         <div class="card">
             <div class="body">
 
-                <form id="sign_up" class="form-login" method="POST" action="{{ route('login') }}">
+                <form id="sign_in" class="form-login" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
                     <div class="msg">Sign in to start your session</div>
 
@@ -119,7 +119,7 @@
     </script>
     <!-- Custom Js -->
     <script src="{{ asset('js/admin.js') }}"></script>
-    <script src="{{ asset('js/pages/login/sign-up.js') }}"></script>
+    <script src="{{ asset('js/pages/login/sign-in.js') }}"></script>
 </body>
 
 </html>

@@ -1,4 +1,7 @@
 $(function () {
+
+
+
     $('#sign_up').validate({
         rules: {
             firstname : 'required',
@@ -11,8 +14,30 @@ $(function () {
                 required   : true,
                 minlength  : 11
             },
+            username      : {
+                required  : true,
+                remote    : {
+                    url : $('input[name=username]').attr('data-url'),
+                    type: "POST",
+                    data: {
+                        _token : function() {
+                            return $('input[name=_token]').val();
+                        }
+                    }
+                }
+            },
             division_unit : 'required',
             position   : 'required'
+        },
+        messages: {
+            email: {
+                required : "Please enter email address",
+                email    : "This is not a valid email address!"
+            },
+            username : {
+                required : "Please enter a username",
+                remote   : "username already exist!"
+            }
         },
         highlight: function (input) {
             $(input).parents('.form-line').addClass('error');

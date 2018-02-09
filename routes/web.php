@@ -15,6 +15,7 @@
 
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 
+Route::post('/register/username', 'Auth\RegisterController@usernameExist')->name('username.exist');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
