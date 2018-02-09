@@ -96,7 +96,10 @@
             <div class="col-lg-8 col-md-12 col-sm-6 col-xs-12">
                 <div class="card">
                     <div class="body">
-                        <form method="POST" >
+                        <form id="frmRateApplicant" method="POST" action="{{ route('psbrs.store') }}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="applicant_id" value="{{ $interviewee['id'] }}">
+                            <input type="hidden" name="psb_id" value="{{ Auth::user()->id }}">
                             <div class="alert bg-light-blue alert-dismissible" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                                 <b>Instruction</b>
@@ -163,12 +166,12 @@
                                     <h4 class="media-heading">Your Thoughts</h4>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <textarea rows="1" class="form-control no-resize auto-growth" placeholder="say something about the interviewee..."></textarea>
+                                            <textarea name="remarks" rows="1" class="form-control no-resize auto-growth" placeholder="say something about the interviewee..."></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="media-right">
-                                    <button type="button" class="btn bg-teal waves-effect">Submit</button>
+                                    <button type="submit" class="btn bg-teal waves-effect">Submit</button>
                                 </div>
                             </div>
                         </form>
@@ -408,11 +411,14 @@
 <script src="{{ asset('bower/readmore-js/readmore.min.js') }}"></script>
 <!-- Autosize Plugin Js -->
 <script src="{{ asset('plugins/autosize/autosize.js') }}"></script>
-
+<script src="{{ asset('js/pages/psbrs/show.js') }}"></script>
 <script>
 
     $('.count-to').countTo();
     $('#table_rating').editableTableWidget();
+    /*$('#table_rating').editableTableWidget({
+        editor: $('<input type="number">')
+    });*/
     //Textare auto growth
     autosize($('textarea.auto-growth'));
 

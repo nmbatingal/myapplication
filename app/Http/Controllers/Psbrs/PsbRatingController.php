@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Psbrs;
 
+use App\Models\Hrmis\ApplicantLineup as ApplicantLineup;
+use App\Models\Hrmis\ApplicantLineupGroup as ApplicantLineupGroup;
+use App\Models\Psbrs\PsbRating as Rating;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -35,7 +38,26 @@ class PsbRatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rating = new Rating();
+
+        $rating->lineup_applicant_id = $request['applicant_id'];
+        $rating->psb_id = $request['psb_id'];
+        $rating->rate_education = $request['education'];
+        $rating->rate_training = $request['training'];
+        $rating->rate_experience = $request['experience'];
+        $rating->rate_character = $request['character'];
+        $rating->rate_comm_skills = $request['communication_skills'];
+        $rating->rate_special_skills = $request['special_skills'];
+        $rating->rate_special_award = $request['award'];
+        $rating->rate_potential  = $request['potential'];
+        $rating->remarks         = $request['remarks'];
+        $rating->save();
+
+        if ($rating) {
+            return 'success';
+        }
+
+        return 'failed';
     }
 
     /**
