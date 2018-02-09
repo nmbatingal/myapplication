@@ -8,7 +8,16 @@ $(function () {
             lastname  : 'required',
             email     : {
                 required   : true,
-                email      : true
+                email      : true,
+                remote    : {
+                    url : $('input[name=email]').attr('data-url'),
+                    type: "POST",
+                    data: {
+                        _token : function() {
+                            return $('input[name=_token]').val();
+                        }
+                    }
+                }
             },
             contact_number : {
                 required   : true,
@@ -32,7 +41,8 @@ $(function () {
         messages: {
             email: {
                 required : "Please enter email address",
-                email    : "This is not a valid email address!"
+                email    : "This is not a valid email address!",
+                remote   : "email already exist!"
             },
             username : {
                 required : "Please enter a username",

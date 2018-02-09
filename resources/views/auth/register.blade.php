@@ -70,7 +70,7 @@
                     <label class="control-label">Contact Details</label>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="email" class="form-control" name="email">
+                            <input type="email" class="form-control" name="email" data-url="{{ route('email.exist') }}">
                             <label class="form-label">Email</label>
                         </div>
                     </div>

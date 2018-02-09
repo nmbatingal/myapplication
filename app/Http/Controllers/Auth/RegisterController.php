@@ -43,11 +43,30 @@ class RegisterController extends Controller
         return view('auth.register', compact('offices'));
     }
 
+    /**
+     * Validate if username already exist
+     *
+     */
     public function usernameExist(Request $request)
     {
         $username = User::where('username', '=', $request['username'])->exists();
 
         if ( $username ) {
+            echo 'false';
+        } else {
+            echo 'true';
+        }
+    }
+
+    /**
+     * Validate if email already exist
+     *
+     */
+    public function emailExist(Request $request)
+    {
+        $email = User::where('email', '=', $request['email'])->exists();
+
+        if ( $email ) {
             echo 'false';
         } else {
             echo 'true';
