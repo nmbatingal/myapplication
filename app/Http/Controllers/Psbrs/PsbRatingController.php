@@ -103,7 +103,7 @@ class PsbRatingController extends Controller
         $rating->rate_special_skills = $request['special_skills'];
         $rating->rate_special_award  = $request['award'];
         $rating->rate_potential      = $request['potential'];
-        $rating->remarks             = $request['remarks'];
+        $rating->remarks             = nl2br($request['remarks']);
         $rating->save();
 
         /*if ($rating) {
