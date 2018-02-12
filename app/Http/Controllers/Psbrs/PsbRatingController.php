@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 
 class PsbRatingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['psbMember']);
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -58,8 +58,10 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'cors' => \App\Http\Middleware\CORS::class,
-        'checkAdmin' => \App\Http\Middleware\CheckAdmin::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+
+        'checkAdmin' => \App\Http\Middleware\CheckAdmin::class,
+        'psbMember' => \App\Http\Middleware\PsbMember::class,
     ];
 }
