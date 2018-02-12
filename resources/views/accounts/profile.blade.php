@@ -32,22 +32,8 @@
                     <div class="body">
                         <div class="row">
 
-                            <div class="col-md-3">
-                                <form action="/" id="frmImgUpload" class="dropzone" method="post" enctype="multipart/form-data">
-                                    <!-- <div class="dz-message">
-                                        <div class="drag-icon-cph">
-                                            <i class="material-icons">touch_app</i>
-                                        </div>
-                                        <h3>Drop files here or click to upload.</h3>
-                                    </div> -->
-                                    <div class="fallback">
-                                        <input name="file" type="file" />
-                                    </div>
-                                </form>
-                            </div>
-
                             <div class="col-md-9">
-                                <form id="form-profile" action="{{ route('profile.update', ['id' => $user['id']]) }}" class="form-horizontal" method="POST">
+                                <form id="form-profile" action="{{ route('profile.update', ['id' => $user['id']]) }}" class="form-horizontal" method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
 
                                     <div class="row clearfix">
@@ -142,6 +128,18 @@
                                             <div class="form-group">
                                                 <div class="form-line">
                                                     <input type="text" class="form-control u_position" id="" name="u_position" value="{{ $user['position'] }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                            <label for="email_address_2">Photo</label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control u_photo" id="" name="u_photo[]">
                                                 </div>
                                             </div>
                                         </div>

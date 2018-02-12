@@ -29,7 +29,9 @@ $(function () {
                 url : $form.attr('action'),
                 data: data,
                 success: function(data) {
-                    alert(data);
+                    //alert(data);
+                    location.reload();
+                    // return false;
                 },
             });
 

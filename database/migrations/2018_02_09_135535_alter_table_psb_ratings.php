@@ -19,7 +19,7 @@ class AlterTablePsbRatings extends Migration
             $table->foreign('lineup_applicant_id')->references('id')->on('applicant_lineup_groups')->onDelete('cascade');
 
             $table->integer('psb_id')->after('lineup_applicant_id')->unsigned()->nullable();
-            $table->foreign('psb_id')->references('id')->on('psboard_members')->onDelete('cascade');
+            $table->foreign('psb_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->double('rate_education', 4, 2)->after('psb_id')->nullable();
             $table->double('rate_training', 4, 2)->after('rate_education')->nullable();

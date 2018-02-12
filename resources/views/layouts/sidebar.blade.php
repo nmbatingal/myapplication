@@ -4,7 +4,7 @@
         <!-- User Info -->
         <div class="user-info">
             <div class="image">
-                <img src="{{ asset(Auth::user()->__img) }}" width="48" height="48" alt="User" />
+                <img src="{{ asset(Auth::user()->__img) }}" width="48" height="48" style="width:48px;height:48px;" alt="User" />
             </div>
             <div class="info-container">
                 <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->firstname }}&nbsp;{{ Auth::user()->lastname }}</div>

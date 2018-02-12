@@ -50,6 +50,7 @@
                                                         <col>
                                                         <col>
                                                         <col width="5%">
+                                                        <col width="5%">
                                                     </colgroup>
                                                     <thead>
                                                         <tr>
@@ -58,6 +59,7 @@
                                                             <th>Relevant Training</th>
                                                             <th>Work Experience</th>
                                                             <th>Eligibility</th>
+                                                            <th class="text-center">Your Rating</th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
@@ -93,6 +95,9 @@
                                                                     @foreach ( $lineup->hasApplicant->eligibilities as $eligibility )
                                                                         {{ $eligibility['title'] }}<br>
                                                                     @endforeach
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{ $lineup->psbMemberRating($lineup['id'], Auth::user()->id ) }}
                                                                 </td>
                                                                 <td class="text-center">
                                                                     <a href="{{ route('selection.show', ['id' => $lineup['id']]) }}" class="btn btn-success btn-block waves-effect" target="_blank">Rate</a>

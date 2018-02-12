@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Psbrs;
 
+use Auth;
+use Carbon;
 use App\Models\Hrmis\ApplicantLineup as ApplicantLineup;
 use App\Models\Hrmis\ApplicantLineupGroup as ApplicantLineupGroup;
+use App\Models\Psbrs\PsbRating as PsbRating;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +19,9 @@ class SelectionLineupController extends Controller
      */
     public function index()
     {
+
         $lineups = ApplicantLineup::all();
+
         return view('psboard.lineup.index', compact('lineups'));
     }
 
@@ -50,7 +55,12 @@ class SelectionLineupController extends Controller
     public function show($id)
     {
         $interviewee = ApplicantLineupGroup::find($id);
-        return view('psboard.lineup.show', compact('interviewee'));
+        $ratings     = PsbRating::where( 'lineup_applicant_id', $id )->orderBy('created_at', 'ASC')->get();
+        $psb_rating  = PsbRating::where( 'lineup_applicant_id', $id )
+                                ->where( 'psb_id', Auth::user()->id )
+                                ->first();
+
+        return view('psboard.lineup.show', compact('interviewee', 'ratings', 'psb_rating'));
     }
 
     /**

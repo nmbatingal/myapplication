@@ -21,6 +21,13 @@
             </ol>
         </div>
 
+        @if (session('info'))
+            <div class="alert bg-green alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <b>Instruction</b>
+            </div>
+        @endif
+
         <section class="row clearfix">
             <div class="col-lg-4 col-md-12 col-sm-6 col-xs-12">
                 <div class="card">
@@ -42,62 +49,52 @@
                         </ul>
                     </div>
                     <div class="body">
-                        <div class="row" style="height: 50px;">
+                        <div class="row">
                             <div class="col-md-10 col-md-offset-1">
                                 <div class="info-box">
-                                    <div class="icon bg-green">
+                                    <div class="icon bg-orange">
                                         <i class="material-icons">star</i>
                                     </div>
                                     <div class="content">
                                         <div class="text">YOUR RATING</div>
-                                        <div class="number count-to" data-from="0" data-to="0" data-speed="1000" data-fresh-interval="20"></div>
+                                        <div class="number count-to" data-from="0" data-to="{{ $psb_rating ? $psb_rating->averageRating() : 0 }}" data-speed="1000" data-fresh-interval="20"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr>
                     <div class="body">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="javascript:void(0);">
-                                    <img class="media-object" src="{{ asset(Auth::user()->__img) }}" width="64" height="64">
-                                </a>
+                        <b>Interviewer's Remarks</b>
+                    </div>
+                    <div class="body">
+                        @foreach($ratings as $rating)
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="javascript:void(0);">
+                                        <img class="media-object" src="{{ asset($rating->hasPsbMember['__img']) }}" width="64" height="64">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{ $rating->hasPsbMember['firstname'] }} {{ $rating->hasPsbMember['middlename'] ? $rating->hasPsbMember['middlename'][0].'.' : '' }} {{ $rating->hasPsbMember['lastname'] }}<small class="pull-right">{{ $rating->created_at->diffForHumans() }}</small></h4>
+
+                                    <small>Rate: {{ $rating->averageRating() ?: 0 }}%</small>
+                                    <p class="comments">
+                                        {{ $rating['remarks'] }}
+                                    </p>
+                                </div>
                             </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Top aligned media</h4>
-                                <p class="comments">
-                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin
-                                    commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                    Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis
-                                    in faucibus.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="javascript:void(0);">
-                                    <img class="media-object" src="{{ asset(Auth::user()->__img) }}" width="64" height="64">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Top aligned media</h4>
-                                <p class="comments">
-                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin
-                                    commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                    Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis
-                                    in faucibus.
-                                </p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
             <div class="col-lg-8 col-md-12 col-sm-6 col-xs-12">
                 <div class="card">
                     <div class="body">
-                        <form id="frmRateApplicant" method="POST" action="{{ route('psbrs.store') }}">
-                            {{ csrf_field() }}
+                        @if ( isset($psb_rating) )
+                            {{ Form::model($psb_rating, (['url' => route('psbrs.update', $psb_rating['id']), 'method' => 'PUT', 'id' => 'frmRateApplicant'])) }}
+                        @else
+                            {{ Form::open(['url' => route('psbrs.store'), 'id' => 'frmRateApplicant']) }}
+                        @endif
                             <input type="hidden" name="applicant_id" value="{{ $interviewee['id'] }}">
                             <input type="hidden" name="psb_id" value="{{ Auth::user()->id }}">
                             <div class="alert bg-light-blue alert-dismissible" role="alert">
@@ -141,14 +138,14 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td id="cell_1">0</td>
-                                            <td id="cell_2">0</td>
-                                            <td id="cell_3">0</td>
-                                            <td id="cell_4">0</td>
-                                            <td id="cell_5">0</td>
-                                            <td id="cell_6">0</td>
-                                            <td id="cell_7">0</td>
-                                            <td id="cell_8">0</td>
+                                            <td id="cell_1">{{ $psb_rating['rate_education'] ?: 0 }}</td>
+                                            <td id="cell_2">{{ $psb_rating['rate_training'] ?: 0 }}</td>
+                                            <td id="cell_3">{{ $psb_rating['rate_experience'] ?: 0 }}</td>
+                                            <td id="cell_4">{{ $psb_rating['rate_character'] ?: 0 }}</td>
+                                            <td id="cell_5">{{ $psb_rating['rate_comm_skills'] ?: 0 }}</td>
+                                            <td id="cell_6">{{ $psb_rating['rate_special_skills'] ?: 0 }}</td>
+                                            <td id="cell_7">{{ $psb_rating['rate_special_award'] ?: 0 }}</td>
+                                            <td id="cell_8">{{ $psb_rating['rate_potential'] ?: 0 }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -166,12 +163,17 @@
                                     <h4 class="media-heading">Your Thoughts</h4>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <textarea name="remarks" rows="1" class="form-control no-resize auto-growth" placeholder="say something about the interviewee..."></textarea>
+                                            <textarea name="remarks" rows="1" class="form-control no-resize auto-growth" placeholder="say something about the interviewee...">{{ $psb_rating['remarks'] }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="media-right">
-                                    <button type="submit" class="btn bg-teal waves-effect">Submit</button>
+                                    @if ( isset($psb_rating) )
+                                        {{ Form::button('Resubmit', ['class' => 'btn bg-teal waves-effect', 'type' => 'submit']) }}
+                                    @else
+                                        {{ Form::button('Submit', ['class' => 'btn bg-teal waves-effect', 'type' => 'submit']) }}
+                                    @endif
+
                                 </div>
                             </div>
                         </form>
@@ -179,7 +181,7 @@
                 </div>
 
                 <div class="card">
-                    <div class="header">
+                    <div class="header bg-blue">
                         <h2>
                             <span class="font-24">APPLICANT INFORMATION</span>
                         </h2>

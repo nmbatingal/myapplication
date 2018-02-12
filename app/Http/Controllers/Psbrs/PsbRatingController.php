@@ -41,16 +41,16 @@ class PsbRatingController extends Controller
         $rating = new Rating();
 
         $rating->lineup_applicant_id = $request['applicant_id'];
-        $rating->psb_id = $request['psb_id'];
-        $rating->rate_education = $request['education'];
-        $rating->rate_training = $request['training'];
-        $rating->rate_experience = $request['experience'];
-        $rating->rate_character = $request['character'];
-        $rating->rate_comm_skills = $request['communication_skills'];
+        $rating->psb_id              = $request['psb_id'];
+        $rating->rate_education      = $request['education'];
+        $rating->rate_training       = $request['training'];
+        $rating->rate_experience     = $request['experience'];
+        $rating->rate_character      = $request['character'];
+        $rating->rate_comm_skills    = $request['communication'];
         $rating->rate_special_skills = $request['special_skills'];
-        $rating->rate_special_award = $request['award'];
-        $rating->rate_potential  = $request['potential'];
-        $rating->remarks         = $request['remarks'];
+        $rating->rate_special_award  = $request['award'];
+        $rating->rate_potential      = $request['potential'];
+        $rating->remarks             = $request['remarks'];
         $rating->save();
 
         if ($rating) {
@@ -91,7 +91,27 @@ class PsbRatingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rating = Rating::findOrFail($id);
+
+        $rating->lineup_applicant_id = $request['applicant_id'];
+        $rating->psb_id              = $request['psb_id'];
+        $rating->rate_education      = $request['education'];
+        $rating->rate_training       = $request['training'];
+        $rating->rate_experience     = $request['experience'];
+        $rating->rate_character      = $request['character'];
+        $rating->rate_comm_skills    = $request['communication'];
+        $rating->rate_special_skills = $request['special_skills'];
+        $rating->rate_special_award  = $request['award'];
+        $rating->rate_potential      = $request['potential'];
+        $rating->remarks             = $request['remarks'];
+        $rating->save();
+
+        /*if ($rating) {
+            return 'success';
+        }
+
+        return 'failed';*/
+        return redirect()->route('selection.show', [ 'selection' => $id ])->with('info', 'Interviewee rated successfully!');
     }
 
     /**

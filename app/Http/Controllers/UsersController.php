@@ -94,7 +94,6 @@ class UsersController extends Controller
         $user->position        = $request['u_position'];
 
         $user->save();
-
         return redirect()->route('users.index');
     }
 
@@ -167,6 +166,16 @@ class UsersController extends Controller
         $user->mobile_number = $request['u_contact'];
         $user->div_unit      = $request['u_unit'];
         $user->position      = $request['u_position'];
+
+        foreach ( $request->u_photo as $image )
+        {
+            $filename          = $image->getClientOriginalName();
+            $destinationPath   = 'img/users/'.'user_id_'.$id;
+
+            $user->__img       = $destinationPath . '/' . $filename;
+            $image->move($destinationPath, $filename);
+        }
+
         $user->save();
 
         return redirect()->route('home')->with('info', 'Account successfully updated!');
