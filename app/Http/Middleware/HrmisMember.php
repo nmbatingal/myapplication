@@ -7,7 +7,7 @@ use Closure;
 use App\User;
 use Illuminate\Contracts\Auth\Guard;
 
-class PsbMember
+class HrmisMember
 {
     protected $auth;
 
@@ -24,13 +24,11 @@ class PsbMember
      */
     public function handle($request, Closure $next)
     {
-
-        if ( Auth::user()->hasRole('psb member') || Auth::user()->hasRole('Admin') )
+        if ( Auth::user()->hasRole('hr member') || Auth::user()->hasRole('Admin') )
         {
             return $next($request);
         }
 
         return redirect()->route('home')->with('unauthorize', 'Sorry, you have no administrator privileges to perform this action.');
-
     }
 }

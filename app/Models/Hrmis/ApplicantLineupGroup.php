@@ -15,6 +15,23 @@ class ApplicantLineupGroup extends Model
         'lineup_id', 'applicant_id', 'remarks',
     ];
 
+    public function totalRating()
+    {
+
+    }
+
+    public function hasLineup()
+    {
+        return $this->belongsTo('App\Models\Hrmis\ApplicantLineup', 'lineup_id', 'id');
+    }
+
+    public function hasApplicant()
+    {
+        return $this->belongsTo('App\Models\Hrmis\Applicants', 'applicant_id', 'id');
+    }
+
+    /*** FORMULA ***/
+
     public function psbMemberRating( $id, $psb_id )
     {
         $q = PsbRating::where( 'lineup_applicant_id', $id )
@@ -29,18 +46,30 @@ class ApplicantLineupGroup extends Model
         return $average;
     }
 
-    public function totalRating()
+    public function totalAveRating( $id )
     {
+        $q = PsbRating::where( 'lineup_applicant_id', $id )->get();
 
-    }
+        if ( count($q) > 0 )
+        {
+            $sum = 0;
+            foreach ( $q as $value ) {
 
-    public function hasLineup()
-    {
-        return $this->belongsTo('App\Models\Hrmis\ApplicantLineup', 'lineup_id', 'id');
-    }
+                $sum += $value['rate_education'];
+                $sum += $value['rate_training'];
+                $sum += $value['rate_experience'];
+                $sum += $value['rate_character'];
+                $sum += $value['rate_comm_skills'];
+                $sum += $value['rate_special_skills'];
+                $sum += $value['rate_special_award'];
+                $sum += $value['rate_potential'];
+            }
 
-    public function hasApplicant()
-    {
-        return $this->belongsTo('App\Models\Hrmis\Applicants', 'applicant_id', 'id');
+            $average = $sum / count($q);
+
+            return $average;
+        }
+
+        return 0;
     }
 }

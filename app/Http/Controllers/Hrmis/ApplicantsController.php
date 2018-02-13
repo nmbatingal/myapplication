@@ -15,6 +15,11 @@ use App\Http\Controllers\Controller;
 
 class ApplicantsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['hrMember']);
+    }
+
     /**
      * Display a listing of the resource.
      *

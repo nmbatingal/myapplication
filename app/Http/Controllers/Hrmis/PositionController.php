@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class PositionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['hrMember']);
+    }
+
     /**
      * Display a listing of the resource.
      *

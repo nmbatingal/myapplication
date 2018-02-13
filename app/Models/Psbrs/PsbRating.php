@@ -25,6 +25,23 @@ class PsbRating extends Model
         'remarks',
     ];
 
+    public function scopePsbMember($query, $user)
+    {
+        $psb = PsboardMembers::where('user_id', $user)->first();
+        return $query->where('psb_id', $psb['id']);
+    }
+
+    public function hasPsbMember()
+    {
+        // return $this->belongsTo('App\Models\Hrmis\PsboardMembers', 'psb_id', 'id');
+        return $this->belongsTo('App\User', 'psb_id', 'id');
+    }
+
+    public function hasLineup()
+    {
+        return $this->belongsTo('App\Models\Hrmis\ApplicantLineupGroup', 'lineup_applicant_id', 'id');
+    }
+
     public function averageRating()
     {
         $array = [  
@@ -38,25 +55,36 @@ class PsbRating extends Model
                     $this['rate_potential'],
                 ];
 
-        $average = array_sum($array); // count($array);
+        // $average = ( array_sum($array) / count($array) ) * 100;
+        $average = array_sum($array);
 
         return $average;
     }
 
-    public function scopePsbMember($thisuery, $user)
+    public function totalAveRating( $id )
     {
-        $psb = PsboardMembers::where('user_id', $user)->first();
-        return $thisuery->where('psb_id', $psb['id']);
-    }
+        $q = $this::where( 'lineup_applicant_id', $id )->get();
 
-    public function hasPsbMember()
-    {
-        // return $this->belongsTo('App\Models\Hrmis\PsboardMembers', 'psb_id', 'id');
-        return $this->belongsTo('App\User', 'psb_id', 'id');
-    }
+        if ( count($q) > 0 )
+        {
+            $sum = 0;
+            foreach ( $q as $value ) {
 
-    public function hasLineup()
-    {
-        return $this->belongsTo('App\Models\Hrmis\ApplicantLineupGrou', 'position_id', 'id');
+                $sum += $value['rate_education'];
+                $sum += $value['rate_training'];
+                $sum += $value['rate_experience'];
+                $sum += $value['rate_character'];
+                $sum += $value['rate_comm_skills'];
+                $sum += $value['rate_special_skills'];
+                $sum += $value['rate_special_award'];
+                $sum += $value['rate_potential'];
+            }
+
+            $average = $sum / count($q);
+
+            return $average;
+        }
+
+        return 0;
     }
 }

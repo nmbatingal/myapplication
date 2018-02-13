@@ -263,7 +263,6 @@
 @section('scripts')
 <!-- Select Plugin Js -->
 <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
-
 <!-- Datatable js -->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 <!-- Datatable Bootstrap -->

@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
 
         'checkAdmin' => \App\Http\Middleware\CheckAdmin::class,
+        'hrMember' => \App\Http\Middleware\HrmisMember::class,
         'psbMember' => \App\Http\Middleware\PsbMember::class,
     ];
 }

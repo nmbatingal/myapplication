@@ -51,19 +51,20 @@
                     <div class="body">
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
-                                <div class="info-box">
-                                    <div class="icon bg-orange">
-                                        <i class="material-icons">star</i>
+                                <div class="info-box-4 hover-zoom-effect">
+                                    <div class="icon">
+                                        <i class="material-icons col-orange">star</i>
                                     </div>
                                     <div class="content">
-                                        <div class="text">YOUR RATING</div>
-                                        <div class="number count-to" data-from="0" data-to="{{ $psb_rating ? $psb_rating->averageRating() : 0 }}" data-speed="1000" data-fresh-interval="20"></div>
+                                        <div class="text">INTERVIEWEE RATING</div>
+                                        <div class="number">{{ $psb_rating ? $psb_rating->totalAveRating($psb_rating['lineup_applicant_id']) : 0 }}%</div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
-                    <div class="body">
+                    <div class="body bg-blue">
                         <b>Interviewer's Remarks</b>
                     </div>
                     <div class="body">
@@ -75,7 +76,7 @@
                                     </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">{{ $rating->hasPsbMember['firstname'] }} {{ $rating->hasPsbMember['middlename'] ? $rating->hasPsbMember['middlename'][0].'.' : '' }} {{ $rating->hasPsbMember['lastname'] }}<small class="pull-right">{{ $rating->created_at->diffForHumans() }}</small></h4>
+                                    <h4 class="media-heading">{{ $rating->hasPsbMember['firstname'] }} {{ $rating->hasPsbMember['middlename'] ? $rating->hasPsbMember['middlename'][0].'.' : '' }} {{ $rating->hasPsbMember['lastname'] }}<small class="pull-right">{{ $rating->updated_at->diffForHumans() }}</small></h4>
 
                                     <small>Rate: {{ $rating->averageRating() ?: 0 }}%</small>
                                     <p class="comments">
@@ -97,7 +98,7 @@
                         @endif
                             <input type="hidden" name="applicant_id" value="{{ $interviewee['id'] }}">
                             <input type="hidden" name="psb_id" value="{{ Auth::user()->id }}">
-                            <div class="alert bg-light-blue alert-dismissible" role="alert">
+                            <div class="alert bg-light-green alert-dismissible" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                                 <b>Instruction</b>
                             </div>

@@ -65,7 +65,6 @@
                                 <th>Position</th>
                                 <th>Group</th>
                                 <th>Active</th>
-                                <th>Admin</th>
                                 <th>Role</th>
                                 <th>Actions</th>
                             </tr>
@@ -91,20 +90,17 @@
                                         <td>
                                             {{ $user->hasOffice['div_name'] }}
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @if ( $user['__isActive'] == 1 )
-                                                <span class="label label-success">active</span>
+                                                <span class="badge bg-green">active</span>
                                             @else
-                                                <span class="label label-danger">inactive</span>
+                                                <span class="badge bg-red">inactive</span>
                                             @endif
                                         </td>
-                                        <td>
-                                            @if ( $user['__isAdmin'] > 0 )
-                                                <span class="label label-warning">admin</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            {{ $user->roles()->pluck('name')->implode(' ') }}
+                                        <td class="text-center">
+                                            @foreach ( $user->roles()->pluck('name') as $role )
+                                                <span class="badge bg-blue">{{ $role }}</span><br>
+                                            @endforeach
                                         </td>
                                         <td class="text-center">
                                             <a href="{{ route('users.edit', ['id' => $user['id']]) }}" class="btn btn-xs btn-primary waves-effect" data-toggle="tooltip" data-placement="top" title="Edit">

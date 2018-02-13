@@ -1,6 +1,9 @@
 @extends('layouts.psboard.app')
 
 @section('styles')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
 @endsection
 
 @section('content')
@@ -42,7 +45,7 @@
                                     <div id="collapse_{{ $lineup['id'] }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{ $lineup['id'] }}">
                                         <div class="panel-body">
                                             <div class="table-responsive">
-                                                <table id="table-lineup-list" class="table table-bordered table-striped table-hover">
+                                                <table class="table table-bordered table-striped table-hover table-listing">
                                                     <colgroup>
                                                         <col>
                                                         <col>
@@ -59,7 +62,7 @@
                                                             <th>Relevant Training</th>
                                                             <th>Work Experience</th>
                                                             <th>Eligibility</th>
-                                                            <th class="text-center">Your Rating</th>
+                                                            <th class="text-center">Rating</th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
@@ -97,7 +100,7 @@
                                                                     @endforeach
                                                                 </td>
                                                                 <td class="text-center">
-                                                                    {{ $lineup->psbMemberRating($lineup['id'], Auth::user()->id ) }}
+                                                                    {{ $lineup->totalAveRating( $lineup['id'] ) }}%
                                                                 </td>
                                                                 <td class="text-center">
                                                                     <a href="{{ route('selection.show', ['id' => $lineup['id']]) }}" class="btn btn-success btn-block waves-effect" target="_blank">Rate</a>
@@ -123,4 +126,35 @@
 @endsection
 
 @section('scripts')
+<!-- Datatable js -->
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<!-- Datatable Bootstrap -->
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<!-- Datatable responsive js-->
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+<!-- Datatable select js-->
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var applicantList = $('.table-listing').DataTable({
+            /*"search": {
+                "caseInsensitive": false
+            },*/
+            responsive: false,
+            columnDefs: [ 
+                {
+                    orderable: false,
+                    targets: 6,
+                },
+            ],
+            order: [ 5, 'asc' ],
+            bFilter: true,
+            bLengthChange: true,
+            "paging": false,
+            "searching": false,
+            dom:
+                "<'row'<'col-sm-12'tr>>",
+        });
+    } );
+</script>
 @endsection

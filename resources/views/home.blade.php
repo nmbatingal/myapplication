@@ -41,7 +41,7 @@
                     <div class="col-sm-12">
                         <div class="row">
 
-                            @role('Admin')
+                            @hasanyrole(['Admin', 'hr member'])
                             <div class="col-md-3">
                                 <div class="card card-default pmd-z-depth">
                                     <!-- Card media -->
@@ -66,8 +66,9 @@
                                     </div>
                                 </div>
                             </div>
-                            @endrole
+                            @endhasanyrole
 
+                            @hasanyrole(['Admin', 'psb member'])
                             <div class="col-md-3">
                                 <div class="card card-default pmd-z-depth">
                                     <!-- Card media -->
@@ -84,7 +85,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('applicants.index') }}">
+                                                <a href="{{ route('psbrs.index') }}">
                                                     <i class="material-icons col-green">launch</i>
                                                 </a>
                                             </li>
@@ -92,9 +93,7 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
+                            @endhasanyrole
 
                         </div>
                     </div>

@@ -12,6 +12,11 @@ use App\Http\Controllers\Controller;
 
 class SelectionLineupController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['psbMember']);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -55,7 +60,7 @@ class SelectionLineupController extends Controller
     public function show($id)
     {
         $interviewee = ApplicantLineupGroup::find($id);
-        $ratings     = PsbRating::where( 'lineup_applicant_id', $id )->orderBy('created_at', 'ASC')->get();
+        $ratings     = PsbRating::where( 'lineup_applicant_id', $id )->orderBy('updated_at', 'DESC')->get();
         $psb_rating  = PsbRating::where( 'lineup_applicant_id', $id )
                                 ->where( 'psb_id', Auth::user()->id )
                                 ->first();
