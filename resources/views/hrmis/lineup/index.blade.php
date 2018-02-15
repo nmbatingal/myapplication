@@ -82,7 +82,7 @@
                                     @foreach ( $lineups as $lineup )
                                         <tr>
                                             <td>
-                                                <a href="{{ route('lineup.show', ['id' => $lineup['id'] ]) }}" class="btn-view-modal">
+                                                <a target="_blank" href="{{ route('lineup.show', ['id' => $lineup['id'] ]) }}" class="btn-view-modal">
                                                     {{ $lineup->hasPosition['title'] }}
                                                 </a>
                                             </td>
@@ -93,9 +93,9 @@
                                                 <a href="{{ route('lineup.show', ['id' => $lineup['id'] ]) }}" class="btn btn-xs btn-warning waves-effect btn-view-modal">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
-                                                <a href="#" class="btn btn-xs btn-danger waves-effect" data-toggle="tooltip" data-placement="top" title="Remove">
+                                                <!-- <a href="#" class="btn btn-xs btn-danger waves-effect" data-toggle="tooltip" data-placement="top" title="Remove">
                                                     <i class="material-icons">cancel</i>
-                                                </a>
+                                                </a> -->
                                             </td>
                                         </tr>
                                     @endforeach
@@ -163,7 +163,7 @@ $(document).ready(function() {
 });
 
 // Show a post
-$('a.btn-view-modal').on('click', function(e) {
+/*$('a.btn-view-modal').on('click', function(e) {
 
     e.preventDefault();
 
@@ -177,9 +177,9 @@ $('a.btn-view-modal').on('click', function(e) {
     $('#id_show').val($(this).data('id'));
     $('#title_show').val($(this).data('title'));
     $('#content_show').val($(this).data('content'));
-    $('#showModal').modal('show');*/
+    $('#showModal').modal('show');
 
-});
+});*/
 
 $("#view-lineup").on("hidden.bs.modal", function () {
     $(".modal-body").empty();

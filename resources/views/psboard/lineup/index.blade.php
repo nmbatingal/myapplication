@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            LINEUP OF APPLICANTS
+                            LINEUP OF INTERVIEWEES
                         </h2>
                     </div>
                     <div class="body">

@@ -41,7 +41,7 @@
                 <li class="{{ Request::is('psbrs/lineup/selection') ? 'active' : '' }} {{ Request::is('psbrs/lineup/*') ? 'active' : '' }}">
                     <a href="{{ route('selection.index') }}">
                         <i class="material-icons">people</i>
-                        <span>Lineup of Applicants</span>
+                        <span>Lineup of Interviewees</span>
                     </a>
                 </li>
 

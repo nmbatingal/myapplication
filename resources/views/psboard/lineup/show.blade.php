@@ -64,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="body bg-blue">
+                    <div class="body bg-blue" style="padding: 5px;">
                         <b>Interviewer's Remarks</b>
                     </div>
                     <div class="body">
