@@ -95,6 +95,31 @@
                             </div>
                             @endhasanyrole
 
+                            <div class="col-md-3">
+                                <div class="card card-default pmd-z-depth">
+                                    <!-- Card media -->
+                                    <div class="card-media">
+                                        <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
+                                    </div>
+
+                                    <div class="header">
+                                        <h2><a href="{{ route('iprs.index') }}" class="font-bold">IPRS</a> <small>Individual Performance Rating System...</small></h2>
+                                        <ul class="header-dropdown m-r-0">
+                                            <li>
+                                                <a href="javascript:void(0);">
+                                                    <i class="material-icons col-blue">info_outline</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('iprs.index') }}">
+                                                    <i class="material-icons col-green">launch</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -56,4 +56,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('psbrs', 'Psbrs\PsbRatingController');
     Route::resource('psbrs/lineup/selection', 'Psbrs\SelectionLineupController');
 
+    Route::resource('iprs', 'Iprs\IprsController');
+
 });
