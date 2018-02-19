@@ -22,7 +22,7 @@
         <link href="{{ asset('bower/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css') }}" rel="stylesheet"/>
         @yield('styles')
         <!-- Custom Theme Style -->
-        <link href="gentelella/build/css/custom.min.css" rel="stylesheet">
+        <link href="{{ asset('gentelella/build/css/custom.min.css') }}" rel="stylesheet">
     </head>
 
     <body class="nav-md">

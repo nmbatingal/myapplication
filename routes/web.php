@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('psbrs', 'Psbrs\PsbRatingController');
     Route::resource('psbrs/lineup/selection', 'Psbrs\SelectionLineupController');
 
+    /*** IPRS CONTROLLER ***/
+    Route::get('iprs/myrating', 'Iprs\IprsController@indexTwo')->name('iprs.indexTwo');
     Route::resource('iprs', 'Iprs\IprsController');
 
 });

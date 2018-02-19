@@ -16,6 +16,15 @@ class IprsController extends Controller
     {
         return view('iprs.index');
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexTwo()
+    {
+        return view('iprs.myrating');
+    }
 
     /**
      * Show the form for creating a new resource.
