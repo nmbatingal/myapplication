@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Iprs;
 
+use App\Offices;
+use App\Models\Ipcr\Ipcr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,7 +25,7 @@ class IprsController extends Controller
      */
     public function indexTwo()
     {
-        return view('iprs.myrating');
+        return view('iprs.individual-performance.index');
     }
 
     /**
@@ -33,7 +35,8 @@ class IprsController extends Controller
      */
     public function create()
     {
-        //
+        $offices = Offices::orderBy('div_name', 'ASC')->get();
+        return view('iprs.individual-performance.create', compact('offices'));
     }
 
     /**
@@ -44,7 +47,17 @@ class IprsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+
+            Ipcr::create($request->all());
+            return 1;
+
+        }
+        catch (\Exception $e) {
+
+            return $e->getMessage();
+
+        }
     }
 
     /**

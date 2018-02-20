@@ -21,6 +21,7 @@ class CreateIpcrsTable extends Migration
             $table->integer('office_id')->unsigned();
             $table->foreign('office_id')->references('id')->on('offices')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

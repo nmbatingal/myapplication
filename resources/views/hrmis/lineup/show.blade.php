@@ -214,4 +214,12 @@
 @endsection
 
 @section('scripts')
+<script>
+    $('.card').on('click', 'button#btn-print-list', function (e) {
+        
+        var $href  = $(this).attr('data-href');
+        var target = window.open( $href, 'Print','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=1366,height=800');
+        target.print();
+    });
+</script>
 @endsection

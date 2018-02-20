@@ -1,11 +1,11 @@
 @extends('layouts.iprs.app')
 
 @section('title')
-Rating | 
+Individual Performance | 
 @endsection
 
 @section('page-title')
-Rating <small>Individual Performance</small>
+Individual Performance
 @endsection
 
 @section('styles')
@@ -22,9 +22,9 @@ Rating <small>Individual Performance</small>
     <div class="col-sm-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Individual Performance List</h2>
+                <h2>My Performance</h2>
                 <div class="panel_toolbox">
-                    <button type="button" class="btn btn-success">Create</button>
+                    <a class="btn btn-success" href="{{ url('iprs/create') }}">Create</a>
                 </div>
                 <div class="clearfix"></div>
             </div>

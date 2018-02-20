@@ -41,10 +41,10 @@
                 <div class="right_col" role="main">
                     <div class="">
                         <div class="page-title">
-                            <div class="title_left">
+                            <div class="title_left" style="width: 100%">
                                 <h3>@yield('page-title')</h3>
                             </div>
-                            <div class="title_right">
+                            <!-- <div class="title_right">
                                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="Search for...">
@@ -53,8 +53,12 @@
                                         </span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
+
+                        <br>
+                        <br>
+                        <br>
 
                         <div class="clearfix"></div>
 
@@ -82,6 +86,8 @@
         <script src="{{ asset('gentelella/vendors/fastclick/lib/fastclick.js') }}"></script>
         <!-- jQuery custom content scroller -->
         <script src="{{ asset('bower/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+        <!-- Jquery Validation Plugin Css -->
+        <script src="{{ asset('plugins/jquery-validation/jquery.validate.js') }}"></script>
         @yield('scripts')
         <!-- Custom Theme Scripts -->
         <script src="{{ asset('gentelella/build/js/custom.min.js') }}"></script>
