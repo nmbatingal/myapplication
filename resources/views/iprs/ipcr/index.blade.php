@@ -17,6 +17,13 @@ Individual Performance
 <link href="{{ asset('bower/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
 @endsection
 
+@section('breadcrumb')
+<ol class="breadcrumb">
+    <li><a href="{{ route('iprs.index') }}">Dashboard</a></li>
+    <li class="active">Individual Performance</li>
+</ol>
+@endsection
+
 @section('content')
 <section class="row">
     <div class="col-sm-12">

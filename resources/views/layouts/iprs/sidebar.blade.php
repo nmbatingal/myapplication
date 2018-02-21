@@ -25,7 +25,7 @@
           <div class="menu_section">
             <h3>IPRS MENU</h3>
             <ul class="nav side-menu">
-                <li><a href="{{ route('iprs.index') }}"><i class="fa fa-home"></i> Dashboard</a></li>
+                <li><a href="{{ route('iprs.index') }}"><i class="fa fa-th-large"></i> Dashboard</a></li>
                 <li><a href="{{ route('iprs.indexTwo') }}"><i class="fa fa-bar-chart"></i> Individual Performance</a></li>
 
                 <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>

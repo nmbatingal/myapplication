@@ -14,4 +14,9 @@ class Month extends Model
         'month',
         'acronym',
     ];
+
+    public function scopeMonth($query, $id)
+    {
+    	return $query->where('id', $id);
+    }
 }

@@ -15,8 +15,10 @@ class AlterTableIpcr extends Migration
     {
         Schema::table('ipcrs', function ($table) {
             $table->char('year', 4)->after('title')->nullable();
-            $table->integer('month_from')->after('year')->nullable();
-            $table->integer('month_to')->after('month_from')->nullable();
+            $table->integer('month_from')->after('year')->unsigned()->nullable();
+            $table->foreign('month_from')->references('id')->on('table_month')->onDelete('set null');
+            $table->integer('month_to')->after('month_from')->unsigned()->nullable();
+            $table->foreign('month_to')->references('id')->on('table_month')->onDelete('set null');
         });
     }
 

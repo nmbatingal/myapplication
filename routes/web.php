@@ -59,6 +59,7 @@ Route::group(['middleware' => 'auth'], function() {
     /*** IPRS CONTROLLER ***/
     Route::get('iprs/myrating', 'Iprs\IprsController@indexTwo')->name('iprs.indexTwo');
     Route::resource('iprs', 'Iprs\IprsController');
+    Route::get('iprs/objective/create/{id}', 'Iprs\IprsObjectiveController@createObjective')->name('objective.createObjective');
     Route::resource('iprs/objective', 'Iprs\IprsObjectiveController');
 
 });

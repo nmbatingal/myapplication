@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Iprs;
 
+use App\Models\Ipcr\Ipcr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -25,6 +26,17 @@ class IprsObjectiveController extends Controller
     public function create()
     {
         //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createObjective($id)
+    {
+        $ipcr = Ipcr::find($id);
+        return view('iprs.ipcr-objective.create', compact('ipcr'));
     }
 
     /**

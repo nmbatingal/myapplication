@@ -55,10 +55,7 @@
                                 </div>
                             </div> -->
                         </div>
-
-                        <br>
-                        <br>
-                        <br>
+                        @yield('breadcrumb')
 
                         <div class="clearfix"></div>
 

@@ -25,7 +25,7 @@ class IprsController extends Controller
      */
     public function indexTwo()
     {
-        return view('iprs.individual-performance.index');
+        return view('iprs.ipcr.index');
     }
 
     /**
@@ -36,7 +36,7 @@ class IprsController extends Controller
     public function create()
     {
         $offices = Offices::orderBy('div_name', 'ASC')->get();
-        return view('iprs.individual-performance.create', compact('offices'));
+        return view('iprs.ipcr.create', compact('offices'));
     }
 
     /**
@@ -49,8 +49,8 @@ class IprsController extends Controller
     {
         try {
 
-            Ipcr::create($request->all());
-            return 1;
+            $ipcr = Ipcr::create($request->all());
+            return redirect()->route( 'objective.createObjective', ['id' => $ipcr['id']] );
 
         }
         catch (\Exception $e) {

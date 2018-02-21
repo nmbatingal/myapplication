@@ -11,6 +11,32 @@ Create <small>Individual Performance</small>
 @section('styles')
 <!-- bootstrap-datetimepicker -->
 <link href="{{ asset('gentelella/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
+<style>
+    #table_ipcr .form-control {
+        border: 0;
+    }
+
+    #table_ipcr textarea {
+       resize: none;
+    }
+
+    #table_ipcr tr td {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    #table_ipcr tr td.td-action {
+        padding: 2px !important;
+    }
+</style>
+@endsection
+
+@section('breadcrumb')
+<ol class="breadcrumb">
+    <li><a href="{{ route('iprs.index') }}">Dashboard</a></li>
+    <li><a href="{{ url('iprs/myrating') }}">Individual Performance</a></li>
+    <li class="active">Create</li>
+</ol>
 @endsection
 
 @section('content')
@@ -66,15 +92,14 @@ Create <small>Individual Performance</small>
         <div id="div_ipcr_objective" class="x_panel">
             <div class="x_title">
                 <div class="panel_toolbox">
-                    <ul class="nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-plus"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a></li>
-                                <li><a href="#">Settings 2</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <div class="btn-group">
+                        <button data-toggle="dropdown" class="btn btn-success dropdown-toggle" type="button" aria-expanded="false">Action <span class="caret"></span></button>
+                        <ul role="menu" class="dropdown-menu pull-right">
+                            <li><a href="#">Insert title</a></li>
+                            <li><a href="#">Insert secondary title</a></li>
+                            <li><a href="#">Insert objective</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -84,48 +109,54 @@ Create <small>Individual Performance</small>
                         <colgroup>
                             <col>
                             <col>
-                            <col width="5%">
-                            <col width="5%">
-                            <col width="5%">
-                            <col width="5%">
-                            <col width="5%">
-                            <col width="5%">
-                            <col width="5%">
+                            <col width="7%">
+                            <col width="7%">
+                            <col width="7%">
+                            <col width="7%">
+                            <col width="7%">
+                            <col width="7%">
+                            <col width="7%">
                             <col width="5%">
                         </colgroup>
                         <thead>
                             <tr>
                                 <th rowspan="2">Objective</th>
                                 <th rowspan="2">Success Measure</th>
-                                <th rowspan="2">Target</th>
-                                <th colspan="6">Monthly Target</th>
-                                <th rowspan="2">#</th>
+                                <th rowspan="2" class="text-center">Target</th>
+                                <th colspan="6" class="text-center">Monthly Target</th>
+                                <th rowspan="2" class="text-center"></th>
                             </tr>
                             <tr>
-                                <th>Jan</th>
-                                <th>Feb</th>
-                                <th>Mar</th>
-                                <th>Apr</th>
-                                <th>May</th>
-                                <th>Jun</th>
+                                <th class="text-center">Jan</th>
+                                <th class="text-center">Feb</th>
+                                <th class="text-center">Mar</th>
+                                <th class="text-center">Apr</th>
+                                <th class="text-center">May</th>
+                                <th class="td-action text-center">Jun</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="row_title">
-                                <td colspan="9">Title</td>
-                                <td>action</td>
+                                <td colspan="9"><input type="text" placeholder="id" name=""><textarea rows="1" class="form-control no-resize auto-growth" placeholder="Title" name=""></textarea></td>
+                                <td class="td-action text-center">
+                                    <button class="btn btn-round btn-sm btn-success"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-round btn-sm btn-danger"><i class="fa fa-remove"></i></button>
+                                </td>
                             </tr>
                             <tr class="row_objective">
-                                <td>Objective</td>
-                                <td>Success Measure</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>action</td>
+                                <td><input type="text" name=""><textarea rows="1" class="form-control no-resize auto-growth" placeholder="Objective" name=""></textarea></td>
+                                <td><textarea rows="1" class="form-control no-resize auto-growth" placeholder="Success Measure" name=""></textarea></td>
+                                <td><input class="form-control" type="text" name=""></td>
+                                <td><input class="form-control" type="text" name=""></td>
+                                <td><input class="form-control" type="text" name=""></td>
+                                <td><input class="form-control" type="text" name=""></td>
+                                <td><input class="form-control" type="text" name=""></td>
+                                <td><input class="form-control" type="text" name=""></td>
+                                <td><input class="form-control" type="text" name=""></td>
+                                <td class="td-action text-center">
+                                    <button class="btn btn-round btn-sm btn-success"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-round btn-sm btn-danger"><i class="fa fa-remove"></i></button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -137,6 +168,8 @@ Create <small>Individual Performance</small>
 @endsection
 
 @section('scripts')
+<!-- autosize -->
+<script src="{{ asset('plugins/autosize/autosize.js') }}"></script>
 <!-- bootstrap-daterangepicker -->
 <script src="{{ asset('gentelella/vendors/moment/min/moment.min.js') }}"></script>
 <!-- bootstrap-datetimepicker -->    

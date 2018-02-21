@@ -1,5 +1,7 @@
 $(function () {
 
+    autosize($('textarea.auto-growth'));
+    
     //Advanced form with validation
     var form = $('#form_create_ipcr').show();
 
