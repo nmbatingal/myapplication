@@ -58,28 +58,30 @@ Individual Performance
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>#</td>
-                                <td>
-                                    <a>Pesamakini Backend UI</a>
-                                    <br />
-                                    <small>Created 01.01.2015</small>
-                                </td>
-                                <td><h4>15<small>/15</small></h4></td>
-                                <td class="project_progress">
-                                    <div class="progress progress_sm">
-                                      <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
-                                    </div>
-                                    <small>77% Complete</small>
-                                </td>
-                                <td>
-                                    <span class="badge bg-green">Success</span>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                </td>
-                            </tr>
+                            @foreach( $ipcrs as $ipcr )
+                                <tr>
+                                    <td>#</td>
+                                    <td>
+                                        <a>{{ strtoupper($ipcr['title']) }}</a>
+                                        <br />
+                                        <small>Created {{ date("m.d.Y", strtotime( $ipcr['created_at'] )) }}</small>
+                                    </td>
+                                    <td><h4>15<small>/15</small></h4></td>
+                                    <td class="project_progress">
+                                        <div class="progress progress_sm">
+                                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
+                                        </div>
+                                        <small>77% Complete</small>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-green">Success</span>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <!-- end project list -->

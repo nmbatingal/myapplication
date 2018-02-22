@@ -25,7 +25,8 @@ class IprsController extends Controller
      */
     public function indexTwo()
     {
-        return view('iprs.ipcr.index');
+        $ipcrs = Ipcr::userIpcr()->get();
+        return view('iprs.ipcr.index', compact('ipcrs'));
     }
 
     /**

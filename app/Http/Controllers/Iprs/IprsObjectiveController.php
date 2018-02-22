@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Iprs;
 
 use App\Models\Ipcr\Ipcr;
+use App\Models\Ipcr\IpcrObjective;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -47,7 +48,15 @@ class IprsObjectiveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $titles = $request->parent;
+        /*foreach ($titles as $i => $title) {
+            $ipcr = new IpcrObjective();
+            $ipcr->ipcr_id  = $request['ipcr_id'];
+            $ipcr->is_title = $request['is_title'];
+            $ipcr->objective = $request['title'][$i];
+            $ipcr->save();
+        }*/
+        return count($titles);
     }
 
     /**

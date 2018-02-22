@@ -67,15 +67,17 @@ Create <small>Individual Performance</small>
                     <div class="btn-group">
                         <button data-toggle="dropdown" class="btn btn-success dropdown-toggle" type="button" aria-expanded="false">Action <span class="caret"></span></button>
                         <ul role="menu" class="dropdown-menu pull-right">
-                            <li><a href="#">Insert title</a></li>
-                            <li><a href="#">Insert secondary title</a></li>
-                            <li><a href="#">Insert objective</a></li>
+                            <li><a href="javascript:;" class="btn_insert_title">Insert title</a></li>
+                            <li><a href="#" class="btn_insert_second_title">Insert secondary title</a></li>
+                            <li><a href="#" class="btn_insert_objective">Insert objective</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
+                {{ Form::open(['id' => 'frm_ipcr_objective', 'url' => url('iprs/objective')]) }}
+                <input type="text" name="ipcr_id" value="{{ $ipcr['id'] }}">
                 <div class="table-responsive">
                     <table id="table_ipcr" class="table-responsive table table-bordered">
                         <colgroup>
@@ -88,12 +90,12 @@ Create <small>Individual Performance</small>
                                 $start_month = $ipcr['month_from'];
                                 $end_month   = $ipcr['month_to'];
                                 $rowspan     = 0;
-
-                                for ($i = $start_month ; $i <= $end_month ;  $i++ ) {
-                                    $rowspan++;
-                                    echo '<col width="7%">';
-                                }
                             ?>
+
+                                @for ($i = $start_month ; $i <= $end_month ;  $i++ )
+                                    <?php $rowspan++; ?>
+                                    <col width="7%">
+                                @endfor
 
                             <col width="5%">        <!-- Action -->
                         </colgroup>
@@ -106,43 +108,57 @@ Create <small>Individual Performance</small>
                                 <th rowspan="2" class="text-center"></th>
                             </tr>
                             <tr>
-                                <?php
-
-                                    for ($i = $start_month ; $i <= $end_month ;  $i++ ) {
-                                        $month =  App\Month::month($i)->first();
-                                        echo '<th class="text-center">' . $month['acronym'] . '</th>';
-                                    }
-                                ?>
+                                @for ($i = $start_month ; $i <= $end_month ;  $i++ )
+                                    <?php $month =  App\Month::month($i)->first(); ?>
+                                    <th class="text-center">{{ $month['acronym'] }}</th>
+                                @endfor
                             </tr>
                         </thead>
                         <tbody>
+
+                            <!-- ROW TITLE -->
                             <tr class="row_title">
                                 <td colspan="{{ $rowspan + 3 }}">
-                                    <input type="text" placeholder="id" name=""><textarea rows="1" class="form-control no-resize auto-growth" placeholder="Title" name=""></textarea>
+                                    <input type="text" class="row_title" placeholder="parent_id" value="1" readonly>
+                                    <input type="text" placeholder="is_title" name="is_title" value="1" readonly>
+                                    <div class="form-group">
+                                        <textarea rows="1" class="form-control no-resize auto-growth" placeholder="Title" name="title[1]" required></textarea>
+                                    </div>
                                 </td>
                                 <td class="td-action text-center">
                                     <button class="btn btn-round btn-sm btn-success"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-round btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-round btn-sm btn-danger"><i class="fa fa-remove"></i></button>
                                 </td>
                             </tr>
-                            <tr class="row_objective">
-                                <td><input type="text" name=""><textarea rows="1" class="form-control no-resize auto-growth" placeholder="Objective" name=""></textarea></td>
+
+                            <!-- ROW OBJECTIVE -->
+                            <tr class="row_objective" parent-id="1">
+                                <td>
+                                    <input type="text" class="row_objective" placeholder="parent[1]" name="parent[1]" value="1" readonly>
+                                    <input type="text" placeholder="is_title" name="is_title" value="0" readonly>
+                                    <textarea rows="1" class="form-control no-resize auto-growth" placeholder="Objective" name=""></textarea>
+                                </td>
                                 <td><textarea rows="1" class="form-control no-resize auto-growth" placeholder="Success Measure" name=""></textarea></td>
                                 <td><input class="form-control" type="text" name=""></td> <!-- TARGET -->
-                                <?php
-
-                                    for ($i = $start_month ; $i <= $end_month ;  $i++ ) {
-                                        echo '<td><input class="form-control" type="text" name=""></td>';
-                                    }
-                                ?>
+                                    @for ($i = $start_month ; $i <= $end_month ;  $i++ )
+                                        <td><input class="form-control" type="text" name=""></td>
+                                    @endfor
                                 <td class="td-action text-center">
                                     <button class="btn btn-round btn-sm btn-success"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-round btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-round btn-sm btn-danger"><i class="fa fa-remove"></i></button>
                                 </td>
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-success">Save</a>
+                    <button type="button" class="btn btn-default">Cancel</a>
+                </div>
+                {{ Form::close() }}
             </div>
         </div>
     </div>
@@ -157,16 +173,66 @@ Create <small>Individual Performance</small>
 <!-- bootstrap-datetimepicker -->    
 <script src="{{ asset('gentelella/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 <!-- custom jquery -->
-<script src="{{ asset('js/pages/iprs/iprs-create.js') }}"></script>
+<script src="{{ asset('js/pages/iprs/ipcr-objective.js') }}"></script>
 <script>
-    $('.datetimepicker_year').datetimepicker({
-        viewMode: 'years',
-        format: 'YYYY'
+
+    $(document).ready(function() {
+
+        /*** button insert new title row ***/
+        $('a.btn_insert_title').on('click', function() {
+
+            var numberIncr = $('tr.row_title').length;
+            numberIncr++;
+
+            var $t_body    = $('table#table_ipcr tbody');
+            var $row_title = '<tr class="row_title">' +
+                                '<td colspan="{{ $rowspan + 3 }}">' +
+                                    '<input type="text" placeholder="is_title" name="is_title" value="1" readonly>' +
+                                    '<input type="text" class="row_title" placeholder="parent_id" value="1" readonly>' +
+                                    '<div class="form-group">' +
+                                        '<textarea rows="1" class="form-control no-resize auto-growth" placeholder="Title" name="title['+ numberIncr +']" required></textarea>' +
+                                    '</div>' +
+                                '</td>' +
+                                '<td class="td-action text-center">' +
+                                    '<button class="btn btn-round btn-sm btn-success"><i class="fa fa-check"></i></button>' +
+                                    '<button class="btn btn-round btn-sm btn-primary"><i class="fa fa-pencil"></i></button>' +
+                                    '<button class="btn btn-round btn-sm btn-danger"><i class="fa fa-remove"></i></button>' +
+                                '</td>' +
+                            '</tr>';
+
+            $t_body.append($row_title);
+            autosize( $('.auto-growth') );
+
+        });
+
+        /*** button insert new objective row ***/
+        /*$('a.btn_insert_objective').on('click', function() {
+
+            var $t_body        = $('table#table_ipcr tbody');
+            var $row_objective = '<tr class="row_objective">' +
+                                    '<td><input type="text" name=""><textarea rows="1" class="form-control no-resize auto-growth" placeholder="Objective" name=""></textarea></td>' +
+                                    '<td><textarea rows="1" class="form-control no-resize auto-growth" placeholder="Success Measure" name=""></textarea></td>' +
+                                    '<td><input class="form-control" type="text" name=""></td>' +
+                                        '@for ($i = $start_month ; $i <= $end_month ;  $i++ )' +
+                                            '<td><input class="form-control" type="text" name=""></td>' +
+                                        '@endfor' +
+                                    '<td class="td-action text-center">' +
+                                        '<button class="btn btn-round btn-sm btn-success"><i class="fa fa-check"></i></button>' +
+                                        '<button class="btn btn-round btn-sm btn-primary"><i class="fa fa-pencil"></i></button>' +
+                                        '<button class="btn btn-round btn-sm btn-danger"><i class="fa fa-remove"></i></button>' +
+                                    '</td>' +
+                                '</tr>';
+
+            $t_body.append($row_objective);
+            autosize( $('.auto-growth') );
+
+        });*/
     });
 
-    $('.datetimepicker_month').datetimepicker({
-        viewMode: 'months',
-        format: 'MM'
-    });
+    
+
+    
+
+
 </script>
 @endsection

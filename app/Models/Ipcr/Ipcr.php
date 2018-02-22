@@ -2,6 +2,7 @@
 
 namespace App\Models\Ipcr;
 
+use Auth;
 use App\Month;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -43,5 +44,10 @@ class Ipcr extends Model
     public function to()
     {
         return $this->belongsTo('App\Month', 'month_to', 'id');
+    }
+
+    public function scopeUserIpcr($query)
+    {
+        return $query->where('user_id', Auth::user()->id);
     }
 }

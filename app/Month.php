@@ -17,6 +17,6 @@ class Month extends Model
 
     public function scopeMonth($query, $id)
     {
-    	return $query->where('id', $id);
+        return $query->where('id', $id);
     }
 }
