@@ -48,15 +48,15 @@ class IprsObjectiveController extends Controller
      */
     public function store(Request $request)
     {
-        $titles = $request->parent;
-        /*foreach ($titles as $i => $title) {
+        $titles = $request->title;
+        foreach ($titles as $i => $title) {
             $ipcr = new IpcrObjective();
             $ipcr->ipcr_id  = $request['ipcr_id'];
-            $ipcr->is_title = $request['is_title'];
-            $ipcr->objective = $request['title'][$i];
+            $ipcr->is_title = $request->has('is_title');
+            $ipcr->objective = $title;
             $ipcr->save();
-        }*/
-        return count($titles);
+        }
+        return $request;
     }
 
     /**

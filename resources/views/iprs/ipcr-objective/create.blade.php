@@ -120,7 +120,7 @@ Create <small>Individual Performance</small>
                             <tr class="row_title">
                                 <td colspan="{{ $rowspan + 3 }}">
                                     <input type="text" class="row_title" placeholder="parent_id" value="1" readonly>
-                                    <input type="text" placeholder="is_title" name="is_title" value="1" readonly>
+                                    <input type="checkbox" checked="" name="is_title" readonly>
                                     <div class="form-group">
                                         <textarea rows="1" class="form-control no-resize auto-growth" placeholder="Title" name="title[1]" required></textarea>
                                     </div>
