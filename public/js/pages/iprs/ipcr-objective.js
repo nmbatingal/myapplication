@@ -3,7 +3,7 @@ $(function () {
     autosize($('textarea.auto-growth'));
 
     //Advanced form with validation
-    var form = $('#frm_ipcr_objective').show();
+    /*var form = $('#frm_ipcr_objective').show();
 
     form.validate({
         highlight: function (input) {
@@ -18,5 +18,10 @@ $(function () {
             error.addClass('text-danger');
             $(element).parents('.form-group').append(error);
         },
-    });
+    });*/
+
+    /*$('form').submit(function(e) {
+        e.preventDefault();
+        
+    });*/
 });

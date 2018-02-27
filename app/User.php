@@ -44,4 +44,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Offices', 'div_unit', 'id');
     }
+
+    public function scopeEmployee($query)
+    {
+        return $query->where('__isActive', 1)
+                     ->where('__isAdmin', '!=', 1);
+    }
 }

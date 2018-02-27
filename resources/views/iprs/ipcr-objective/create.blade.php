@@ -60,6 +60,8 @@ Create <small>Individual Performance</small>
 </section>
 
 <section class="row">
+
+    <!--  FORM TWO -->
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
         <div id="div_ipcr_objective" class="x_panel">
             <div class="x_title">
@@ -67,17 +69,17 @@ Create <small>Individual Performance</small>
                     <div class="btn-group">
                         <button data-toggle="dropdown" class="btn btn-success dropdown-toggle" type="button" aria-expanded="false">Action <span class="caret"></span></button>
                         <ul role="menu" class="dropdown-menu pull-right">
-                            <li><a href="javascript:;" class="btn_insert_title">Insert title</a></li>
-                            <li><a href="#" class="btn_insert_second_title">Insert secondary title</a></li>
-                            <li><a href="#" class="btn_insert_objective">Insert objective</a></li>
+                            <li><a href="javascript:;" data-id="" class="btn_insert_title">Insert title</a></li>
+                            <li><a href="javascript:;" data-id="" class="btn_insert_second_title">Insert secondary title</a></li>
+                            <li><a href="javascript:;" data-id="" class="btn_insert_objective">Insert objective</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                {{ Form::open(['id' => 'frm_ipcr_objective', 'url' => url('iprs/objective')]) }}
-                <input type="text" name="ipcr_id" value="{{ $ipcr['id'] }}">
+                <!--  Form::open(['id' => 'frm_ipcr_objective', 'url' => url('iprs/objective')]) }} -->
+                <input type="hidden" name="ipcr_id" value="{{ $ipcr['id'] }}">
                 <div class="table-responsive">
                     <table id="table_ipcr" class="table-responsive table table-bordered">
                         <colgroup>
@@ -115,53 +117,52 @@ Create <small>Individual Performance</small>
                             </tr>
                         </thead>
                         <tbody>
-
-                            <!-- ROW TITLE -->
+                            @foreach($objectives as $objective)
+                            <tr>
+                                <td>{{ $objective['objective'] }}</td>
+                                <td>{{ $objective['key_summary'] }}</td>
+                                <td>{{ $objective['target'] }}</td>
+                            </tr>
+                            @endforeach
                             <tr class="row_title">
                                 <td colspan="{{ $rowspan + 3 }}">
-                                    <input type="text" class="row_title" placeholder="parent_id" value="1" readonly>
-                                    <input type="checkbox" checked="" name="is_title" readonly>
+                                    <input type="text" name="is_primary_title['+ numberIncr +']" value="1">
+                                    <input type="text" name="is_title['+ numberIncr +']" value="1">
                                     <div class="form-group">
-                                        <textarea rows="1" class="form-control no-resize auto-growth" placeholder="Title" name="title[1]" required></textarea>
+                                        <textarea rows="1" class="form-control no-resize auto-growth" placeholder="Title" name="title['+ numberIncr +']" required></textarea>
                                     </div>
                                 </td>
                                 <td class="td-action text-center">
-                                    <button class="btn btn-round btn-sm btn-success"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-round btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-round btn-sm btn-danger"><i class="fa fa-remove"></i></button>
+                                    <a class="btn btn-round btn-sm btn-success"><i class="fa fa-check"></i></a>
                                 </td>
                             </tr>
-
-                            <!-- ROW OBJECTIVE -->
-                            <tr class="row_objective" parent-id="1">
-                                <td>
-                                    <input type="text" class="row_objective" placeholder="parent[1]" name="parent[1]" value="1" readonly>
-                                    <input type="text" placeholder="is_title" name="is_title" value="0" readonly>
-                                    <textarea rows="1" class="form-control no-resize auto-growth" placeholder="Objective" name=""></textarea>
-                                </td>
-                                <td><textarea rows="1" class="form-control no-resize auto-growth" placeholder="Success Measure" name=""></textarea></td>
-                                <td><input class="form-control" type="text" name=""></td> <!-- TARGET -->
-                                    @for ($i = $start_month ; $i <= $end_month ;  $i++ )
-                                        <td><input class="form-control" type="text" name=""></td>
-                                    @endfor
-                                <td class="td-action text-center">
-                                    <button class="btn btn-round btn-sm btn-success"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-round btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-round btn-sm btn-danger"><i class="fa fa-remove"></i></button>
-                                </td>
-                            </tr>
-
                         </tbody>
                     </table>
                 </div>
-                <div class="pull-right">
-                    <button type="submit" class="btn btn-success">Save</a>
-                    <button type="button" class="btn btn-default">Cancel</a>
-                </div>
-                {{ Form::close() }}
             </div>
         </div>
     </div>
+
+    <!-- ROW OBJECTIVE -->
+    <table class="hidden">
+        <tr class="row_objective" parent-id="1">
+            <td>
+                <input type="text" class="row_objective" placeholder="parent[1]" name="parent[1]" value="1" readonly>
+                <input type="text" placeholder="is_title" name="" value="0" readonly>
+                <textarea rows="1" class="form-control no-resize auto-growth" placeholder="Objective" name=""></textarea>
+            </td>
+            <td><textarea rows="1" class="form-control no-resize auto-growth" placeholder="Success Measure" name=""></textarea></td>
+            <td><input class="form-control" type="text" name=""></td> <!-- TARGET -->
+                @for ($i = $start_month ; $i <= $end_month ;  $i++ )
+                    <td><input class="form-control" type="text" name=""></td>
+                @endfor
+            <td class="td-action text-center">
+                <button class="btn btn-round btn-sm btn-success"><i class="fa fa-check"></i></button>
+                <a class="btn btn-round btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-round btn-sm btn-danger"><i class="fa fa-remove"></i></a>
+            </td>
+        </tr>
+    </table>
 </section>
 @endsection
 
@@ -174,29 +175,28 @@ Create <small>Individual Performance</small>
 <script src="{{ asset('gentelella/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 <!-- custom jquery -->
 <script src="{{ asset('js/pages/iprs/ipcr-objective.js') }}"></script>
-<script>
+<script type="text/javascript">
 
     $(document).ready(function() {
 
-        /*** button insert new title row ***/
+        /***button insert new title row */
         $('a.btn_insert_title').on('click', function() {
 
             var numberIncr = $('tr.row_title').length;
-            numberIncr++;
+             numberIncr++;
 
             var $t_body    = $('table#table_ipcr tbody');
             var $row_title = '<tr class="row_title">' +
                                 '<td colspan="{{ $rowspan + 3 }}">' +
-                                    '<input type="text" placeholder="is_title" name="is_title" value="1" readonly>' +
-                                    '<input type="text" class="row_title" placeholder="parent_id" value="1" readonly>' +
+                                    '<input type="text" name="is_primary_title['+ numberIncr +']" value="1">' +
+                                    '<input type="text" name="is_title['+ numberIncr +']" value="1">' +
                                     '<div class="form-group">' +
                                         '<textarea rows="1" class="form-control no-resize auto-growth" placeholder="Title" name="title['+ numberIncr +']" required></textarea>' +
                                     '</div>' +
                                 '</td>' +
                                 '<td class="td-action text-center">' +
-                                    '<button class="btn btn-round btn-sm btn-success"><i class="fa fa-check"></i></button>' +
-                                    '<button class="btn btn-round btn-sm btn-primary"><i class="fa fa-pencil"></i></button>' +
-                                    '<button class="btn btn-round btn-sm btn-danger"><i class="fa fa-remove"></i></button>' +
+                                    '<a class="btn btn-round btn-sm btn-primary"><i class="fa fa-pencil"></i></a>' +
+                                    '<a class="btn btn-round btn-sm btn-danger"><i class="fa fa-remove"></i></a>' +
                                 '</td>' +
                             '</tr>';
 
@@ -205,7 +205,33 @@ Create <small>Individual Performance</small>
 
         });
 
-        /*** button insert new objective row ***/
+        /*button insert new secondary title row */
+        $('a.btn_insert_second_title').on('click', function() {
+
+            var numberIncr = $('tr.row_title').length;
+            // numberIncr++;
+
+            var $t_body    = $('table#table_ipcr tbody');
+            var $row_title = '<tr class="row_title">' +
+                                '<td colspan="{{ $rowspan + 3 }}">' +
+                                    '<input type="text" name="is_secondary_title['+ numberIncr +']" value="1">' +
+                                    '<input type="text" name="is_title['+ numberIncr +']" value="1">' +
+                                    '<div class="form-group">' +
+                                        '<textarea rows="1" class="form-control no-resize auto-growth" placeholder="Secondary title" name="title['+ numberIncr +']" required></textarea>' +
+                                    '</div>' +
+                                '</td>' +
+                                '<td class="td-action text-center">' +
+                                    '<a class="btn btn-round btn-sm btn-primary"><i class="fa fa-pencil"></i></a>' +
+                                    '<a class="btn btn-round btn-sm btn-danger"><i class="fa fa-remove"></i></a>' +
+                                '</td>' +
+                            '</tr>';
+
+            $t_body.append($row_title);
+            autosize( $('.auto-growth') );
+
+        });
+
+        /*** button insert new objective row **
         /*$('a.btn_insert_objective').on('click', function() {
 
             var $t_body        = $('table#table_ipcr tbody');
@@ -226,13 +252,15 @@ Create <small>Individual Performance</small>
             $t_body.append($row_objective);
             autosize( $('.auto-growth') );
 
+        });*
+
+        $('form#frm_ipcr_objective').submit(function(e) {
+            e.preventDefault();
+
+            $.ajax({
+
+            });
         });*/
     });
-
-    
-
-    
-
-
 </script>
 @endsection

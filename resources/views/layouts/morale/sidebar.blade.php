@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col menu_fixed hidden-print">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>IPRS</span></a>
+            <a href="{{ route('morale.index') }}" class="site_title"><i class="fa fa-paw"></i> <span>Morale Survey</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -22,25 +22,13 @@
 
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side main_menu">
-          <div class="menu_section">
-            <h3>IPRS MENU</h3>
-            <ul class="nav side-menu">
-                <li><a href="{{ route('iprs.index') }}"><i class="fa fa-th-large"></i> Dashboard</a></li>
-                <li><a href="{{ route('iprs.indexTwo') }}"><i class="fa fa-bar-chart"></i> Individual Performance</a></li>
-
-                <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="form.html">General Form</a></li>
-                        <li><a href="form_advanced.html">Advanced Components</a></li>
-                        <li><a href="form_validation.html">Form Validation</a></li>
-                        <li><a href="form_wizards.html">Form Wizard</a></li>
-                        <li><a href="form_upload.html">Form Upload</a></li>
-                        <li><a href="form_buttons.html">Form Buttons</a></li>
-                    </ul>
-                </li>
-
-            </ul>
-          </div>
+            <div class="menu_section active">
+                <h3>MENU</h3>
+                <ul class="nav side-menu">
+                    <li><a href="{{ route('morale.index') }}"><i class="fa fa-th-large"></i> Dashboard</a></li>
+                    <li><a href="{{ route('morale.semestral') }}"><i class="fa fa-pencil"></i> Conduct Survey</a></li>
+                </ul>
+            </div>
             <div class="menu_section">
                 <h3>MyApplication</h3>
                 <ul class="nav side-menu">

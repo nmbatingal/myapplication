@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Iprs;
+namespace App\Http\Controllers\Morale;
 
-use App\Models\Ipcr\Ipcr;
-use App\Models\Ipcr\IpcrObjective;
+use App\User;
+use App\Models\Morale\MoraleSurvey as Survey;
+use App\Models\Morale\MoraleSurveyQuestions as Questions;
+use App\Models\Morale\MoraleSurveySemestral as Semestral;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class IprsObjectiveController extends Controller
+class MoraleSurveyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +18,30 @@ class IprsObjectiveController extends Controller
      */
     public function index()
     {
-        //
+        return view('morale.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function semestral()
+    {
+        $semesters = Semestral::all();
+        return view('morale.conduct.semester', compact('semesters'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function survey($id)
+    {
+        $semester  = Semestral::find($id)->first();
+        $questions = Questions::all();
+        return view('morale.conduct.survey', compact('semester', 'questions'));
     }
 
     /**
@@ -34,11 +59,15 @@ class IprsObjectiveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createObjective($id)
+    public function storeSemestral(Request $request)
     {
-        $ipcr = Ipcr::find($id);
-        $objectives = IpcrObjective::where('ipcr_id', $id)->get();
-        return view('iprs.ipcr-objective.create', compact('ipcr', 'objectives'));
+        $semester = new Semestral;
+        $semester->month_from = $request['month_from'];
+        $semester->month_to   = $request['month_to'];
+        $semester->year       = $request['year'];
+        $semester->save();
+
+        return $request->all();
     }
 
     /**
@@ -49,50 +78,15 @@ class IprsObjectiveController extends Controller
      */
     public function store(Request $request)
     {
-        $titles = $request->title;
+        foreach ($request->q_id as $q_id) {
+            $survey = new Survey;
+            $survey->user_id     = $request['user_id'];
+            $survey->question_id = $q_id;
+            $survey->score       = $request['qn_'.$q_id];
+            $survey->save();
+        }
 
-        /*foreach ($titles as $i => $title) {
-
-            $ipcr = new IpcrObjective();
-            
-            $ipcr->ipcr_id  = $request['ipcr_id'];
-            $ipcr->is_title = $request->is_title[$i];
-            $ipcr->objective = $title;
-
-            $type = $request->type[$i];
-
-            if ( $type == "primary_title" )
-            {
-                $ipcr->parent = NULL;
-            }
-
-            if ( $type == "second_title" )
-            {
-                $temp         = $parent;
-                $ipcr->parent = $temp;
-            }
-
-            // store child array
-            $child = $request->is_child[$i];
-            // check if array is child
-            if ( !empty($child) )
-            {
-                $ipcr->parent = $parent;
-            }
-
-            $ipcr->save();
-            $parent = $ipcr['id'];
-            $temp   = $ipcr['id'];
-        }*/
-        $ipcr = new IpcrObjective();
-            
-        $ipcr->ipcr_id   = $request['ipcr_id'];
-        $ipcr->is_title  = $request['is_title'];
-        $ipcr->objective = $request['title'];
-        
-        $ipcr->save();
-
-        return $request->type;
+        return $request->all();
     }
 
     /**
