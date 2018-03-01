@@ -37,6 +37,12 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li class="{{ Request::is('hrmis/morale') ? 'active' : '' }}">
+                    <a href="{{ url('hrmis/morale') }}">
+                        <i class="material-icons">dashboard</i>
+                        <span>Morale Survey</span>
+                    </a>
+                </li>
 
                 <li class="{{ Request::is('hrmis/positions') ? 'active' : '' }} {{ Request::is('hrmis/positions/*') ? 'active' : '' }}">
                     <a href="javascript:void(0);" class="menu-toggle">

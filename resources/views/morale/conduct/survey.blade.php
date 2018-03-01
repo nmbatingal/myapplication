@@ -1,11 +1,15 @@
 @extends('layouts.morale.app')
 
 @section('title')
-Individual Performance | 
+Morale Survey | 
 @endsection
 
 @section('page-title')
-Survey
+    @if ( $action == 'rate' )
+        Survey
+    @elseif ( $action == 'view' )
+        View <small>Survey</small>
+    @endif
 @endsection
 
 @section('styles')
@@ -27,8 +31,12 @@ Survey
 @section('breadcrumb')
 <ol class="breadcrumb">
     <li><a href="{{ route('morale.index') }}">Dashboard</a></li>
-    <li class="active">Semesters</li>
-    <li class="active">Semesters</li>
+    <li><a href="{{ url('morale/semestral') }}">Semesters</a></li>
+    @if ( $action == 'rate' )
+    <li class="active">Survey</li>
+    @elseif ( $action == 'view' )
+    <li class="active">View</li>
+    @endif
 </ol>
 @endsection
 
@@ -75,14 +83,35 @@ Survey
         <div class="x_panel">
             <div class="x_title">
                 <h2>Morale Survey (Sem {{ $semester->from['acronym'] }} - {{ $semester->to['acronym'] }}, {{ $semester['year'] }})</h2>
+
+                @if ( $action == 'view' )
+                <div class="panel_toolbox">
+                    <a class="btn btn-sm btn-primary" href="{{ url('iprs/create') }}"><i class="fa fa-pencil"></i> Update</a>
+                </div>
+                @endif
+
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <div class="alert alert-success">
-                    <p>Instruction</p>
-                </div>
+
+                @if ( $action == 'rate' )
+                    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <strong>Instruction:</strong> Best check yo self, you're not looking too good.
+                    </div>
+                @elseif ( $action == 'view' )
+                    View <small>Survey</small>
+                @endif
+
+                @if ( $action == 'rate' )
+
                 {{ Form::open(['id' => 'frm-survey', 'url' => url('morale') ]) }}
                 {{ Form::input('hidden', 'user_id', Auth::user()->id) }}
+                {{ Form::input('hidden', 'sem_id', $semester['id']) }}
+                
+                @elseif ( $action =='update' )
+                @endif
+
                 <table id="table-survey"  class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <colgroup>
                         <col width="1%">
@@ -110,7 +139,7 @@ Survey
                                 <td class="text-right">{{ ++$no }} {{ Form::input('hidden', 'q_id[]', $question['id']) }}</td>
                                 <td>{{ $question['text_question'] }}</td>
                                 <td class="text-center">{{ Form::radio('qn_'.$question['id'], '1', false, ['class' => '', 'required' => true]) }}</td>
-                                <td class="text-center">{{ Form::radio('qn_'.$question['id'], '2', true, ['class' => '', 'required' => true]) }}</td>
+                                <td class="text-center">{{ Form::radio('qn_'.$question['id'], '2', false, ['class' => '', 'required' => true]) }}</td>
                                 <td class="text-center">{{ Form::radio('qn_'.$question['id'], '3', false, ['class' => '', 'required' => true]) }}</td>
                                 <td class="text-center">{{ Form::radio('qn_'.$question['id'], '4', false, ['class' => '', 'required' => true]) }}</td>
                                 <td class="text-center">{{ Form::radio('qn_'.$question['id'], '5', false, ['class' => '', 'required' => true]) }}</td>
@@ -118,10 +147,17 @@ Survey
                         @endforeach
                     </tbody>
                 </table>
+
+
+                @if ( $action == 'rate' )
+
                 <div class="pull-right">
-                    {{ Form::submit() }}
+                    {{ Form::submit('Submit', ['class' => 'btn btn-success']) }}
                 </div>
                 {{ Form::close() }}
+
+                @endif
+
             </div>
         </div>
     </div>

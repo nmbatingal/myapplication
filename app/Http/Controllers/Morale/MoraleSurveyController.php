@@ -6,6 +6,7 @@ use App\User;
 use App\Models\Morale\MoraleSurvey as Survey;
 use App\Models\Morale\MoraleSurveyQuestions as Questions;
 use App\Models\Morale\MoraleSurveySemestral as Semestral;
+use App\Models\Morale\MoraleSurveyNotification as Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -28,7 +29,7 @@ class MoraleSurveyController extends Controller
      */
     public function semestral()
     {
-        $semesters = Semestral::all();
+        $semesters = Semestral::orderBy('id', 'DESC')->get();
         return view('morale.conduct.semester', compact('semesters'));
     }
 
@@ -41,7 +42,8 @@ class MoraleSurveyController extends Controller
     {
         $semester  = Semestral::find($id)->first();
         $questions = Questions::all();
-        return view('morale.conduct.survey', compact('semester', 'questions'));
+        $action    = "rate";
+        return view('morale.conduct.survey', compact('semester', 'questions', 'action'));
     }
 
     /**
@@ -80,13 +82,20 @@ class MoraleSurveyController extends Controller
     {
         foreach ($request->q_id as $q_id) {
             $survey = new Survey;
+
             $survey->user_id     = $request['user_id'];
             $survey->question_id = $q_id;
             $survey->score       = $request['qn_'.$q_id];
+            $survey->semestral_id = $request['sem_id'];
             $survey->save();
         }
 
-        return $request->all();
+        $survey_notif = new Notification;
+        $survey_notif->sem_id  = $request['sem_id'];
+        $survey_notif->user_id = $request['user_id'];
+        $survey_notif->save();
+
+        return redirect()->route('morale.semestral');
     }
 
     /**
@@ -97,7 +106,11 @@ class MoraleSurveyController extends Controller
      */
     public function show($id)
     {
-        //
+        $semester  = Semestral::find($id)->first();
+        $questions = Questions::all();
+        $action    = "view";
+
+        return view('morale.conduct.survey', compact('semester', 'questions', 'action'));
     }
 
     /**

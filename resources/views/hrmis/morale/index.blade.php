@@ -48,6 +48,36 @@ Semesters <small>Morale Survey</small>
 <section class="row">
     <div class="col-sm-9">
         <div class="x_panel">
+            <div class="x_content">
+                {{ Form::open(['url' => url('morale/semestral'), 'class' => '']) }}
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label>From</label>
+                            <input type="number" class="form-control datetimepicker_month" name="month_from" placeholder="month" required>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label>To</label>
+                            <input type="number" class="form-control datetimepicker_month" name="month_to" placeholder="month" required>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label>Year</label>
+                            <input type="text" class="form-control datetimepicker_year" name="year" placeholder="ex. 2018" required>
+                        </div>
+                        <div class="col-md-2">
+                            <br>
+                            <button id="btn_create_ipcr" type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </div>
+                {{ Form::close() }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="row">
+    <div class="col-sm-9">
+        <div class="x_panel">
             <div class="x_title">
                 <h2>Semester List</h2>
                 <ul class="nav navbar-right panel_toolbox">
@@ -67,53 +97,57 @@ Semesters <small>Morale Survey</small>
             </div>
             <div class="x_content">
                 <table class="table table-striped projects">
-                    <colgroup>
-                        <col width="1%">
-                        <col>
-                        <col width="10%">
-                        <col width="15%">
-                        <col width="5%">
-                    </colgroup>
-                    <thead>
-                        <tr>
-                          <th>#</th>
-                          <th></th>
-                          <th>Status</th>
-                          <th>Rating</th>
-                          <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach( $semesters as $semester )
-                            <?php
-                                $status = App\Models\Morale\MoraleSurveyNotification::isDone($semester['id'], Auth::user()->id)->first();
-                            ?>
+                        <colgroup>
+                            <col width="1%">
+                            <col width="20%">
+                            <col>
+                            <col width="5%">
+                            <col width="5%">
+                        </colgroup>
+                        <thead>
                             <tr>
-                                <td>#</td>
-                                <td>
-                                    <a href="javacript:;">
-                                        <strong>{{ $semester->from['acronym']}}-{{ $semester->to['acronym']}}, {{ $semester['year'] }}</strong>
-                                    </a>
-                                </td>
-                                <td>
-                                    @if ( $status ) 
-                                       <span class="badge bg-green">Done</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    19%
-                                </td>
-                                <td>
-                                    @if ( !$status ) 
-                                        <a href="{{ url('morale/semestral/'.$semester['id']) }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Take survey </a>
-                                    @else
-                                        <a href="{{ url('morale/semestral/'.$semester['id']).'/view' }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                    @endif
-                                </td>
+                              <th>#</th>
+                              <th></th>
+                              <th></th>
+                              <th>Status</th>
+                              <th>Action</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach( $semesters as $semester )
+                                <tr>
+                                    <td>#</td>
+                                    <td>
+                                        <a href="{{ url('morale/semestral/'.$semester['id']) }}">
+                                            <strong>{{ $semester->from['acronym']}}-{{ $semester->to['acronym']}}, {{ $semester['year'] }}</strong>
+                                        </a>
+                                    </td>
+                                    <td class="project_progress">
+                                        <ul class="list-inline">
+                                          <li>
+                                            <img src="images/user.png" class="avatar" alt="Avatar">
+                                          </li>
+                                          <li>
+                                            <img src="images/user.png" class="avatar" alt="Avatar">
+                                          </li>
+                                          <li>
+                                            <img src="images/user.png" class="avatar" alt="Avatar">
+                                          </li>
+                                          <li>
+                                            <img src="images/user.png" class="avatar" alt="Avatar">
+                                          </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-green">Success</span>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('morale/semestral/'.$semester['id']) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
             </div>
         </div>
 

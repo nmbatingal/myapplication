@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('hrmis/lineup', 'Hrmis\SelectionLineupController');  // Resource controller for applicants
     Route::resource('hrmis/positions', 'Hrmis\PositionController');   // Resource controller for positions
     Route::resource('hrmis/psb', 'Hrmis\PsbController');   // Resource controller for positions
+    Route::resource('hrmis/morale', 'Hrmis\MoraleSurveyController');   // Resource controller for positions
 
     /*** PSB RATING SYSTEM CONTROLLER ***/
     Route::resource('psbrs', 'Psbrs\PsbRatingController');
@@ -66,6 +67,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('morale/semestral', 'Morale\MoraleSurveyController@semestral')->name('morale.semestral');
     Route::post('morale/semestral', 'Morale\MoraleSurveyController@storeSemestral');
     Route::get('morale/semestral/{id}', 'Morale\MoraleSurveyController@survey')->name('morale.survey');
+    Route::get('morale/semestral/{id}/view', 'Morale\MoraleSurveyController@show');
     Route::resource('morale', 'Morale\MoraleSurveyController');
 
 });
