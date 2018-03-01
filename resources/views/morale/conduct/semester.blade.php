@@ -101,7 +101,7 @@ Semesters <small>Morale Survey</small>
                                     @endif
                                 </td>
                                 <td>
-                                    19%
+                                    {{ number_format(App\Models\Morale\MoraleSurveyRatings::userOverallIndex( $semester['id'], Auth::user()->id ), '2', '.', '') }}%
                                 </td>
                                 <td>
                                     @if ( !$status ) 

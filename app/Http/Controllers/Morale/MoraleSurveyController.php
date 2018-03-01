@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Morale;
 
+use Auth;
 use App\User;
 use App\Models\Morale\MoraleSurvey as Survey;
+use App\Models\Morale\MoraleSurveyRatings as Rating;
 use App\Models\Morale\MoraleSurveyQuestions as Questions;
 use App\Models\Morale\MoraleSurveySemestral as Semestral;
 use App\Models\Morale\MoraleSurveyNotification as Notification;
@@ -107,10 +109,12 @@ class MoraleSurveyController extends Controller
     public function show($id)
     {
         $semester  = Semestral::find($id)->first();
-        $questions = Questions::all();
+        // $questions = Questions::all();
+        $ratings   = Rating::ratings($id, Auth::user()->id)->get();
         $action    = "view";
 
-        return view('morale.conduct.survey', compact('semester', 'questions', 'action'));
+        // return view('morale.conduct.survey', compact(, 'questions', 'action'));
+        return view('morale.conduct.survey', compact('semester', 'ratings', 'action'));
     }
 
     /**

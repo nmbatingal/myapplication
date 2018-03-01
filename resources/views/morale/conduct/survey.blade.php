@@ -85,9 +85,9 @@ Morale Survey |
                 <h2>Morale Survey (Sem {{ $semester->from['acronym'] }} - {{ $semester->to['acronym'] }}, {{ $semester['year'] }})</h2>
 
                 @if ( $action == 'view' )
-                <div class="panel_toolbox">
+                <!-- <div class="panel_toolbox">
                     <a class="btn btn-sm btn-primary" href="{{ url('iprs/create') }}"><i class="fa fa-pencil"></i> Update</a>
-                </div>
+                </div> -->
                 @endif
 
                 <div class="clearfix"></div>
@@ -108,7 +108,7 @@ Morale Survey |
                 {{ Form::open(['id' => 'frm-survey', 'url' => url('morale') ]) }}
                 {{ Form::input('hidden', 'user_id', Auth::user()->id) }}
                 {{ Form::input('hidden', 'sem_id', $semester['id']) }}
-                
+
                 @elseif ( $action =='update' )
                 @endif
 
@@ -134,6 +134,7 @@ Morale Survey |
                         </tr>
                     </thead>
                     <tbody>
+                        @if ( $action == 'rate' )
                         @foreach( $questions as $no => $question )
                             <tr>
                                 <td class="text-right">{{ ++$no }} {{ Form::input('hidden', 'q_id[]', $question['id']) }}</td>
@@ -145,6 +146,20 @@ Morale Survey |
                                 <td class="text-center">{{ Form::radio('qn_'.$question['id'], '5', false, ['class' => '', 'required' => true]) }}</td>
                             </tr>
                         @endforeach
+                        @elseif ($action == 'view' )
+                        @foreach( $ratings as $no => $rating )
+                            <tr>
+                                <td class="text-right">{{ ++$no }}</td>
+                                <td>{{ $rating->question['text_question'] }}</td>
+                                <td class="text-center">{{ Form::radio('qn_'.$rating['question_id'], '1', $rating['score'] == 1 ? true : false, ['disabled' => true, 'required' => true]) }}</td>
+                                <td class="text-center">{{ Form::radio('qn_'.$rating['question_id'], '2', $rating['score'] == 2 ? true : false, ['disabled' => true, 'required' => true]) }}</td>
+                                <td class="text-center">{{ Form::radio('qn_'.$rating['question_id'], '3', $rating['score'] == 3 ? true : false, ['disabled' => true, 'required' => true]) }}</td>
+                                <td class="text-center">{{ Form::radio('qn_'.$rating['question_id'], '4', $rating['score'] == 4 ? true : false, ['disabled' => true, 'required' => true]) }}</td>
+                                <td class="text-center">{{ Form::radio('qn_'.$rating['question_id'], '5', $rating['score'] == 5 ? true : false, ['disabled' => true, 'required' => true]) }}</td>
+                            </tr>
+                        @endforeach
+                        @endif
+
                     </tbody>
                 </table>
 
