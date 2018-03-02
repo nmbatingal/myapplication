@@ -48,6 +48,7 @@
     "bootstrap-daterangepicker": "^2.1.27",
     "chart.js": "^2.7.2",
     "sweetalert": "^2.1.0",
-    "chartjs-plugin-datalabels": "^0.2.0"
+    "chartjs-plugin-datalabels": "^0.2.0",
+    "chartjs-plugin-annotation": "^0.5.7"
   }
 }

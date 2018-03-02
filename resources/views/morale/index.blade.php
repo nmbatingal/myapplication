@@ -122,6 +122,7 @@
 <script src="{{ asset('bower/chart.js/dist/Chart.min.js') }}"></script>
 <!-- Chart.js plugin -->
 <script src="{{ asset('bower/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js') }}"></script>
+<script src="{{ asset('bower/chartjs-plugin-annotation/chartjs-plugin-annotation.min.js') }}"></script>
 <script>
 var randomColorPlugin = {
 
@@ -175,16 +176,44 @@ var myChart = new Chart($('#myChart'), {
     },
     options: {
         // tooltips: false,
+        scaleShowGridLines : true,
         scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    max: 100
+                }
+            }],
             xAxes: [{
                 categoryPercentage: 1,
                 barPercentage: 0.6
             }]
         },
+        yaxis: {
+            min: 0,
+            max: 100,
+        },
         legend: { display: false },
         title: {
             display: true,
             text: 'Overall Index (OI) based on Conducted Morale Survey'
+        },
+        annotation: {
+            annotations: [{
+                drawTime: 'afterDraw', // overrides annotation.drawTime if set
+                id: 'a-line-1', // optional
+                type: 'line',
+                mode: 'horizontal',
+                scaleID: 'y-axis-0',
+                value: '25',
+                borderColor: 'red',
+                borderWidth: 2,           
+                // Fires when the user clicks this annotation on the chart
+                // (be sure to enable the event in the events array below).
+                onClick: function(e) {
+                    // `this` is bound to the annotation element
+                }
+            }]
         },
         plugins: {
             datalabels: {
