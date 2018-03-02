@@ -107,6 +107,7 @@ Morale Survey |
 
                 {{ Form::open(['id' => 'frm-survey', 'url' => url('morale') ]) }}
                 {{ Form::input('hidden', 'user_id', Auth::user()->id) }}
+                {{ Form::input('hidden', 'div_id', Auth::user()->div_unit) }}
                 {{ Form::input('hidden', 'sem_id', $semester['id']) }}
 
                 @elseif ( $action =='update' )

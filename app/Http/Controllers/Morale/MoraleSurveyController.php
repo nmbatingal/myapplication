@@ -21,7 +21,10 @@ class MoraleSurveyController extends Controller
      */
     public function index()
     {
-        return view('morale.index');
+        $semester  = Semestral::firstOrFail();
+        $semesters = Semestral::orderBy('id', 'DESC')->get();
+        
+        return view('morale.index', compact('semester'));
     }
 
     /**
@@ -82,20 +85,24 @@ class MoraleSurveyController extends Controller
      */
     public function store(Request $request)
     {
-        foreach ($request->q_id as $q_id) {
-            $survey = new Survey;
-
-            $survey->user_id     = $request['user_id'];
-            $survey->question_id = $q_id;
-            $survey->score       = $request['qn_'.$q_id];
-            $survey->semestral_id = $request['sem_id'];
-            $survey->save();
-        }
 
         $survey_notif = new Notification;
         $survey_notif->sem_id  = $request['sem_id'];
         $survey_notif->user_id = $request['user_id'];
-        $survey_notif->save();
+        $survey_notif->div_id  = $request['div_id'];
+
+        if ( $survey_notif->save() )
+        {
+            foreach ($request->q_id as $q_id) {
+                $survey = new Survey;
+
+                $survey->user_id     = $request['user_id'];
+                $survey->question_id = $q_id;
+                $survey->score       = $request['qn_'.$q_id];
+                $survey->semestral_id = $request['sem_id'];
+                $survey->save();
+            }
+        }
 
         return redirect()->route('morale.semestral');
     }

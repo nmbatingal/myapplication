@@ -45,6 +45,9 @@
     "datatables.net-responsive-bs": "^2.0.2",
     "datatables.net-scroller": "^1.4.1",
     "datatables.net-scroller-bs": "^1.4.1",
-    "bootstrap-daterangepicker": "^2.1.27"
+    "bootstrap-daterangepicker": "^2.1.27",
+    "chart.js": "^2.7.2",
+    "sweetalert": "^2.1.0",
+    "chartjs-plugin-datalabels": "^0.2.0"
   }
 }

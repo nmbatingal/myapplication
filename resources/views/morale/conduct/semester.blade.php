@@ -117,6 +117,11 @@ Semesters <small>Morale Survey</small>
             </div>
         </div>
 
+        <div><strong>Individual</strong> {{ number_format(App\Models\Morale\MoraleSurveyRatings::userOverallIndex( $semester['id'], Auth::user()->id ), '2', '.', '') }}</div>
+
+        
+
+        <button id="swal" class="btn btn-success">Click me</button>
     </div>
 </section>
 @endsection
@@ -154,6 +159,10 @@ Semesters <small>Morale Survey</small>
     $('.datetimepicker_month').datetimepicker({
         viewMode: 'months',
         format: 'MM'
+    });
+
+    $('#swal').on('click', function(){
+        swal("Hello world!");
     });
 </script>
 @endsection

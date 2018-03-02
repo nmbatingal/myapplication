@@ -85,6 +85,7 @@
         <script src="{{ asset('bower/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
         <!-- Jquery Validation Plugin Css -->
         <script src="{{ asset('plugins/jquery-validation/jquery.validate.js') }}"></script>
+        <script src="{{ asset('bower/sweetalert/docs/assets/sweetalert/sweetalert.min.js') }}"></script>
         @yield('scripts')
         <!-- Custom Theme Scripts -->
         <script src="{{ asset('gentelella/build/js/custom.min.js') }}"></script>

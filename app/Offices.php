@@ -25,4 +25,10 @@ class Offices extends Model
         $userCount = User::where('div_unit', $id)->count();
         return $userCount;
     }
+
+    public function scopeDivId($query, $office)
+    {
+        return $query->where('acronym', $office)
+                     ->select('id');
+    }
 }
