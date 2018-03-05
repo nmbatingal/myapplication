@@ -22,26 +22,32 @@ class MoraleSurveyController extends Controller
     public function index()
     {
         $semester        = Semestral::orderBy('id', 'DESC')->get();
-        $overall_index   = Rating::overallIndex($semester[0]['id']);
-        $total_questions = Questions::all();
-        $divisions       = ['ORD', 'FAS', 'FOD', 'TSS'];
-        $div_oi          = [];
-        $question_oi     = [];
+        if (count($semester) > 0 )
+        {
+            $overall_index   = Rating::overallIndex($semester[0]['id']);
+            $total_questions = Questions::all();
+            $divisions       = ['ORD', 'FAS', 'FOD', 'TSS'];
+            $div_oi          = [];
+            $question_oi     = [];
 
-        foreach ($divisions as $div) {
-            
-            $value = Rating::overallDivisionIndex( $semester[0]['id'], $div);
-            array_push($div_oi, $value);
-        }
+            foreach ($divisions as $div) {
+                $value = Rating::overallDivisionIndex( $semester[0]['id'], $div);
+                array_push($div_oi, $value);
+            }
 
-        foreach ($total_questions as $question) {
-
-            $value         = Rating::overallQuestionIndex( $semester[0]['id'], Auth::user()->div_unit, $question['id']);
-
-            $question_oi[] =    [
-                                    'question'   => $question['text_question'],
-                                    'answer'     => $value,
-                                ];
+            foreach ($total_questions as $question) {
+                $value         = Rating::overallQuestionIndex( $semester[0]['id'], Auth::user()->div_unit, $question['id']);
+                $question_oi[] =    [
+                                        'question'   => $question['text_question'],
+                                        'answer'     => $value,
+                                    ];
+            }
+        } else {
+            $semester = 0;
+            $overall_index = 0;
+            $divisions = 0;
+            $div_oi = 0;
+            $question_oi = 0;
         }
         
         return view('morale.index', compact('semester', 'overall_index', 'divisions', 'div_oi', 'question_oi'));
