@@ -64,9 +64,11 @@
                     <div class="pull-right">
                         <select class="form-control">
                             <option value="">-- Please select a semester --</option>
-                            @foreach($semester as $sem)
-                                <option selected value="{{ $sem['id'] }}">{{ $sem->from['month']}} - {{ $sem->to['month']}}, {{ $sem['year'] }}</option>
-                            @endforeach
+                            @if( $semester > 0)
+                                @foreach($semester as $sem)
+                                    <option selected value="{{ $sem['id'] }}">{{ $sem->from['month']}} - {{ $sem->to['month']}}, {{ $sem['year'] }}</option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                 </div>
