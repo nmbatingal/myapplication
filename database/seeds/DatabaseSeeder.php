@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
         //$this->call(OfficesTableSeeder::class);
         //$this->call(UsersTableSeeder::class);
         //$this->call(MonthsTableSeeder::class);
-        $this->call(MoraleSurveySeeder::class);
-
+        //$this->call(MoraleSurveySeeder::class);
     }
 }
