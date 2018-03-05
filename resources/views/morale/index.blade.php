@@ -160,11 +160,12 @@ var myChart = new Chart($('#myChart'), {
         datasets: [{
             label: 'OI%',
             data: [ 
-                "{{ number_format(App\Models\Morale\MoraleSurveyRatings::overallIndex( $semester['id'] ), '2', '.', '') }}",
-                "{{ number_format(App\Models\Morale\MoraleSurveyRatings::overallDivisionIndex( $semester['id'], App\Offices::divId('ORD')->first()['id'] ), 2, '.', '') }}",
-                "{{ number_format(App\Models\Morale\MoraleSurveyRatings::overallDivisionIndex( $semester['id'], App\Offices::divId('FAS')->first()['id'] ), 2, '.', '') }}",
-                "{{ number_format(App\Models\Morale\MoraleSurveyRatings::overallDivisionIndex( $semester['id'], App\Offices::divId('FOD')->first()['id'] ), 2, '.', '') }}",
-                "{{ number_format(App\Models\Morale\MoraleSurveyRatings::overallDivisionIndex( $semester['id'], App\Offices::divId('TSS')->first()['id'] ), 2, '.', '') }}"
+                //"{{ number_format(App\Models\Morale\MoraleSurveyRatings::overallIndex( $semester['id'] ), '2', '.', '') }}",
+                //"{{ number_format(App\Models\Morale\MoraleSurveyRatings::overallDivisionIndex( $semester['id'], App\Offices::divId('ORD')->first()['id'] ), 2, '.', '') }}",
+                //"{{ number_format(App\Models\Morale\MoraleSurveyRatings::overallDivisionIndex( $semester['id'], App\Offices::divId('FAS')->first()['id'] ), 2, '.', '') }}",
+                //"{{ number_format(App\Models\Morale\MoraleSurveyRatings::overallDivisionIndex( $semester['id'], App\Offices::divId('FOD')->first()['id'] ), 2, '.', '') }}",
+                //"{{ number_format(App\Models\Morale\MoraleSurveyRatings::overallDivisionIndex( $semester['id'], App\Offices::divId('TSS')->first()['id'] ), 2, '.', '') }}"
+                0,0,0,0,0
             ],
             backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
             datalabels: {

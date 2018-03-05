@@ -49,7 +49,7 @@ Semesters <small>Morale Survey</small>
     <div class="col-sm-9">
         <div class="x_panel">
             <div class="x_content">
-                {{ Form::open(['url' => url('morale/semestral'), 'class' => '']) }}
+                {{ Form::open(['url' => url('hrmis/morale'), 'class' => '']) }}
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                     <div class="row">
                         <div class="col-md-2 col-sm-2 col-xs-12 form-group">

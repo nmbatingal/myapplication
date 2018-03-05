@@ -40,7 +40,13 @@ class MoraleSurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $semester = new Semestral;
+        $semester->month_from = $request['month_from'];
+        $semester->month_to   = $request['month_to'];
+        $semester->year       = $request['year'];
+        $semester->save();
+
+        return redirect('hrmis/morale');
     }
 
     /**

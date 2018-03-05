@@ -74,7 +74,8 @@ class MoraleSurveyController extends Controller
         $semester->year       = $request['year'];
         $semester->save();
 
-        return $request->all();
+        //return $request->all();
+        return redirect('hrmis/morale');
     }
 
     /**
