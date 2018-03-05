@@ -221,10 +221,10 @@ var myChart = new Chart($('#oiChart'), {
             label: 'OI%',
             data: [ 
                 '{{ $overall_index }}',
-                '{{ $div_oi[0] }}',
-                '{{ $div_oi[1] }}',
-                '{{ $div_oi[2] }}',
-                '{{ $div_oi[3] }}'
+                /*'{{ $div_oi[0] }}'*/ 0,
+                /*'{{ $div_oi[1] }}'*/ 0,
+                /*'{{ $div_oi[2] }}'*/ 0,
+                /*'{{ $div_oi[3] }}'*/ 0
             ],
             backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
             datalabels: {
