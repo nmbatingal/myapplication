@@ -64,7 +64,7 @@
                     <div class="pull-right">
                         <select class="form-control">
                             <option value="">-- Please select a semester --</option>
-                            @if( $semester > 0)
+                            @if( count($semester) > 0)
                                 @foreach($semester as $sem)
                                     <option selected value="{{ $sem['id'] }}">{{ $sem->from['month']}} - {{ $sem->to['month']}}, {{ $sem['year'] }}</option>
                                 @endforeach
@@ -176,6 +176,7 @@
         </div>
     </div>
 </section>
+
 @endhasanyrole
 
 @endsection
@@ -213,22 +214,16 @@ var randomColorPlugin = {
         chart.config.data.datasets[0].backgroundColor = backgroundColor;
     }
 };
-
 Chart.pluginService.register(randomColorPlugin);
+
+var arrayDivOi     = {!! json_encode($div_oi) !!};
 var myChart = new Chart($('#oiChart'), {
     type: 'bar',
     data: {
         labels: ["Overall Index", "ORD", "FAS", "FOD", "TSS"],
         datasets: [{
             label: 'OI%',
-            data: [ 
-                '{{ $overall_index }}',
-                /*'{{ $div_oi[0] }}'*/ 0,
-                /*'{{ $div_oi[1] }}'*/ 0,
-                /*'{{ $div_oi[2] }}'*/ 0,
-                /*'{{ $div_oi[3] }}'*/ 0
-            ],
-            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+            data: arrayDivOi,
             datalabels: {
                 align: 'end',
                 anchor: 'end',
@@ -296,32 +291,24 @@ var myChart = new Chart($('#oiChart'), {
 });
 
 /*** QUESTIONS ***/
+var arrayQuestions  = {!! json_encode($question_oi) !!};
+var $question_labels = [];
+var $questions       = [];
+var $answers          = [];
+
+$.each(arrayQuestions, function (n, currentElem) {
+    $question_labels.push(++n);
+    $questions.push(currentElem.question);
+    $answers.push(currentElem.answer)
+});
+
 var myBarChart = new Chart($('#myBarChart'), {
     type: 'bar',
     data: {
-        labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18"],
+        labels: $question_labels,
         datasets: [{
             label: 'OI%',
-            data: [ 
-                /*{{ $question_oi[0]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[1]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[2]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[3]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[4]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[5]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[6]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[7]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[8]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[9]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[10]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[11]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[12]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[13]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[14]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[15]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[16]['answer'] }} ||*/ 0,
-                /*{{ $question_oi[17]['answer'] }} ||*/ 0
-            ],
+            data: $answers,
             backgroundColor: ["#8e5ea2"],
             datalabels: {
                 align: 'end',

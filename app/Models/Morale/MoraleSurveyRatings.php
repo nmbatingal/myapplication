@@ -122,6 +122,7 @@ class MoraleSurveyRatings extends Model
         }
         
         return number_format($overall_index, 2, '.', '');
+        //return $overall_index;
     }
 
     public static function overallQuestionIndex($sem, $div, $question)
