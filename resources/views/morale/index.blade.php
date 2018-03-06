@@ -132,7 +132,7 @@
 
             <div class="x_content">
                 <div class="col-md-9 col-sm-9 col-xs-12">
-                    <canvas id="myBarChart"></canvas>
+                    <canvas id="perQuestionOIChart"></canvas>
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
@@ -176,7 +176,6 @@
         </div>
     </div>
 </section>
-
 @endhasanyrole
 
 @endsection
@@ -214,6 +213,7 @@ var randomColorPlugin = {
         chart.config.data.datasets[0].backgroundColor = backgroundColor;
     }
 };
+
 Chart.pluginService.register(randomColorPlugin);
 
 var arrayDivOi     = {!! json_encode($div_oi) !!};
@@ -260,12 +260,30 @@ var myChart = new Chart($('#oiChart'), {
                 scaleID: 'y-axis-0',
                 value: '25',
                 borderColor: 'red',
-                borderWidth: 2,           
-                // Fires when the user clicks this annotation on the chart
-                // (be sure to enable the event in the events array below).
-                onClick: function(e) {
-                    // `this` is bound to the annotation element
-                }
+                borderWidth: 1,   
+                borderDash: [2, 2],    
+                label: {
+                    // Background color of label, default below
+                    backgroundColor: '#c45850',
+                    // Font family of text, inherits from global
+                    fontFamily: "sans-serif",
+                    // Font size of text, inherits from global
+                    fontSize: 12,
+                    // Font style of text, default below
+                    fontStyle: "bold",
+                    // Font color of text, default below
+                    fontColor: "#fff",
+                    // Anchor position of label on line, can be one of: top, bottom, left, right, center. Default below.
+                    position: "center",
+                    // Adjustment along y-axis (top-bottom) of label relative to above number (can be negative)
+                    // For vertical lines positioned top or bottom, negative values move
+                    // the label toward the edge, and positive values toward the center.
+                    yAdjust: -15,
+                    // Whether the label is enabled and should be displayed
+                    enabled: true,
+                    // Text to display in label - default is null
+                    content: "Critical"
+                },
             }]
         },
         plugins: {
@@ -302,7 +320,7 @@ $.each(arrayQuestions, function (n, currentElem) {
     $answers.push(currentElem.answer)
 });
 
-var myBarChart = new Chart($('#myBarChart'), {
+var myBarChart = new Chart($('#perQuestionOIChart'), {
     type: 'bar',
     data: {
         labels: $question_labels,
@@ -345,7 +363,30 @@ var myBarChart = new Chart($('#myBarChart'), {
                 scaleID: 'y-axis-0',
                 value: '25',
                 borderColor: 'red',
-                borderWidth: 2,           
+                borderWidth: 1,   
+                borderDash: [2, 2],    
+                label: {
+                    // Background color of label, default below
+                    backgroundColor: '#c45850',
+                    // Font family of text, inherits from global
+                    fontFamily: "sans-serif",
+                    // Font size of text, inherits from global
+                    fontSize: 12,
+                    // Font style of text, default below
+                    fontStyle: "bold",
+                    // Font color of text, default below
+                    fontColor: "#fff",
+                    // Anchor position of label on line, can be one of: top, bottom, left, right, center. Default below.
+                    position: "center",
+                    // Adjustment along y-axis (top-bottom) of label relative to above number (can be negative)
+                    // For vertical lines positioned top or bottom, negative values move
+                    // the label toward the edge, and positive values toward the center.
+                    yAdjust: -15,
+                    // Whether the label is enabled and should be displayed
+                    enabled: true,
+                    // Text to display in label - default is null
+                    content: "Critical"
+                },
                 // Fires when the user clicks this annotation on the chart
                 // (be sure to enable the event in the events array below).
                 onClick: function(e) {
