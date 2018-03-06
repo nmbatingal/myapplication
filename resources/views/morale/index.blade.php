@@ -383,7 +383,7 @@ var myBarChart = new Chart($('#perQuestionOIChart'), {
                     // the label toward the edge, and positive values toward the center.
                     yAdjust: -15,
                     // Whether the label is enabled and should be displayed
-                    enabled: true,
+                    enabled: false,
                     // Text to display in label - default is null
                     content: "Critical"
                 },
