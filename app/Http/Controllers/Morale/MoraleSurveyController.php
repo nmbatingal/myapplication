@@ -27,7 +27,7 @@ class MoraleSurveyController extends Controller
         $div_oi          = [];
         $question_oi     = [];
 
-        if ( !empty($semester) )
+        if ( !$semester->isEmpty() )
         {
             $overall_index   = Rating::overallIndex($semester[0]['id']);
             array_push($div_oi, $overall_index);
@@ -45,12 +45,11 @@ class MoraleSurveyController extends Controller
                                     ];
             }
         } else {
-            $semester = [];
             $div_oi = [0,0,0,0,0];
             $question_oi = [['question' => 0, "answer" => 0]];
         }
         
-        return view('morale.index', compact('semester', 'divisions', 'div_oi', 'question_oi'));
+        return view('morale.index', compact('semester', 'div_oi', 'question_oi'));
     }
 
     /**
