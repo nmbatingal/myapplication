@@ -192,25 +192,32 @@ var randomColorPlugin = {
     // We affect the `beforeUpdate` event
     beforeUpdate: function(chart) {
         var backgroundColor = [];
+        var borderColor = [];
         var data = chart.config.data.datasets[0].data;
 
         $.each(data, function(n, currentElem) {
 
             if ( currentElem > 75 ) {
-                var color = "#3cba9f"; // green
+                var color  = "rgba(60, 185, 158, 0.55)"; // green
+                var border = "#3cb99e"; // green
             } else if ( currentElem > 50 ) {
-                var color = "#3e95cd"; // blue
+                var color  = "rgba(62, 149, 205, 0.55)"; // blue
+                var border = "#3c95cd"; // blue
             } else if ( currentElem > 25 ) {
-                var color = "#ff9e05"; // orange
+                var color  = "rgba(255, 158, 5, 0.55)"; // orange
+                var border = "#ff9f05"; // orange
             } else {
-                var color = "#c45850"; // red
+                var color  = "rgba(255, 36, 20, 0.55)"; // red
+                var border = "#ff2414"; // red
             }
 
             backgroundColor.push(color);
+            borderColor.push(border);
         });
         
         // We update the chart bars color properties
         chart.config.data.datasets[0].backgroundColor = backgroundColor;
+        chart.config.data.datasets[0].borderColor     = borderColor;
     }
 };
 
@@ -223,6 +230,7 @@ var myChart = new Chart($('#oiChart'), {
         labels: ["Overall Index", "ORD", "FAS", "FOD", "TSS"],
         datasets: [{
             label: 'OI%',
+            borderWidth: 1,
             data: arrayDivOi,
             datalabels: {
                 align: 'end',
@@ -232,7 +240,16 @@ var myChart = new Chart($('#oiChart'), {
         }]
     },
     options: {
-        // tooltips: false,
+        tooltips: {
+            enabled: true,
+            mode: 'label',
+            position: 'average',
+            callbacks: {
+                label: function(tooltipItem) {
+                    return tooltipItem.yLabel + "%";
+                }
+            }
+        },
         scaleShowGridLines : true,
         scales: {
             yAxes: [{
@@ -249,7 +266,8 @@ var myChart = new Chart($('#oiChart'), {
         legend: { display: false },
         title: {
             display: true,
-            text: 'Overall Index (OI) based on Conducted Morale Survey '
+            text: 'Overall Index (OI) based on Conducted Morale Survey ',
+            position: 'bottom'
         },
         annotation: {
             annotations: [{
@@ -264,7 +282,7 @@ var myChart = new Chart($('#oiChart'), {
                 borderDash: [2, 2],    
                 label: {
                     // Background color of label, default below
-                    backgroundColor: '#c45850',
+                    backgroundColor: 'rgba(229, 23, 16, 0.50)',
                     // Font family of text, inherits from global
                     fontFamily: "sans-serif",
                     // Font size of text, inherits from global
@@ -291,6 +309,10 @@ var myChart = new Chart($('#oiChart'), {
                 backgroundColor: function(context) {
                     return context.dataset.backgroundColor;
                 },
+                borderColor: function(context) {
+                    return context.dataset.borderColor;
+                },
+                borderWidth: 1,
                 formatter: function(value, context) {
                     if ( value > 0 ) {
                         return value + '%';
@@ -326,6 +348,7 @@ var myBarChart = new Chart($('#perQuestionOIChart'), {
         labels: $question_labels,
         datasets: [{
             label: 'OI%',
+            borderWidth: 1,
             data: $answers,
             backgroundColor: ["#8e5ea2"],
             datalabels: {
@@ -336,12 +359,23 @@ var myBarChart = new Chart($('#perQuestionOIChart'), {
         }]
     },
     options: {
-        // tooltips: false,
+        tooltips: {
+            enabled: true,
+            mode: 'label',
+            position: 'average',
+            callbacks: {
+                title: function(tooltipItem) {
+                    return "Question " + tooltipItem[0].xLabel + ": " + tooltipItem[0].yLabel + "%";
+                },
+                label: function(tooltipItem) {
+                    return $questions[tooltipItem.index];
+                }
+            }
+        },
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true,
-                    max: 100
+                    beginAtZero:true
                 }
             }],
             xAxes: [{
@@ -352,7 +386,8 @@ var myBarChart = new Chart($('#perQuestionOIChart'), {
         legend: { display: false },
         title: {
             display: true,
-            text: 'Overall Index (OI) based on Questions Answered'
+            text: 'Overall Index (OI) based on Questions Answered',
+            position: 'bottom'
         },
         annotation: {
             annotations: [{
@@ -367,7 +402,7 @@ var myBarChart = new Chart($('#perQuestionOIChart'), {
                 borderDash: [2, 2],    
                 label: {
                     // Background color of label, default below
-                    backgroundColor: '#c45850',
+                    backgroundColor: 'rgba(229, 23, 16, 0.50)',
                     // Font family of text, inherits from global
                     fontFamily: "sans-serif",
                     // Font size of text, inherits from global
@@ -383,7 +418,7 @@ var myBarChart = new Chart($('#perQuestionOIChart'), {
                     // the label toward the edge, and positive values toward the center.
                     yAdjust: -15,
                     // Whether the label is enabled and should be displayed
-                    enabled: false,
+                    enabled: true,
                     // Text to display in label - default is null
                     content: "Critical"
                 },
@@ -399,6 +434,10 @@ var myBarChart = new Chart($('#perQuestionOIChart'), {
                 backgroundColor: function(context) {
                     return context.dataset.backgroundColor;
                 },
+                borderColor: function(context) {
+                    return context.dataset.borderColor;
+                },
+                borderWidth: 1,
                 formatter: function(value, context) {
                     if ( value > 0 ) {
                         return value + '%';
