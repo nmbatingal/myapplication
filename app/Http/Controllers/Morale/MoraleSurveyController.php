@@ -52,6 +52,30 @@ class MoraleSurveyController extends Controller
         return view('morale.index', compact('semester', 'div_oi', 'question_oi'));
     }
 
+    public function showOiPerQuestion($div)
+    {
+        $semester        = Semestral::orderBy('id', 'DESC')->get();
+        $total_questions = Questions::all();
+        $div_oi          = [];
+        $question_oi     = [];
+
+        if ( !$semester->isEmpty() )
+        {
+            foreach ($total_questions as $question) {
+                $value         = Rating::overallQuestionIndex( $semester[0]['id'], $div, $question['id']);
+                $question_oi[] =    [
+                                        'question'   => $question['text_question'],
+                                        'answer'     => $value,
+                                    ];
+            }
+        } else {
+            $div_oi = [0,0,0,0,0];
+            $question_oi = [['question' => 0, "answer" => 0]];
+        }
+
+        return view('morale.modal-question', compact('question_oi'))->render();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

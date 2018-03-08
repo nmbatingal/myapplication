@@ -128,23 +128,42 @@ class MoraleSurveyRatings extends Model
     public static function overallQuestionIndex($sem, $div, $question)
     {
         $overall_index = 0;
-        $division = Office::find($div);
 
-        $query = Ratings::select(
-                        DB::raw(
-                            'COUNT(case morale_survey_ratings.score when 1 then 1 else null end) AS \'dn\',
-                            COUNT(case morale_survey_ratings.score when 2 then 1 else null end) AS \'no\',
-                            COUNT(case morale_survey_ratings.score when 3 then 1 else null end) AS \'ns\',
-                            COUNT(case morale_survey_ratings.score when 4 then 1 else null end) AS \'y\',
-                            COUNT(case morale_survey_ratings.score when 5 then 1 else null end) AS \'dy\''
-                        ))
-                        ->leftJoin('morale_survey_notifications', 'morale_survey_ratings.user_id', '=', 'morale_survey_notifications.user_id')
-                        ->where('morale_survey_ratings.question_id', $question)
-                        ->where('morale_survey_ratings.semestral_id', $sem)
-                        ->where('morale_survey_notifications.div_id', $division['id'])
-                        ->first();
-        $response = Notification::where('sem_id', $sem)->where('div_id', $division['id'])->count();
-            
+        if ( $div != "Overall Index") {
+            $division = Office::where('acronym', $div)->first();
+
+            $query = Ratings::select(
+                            DB::raw(
+                                'COUNT(case morale_survey_ratings.score when 1 then 1 else null end) AS \'dn\',
+                                COUNT(case morale_survey_ratings.score when 2 then 1 else null end) AS \'no\',
+                                COUNT(case morale_survey_ratings.score when 3 then 1 else null end) AS \'ns\',
+                                COUNT(case morale_survey_ratings.score when 4 then 1 else null end) AS \'y\',
+                                COUNT(case morale_survey_ratings.score when 5 then 1 else null end) AS \'dy\''
+                            ))
+                            ->leftJoin('morale_survey_notifications', 'morale_survey_ratings.user_id', '=', 'morale_survey_notifications.user_id')
+                            ->where('morale_survey_ratings.question_id', $question)
+                            ->where('morale_survey_ratings.semestral_id', $sem)
+                            ->where('morale_survey_notifications.div_id', $division['id'])
+                            ->first();
+            $response = Notification::where('sem_id', $sem)->where('div_id', $division['id'])->count();
+
+        } else {
+            $query = Ratings::select(
+                            DB::raw(
+                                'COUNT(case morale_survey_ratings.score when 1 then 1 else null end) AS \'dn\',
+                                COUNT(case morale_survey_ratings.score when 2 then 1 else null end) AS \'no\',
+                                COUNT(case morale_survey_ratings.score when 3 then 1 else null end) AS \'ns\',
+                                COUNT(case morale_survey_ratings.score when 4 then 1 else null end) AS \'y\',
+                                COUNT(case morale_survey_ratings.score when 5 then 1 else null end) AS \'dy\''
+                            ))
+                            ->leftJoin('morale_survey_notifications', 'morale_survey_ratings.user_id', '=', 'morale_survey_notifications.user_id')
+                            ->where('morale_survey_ratings.question_id', $question)
+                            ->where('morale_survey_ratings.semestral_id', $sem)
+                            ->first();
+
+            $response = Notification::where('sem_id', $sem)->count();
+        }
+
         if ( $response ) 
         {
             $overall_index = (( $query['no'] + ($query['ns'] * 2) + ($query['y'] * 3) + ($query['dy'] * 4) ) / ( $response * 4 ) ) * 100;

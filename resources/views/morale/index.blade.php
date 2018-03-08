@@ -122,60 +122,26 @@
     </div>
 </section>
 
-<section class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Overall Index (OI)<small>Morale Survey Per Question</small></h2>
-                <div class="clearfix"></div>
+<div id="modal-question-per-div" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Modal title</h4>
             </div>
-
-            <div class="x_content">
-                <div class="col-md-9 col-sm-9 col-xs-12">
-                    <canvas id="perQuestionOIChart"></canvas>
-                </div>
-
-                <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
-                    <div class="x_title">
-                        <h2><b>OI%</b> Legend</h2>
-                        <div class="clearfix"></div>
-                    </div>
-
-                    <div class="col-md-12 col-sm-12 col-xs-6">
-                        <table class="tile_info">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <p><i class="fa fa-square green"></i>Very positive and favorable </p>
-                                    </td>
-                                    <td>76 - 100%</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><i class="fa fa-square blue"></i>Positive and favorable </p>
-                                    </td>
-                                    <td>51 - 75%</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><i class="fa fa-square text-warning"></i>Negative and unfavorable </p>
-                                    </td>
-                                    <td>26 - 50%</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><i class="fa fa-square red"></i>Very negative and unfavorable </p>
-                                    </td>
-                                    <td>0 - 25%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="modal-body">
+                <h4>Text in a modal</h4>
+                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-</section>
+</div>
 @endhasanyrole
 
 @endsection
@@ -233,13 +199,32 @@ var myChart = new Chart($('#oiChart'), {
             borderWidth: 1,
             data: arrayDivOi,
             datalabels: {
-                align: 'end',
-                anchor: 'end',
-                offset: 1
+                align: 'center',
+                anchor: 'center',
             },
-        }]
+        }],
     },
     options: {
+        onClick: function(c,i) {
+            e = i[0];
+
+            if (e) {
+
+                console.log(e._index);
+                var x_value = this.data.labels[e._index];
+                var y_value = this.data.datasets[0].data[e._index];
+                console.log(x_value);
+                console.log(y_value);
+
+                $.get( "{!! url('morale/showOiPerQuestion/"+x_value+"') !!}", function( data ) {
+
+                    $( "#modal-question-per-div" ).modal('show');
+
+                    $( ".modal-title" ).html(x_value + ' OI% per Question');
+                    $( ".modal-body" ).html(data);
+                });
+            }
+        },
         tooltips: {
             enabled: true,
             mode: 'label',
@@ -260,7 +245,7 @@ var myChart = new Chart($('#oiChart'), {
             }],
             xAxes: [{
                 categoryPercentage: 1,
-                barPercentage: 0.6
+                barPercentage: 0.6,
             }]
         },
         legend: { display: false },
@@ -306,13 +291,15 @@ var myChart = new Chart($('#oiChart'), {
         },
         plugins: {
             datalabels: {
-                backgroundColor: function(context) {
+                backgroundColor: false,
+                borderColor: false,
+                /*backgroundColor: function(context) {
                     return context.dataset.backgroundColor;
                 },
                 borderColor: function(context) {
                     return context.dataset.borderColor;
                 },
-                borderWidth: 1,
+                borderWidth: 1,*/
                 formatter: function(value, context) {
                     if ( value > 0 ) {
                         return value + '%';
@@ -321,7 +308,7 @@ var myChart = new Chart($('#oiChart'), {
                     }
                 },
                 borderRadius: 4,
-                color: 'white',
+                color: 'black',
                 font: {
                     weight: 'bold'
                 },
@@ -352,9 +339,8 @@ var myBarChart = new Chart($('#perQuestionOIChart'), {
             data: $answers,
             backgroundColor: ["#8e5ea2"],
             datalabels: {
-                align: 'end',
-                anchor: 'end',
-                offset: 1
+                align: 'center',
+                anchor: 'center',
             },
         }]
     },
@@ -431,13 +417,15 @@ var myBarChart = new Chart($('#perQuestionOIChart'), {
         },
         plugins: {
             datalabels: {
-                backgroundColor: function(context) {
+                backgroundColor: false,
+                borderColor: false,
+                /*backgroundColor: function(context) {
                     return context.dataset.backgroundColor;
                 },
                 borderColor: function(context) {
                     return context.dataset.borderColor;
                 },
-                borderWidth: 1,
+                borderWidth: 1,*/
                 formatter: function(value, context) {
                     if ( value > 0 ) {
                         return value + '%';
@@ -446,7 +434,7 @@ var myBarChart = new Chart($('#perQuestionOIChart'), {
                     }
                 },
                 borderRadius: 4,
-                color: 'white',
+                color: 'black',
                 font: {
                     weight: 'bold'
                 },

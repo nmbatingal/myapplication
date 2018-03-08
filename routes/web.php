@@ -68,6 +68,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('morale/semestral', 'Morale\MoraleSurveyController@storeSemestral');
     Route::get('morale/semestral/{id}', 'Morale\MoraleSurveyController@survey')->name('morale.survey');
     Route::get('morale/semestral/{id}/view', 'Morale\MoraleSurveyController@show');
+    Route::get('morale/showOiPerQuestion/{div}', 'Morale\MoraleSurveyController@showOiPerQuestion');
     Route::resource('morale', 'Morale\MoraleSurveyController');
 
 });
