@@ -73,7 +73,7 @@ class MoraleSurveyController extends Controller
             $question_oi = [['question' => 0, "answer" => 0]];
         }
 
-        return view('morale.modal-question', compact('question_oi'))->render();
+        return view('morale.modal-question', compact('div', 'question_oi'))->render();
     }
 
     /**

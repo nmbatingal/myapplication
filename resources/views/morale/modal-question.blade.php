@@ -106,7 +106,7 @@ var myBarChart = new Chart($('#perQuestionOIChart'), {
         legend: { display: false },
         title: {
             display: true,
-            text: 'Overall Index (OI) based on Questions Answered',
+            text: '{{ $div }}' + ' (OI%) based on Questions Answered',
             position: 'bottom'
         },
         annotation: {
