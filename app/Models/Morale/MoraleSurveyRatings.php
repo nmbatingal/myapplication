@@ -127,7 +127,7 @@ class MoraleSurveyRatings extends Model
 
     public static function overallQuestionIndex($sem, $div, $question)
     {
-        $overall_index = 0;
+        $overall_index  = 0;
 
         if ( $div != "Overall Index") {
             $division = Office::where('acronym', $div)->first();
@@ -147,6 +147,12 @@ class MoraleSurveyRatings extends Model
                             ->first();
             $response = Notification::where('sem_id', $sem)->where('div_id', $division['id'])->count();
 
+            if ( $response ) 
+            {
+                $overall_index = (( $query['no'] + ($query['ns'] * 2) + ($query['y'] * 3) + ($query['dy'] * 4) ) / ( $response * 4 ) ) * 100;
+
+            }
+
         } else {
             $query = Ratings::select(
                             DB::raw(
@@ -162,11 +168,12 @@ class MoraleSurveyRatings extends Model
                             ->first();
 
             $response = Notification::where('sem_id', $sem)->count();
-        }
 
-        if ( $response ) 
-        {
-            $overall_index = (( $query['no'] + ($query['ns'] * 2) + ($query['y'] * 3) + ($query['dy'] * 4) ) / ( $response * 4 ) ) * 100;
+            if ( $response ) 
+            {
+                $overall_index = (( $query['no'] + ($query['ns'] * 2) + ($query['y'] * 3) + ($query['dy'] * 4) ) / ($response * 4) ) * 100;
+
+            }
         }
         
         return number_format($overall_index, 2, '.', '');

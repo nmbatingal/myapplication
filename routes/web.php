@@ -64,6 +64,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('iprs/objective', 'Iprs\IprsObjectiveController');
 
     /*** IPRS CONTROLLER ***/
+    Route::get('morale/excel/{type}/{user}', 'Morale\MoraleSurveyController@excel')->name('morale.survey.excel');
+
     Route::get('morale/semestral', 'Morale\MoraleSurveyController@semestral')->name('morale.semestral');
     Route::post('morale/semestral', 'Morale\MoraleSurveyController@storeSemestral');
     Route::get('morale/semestral/{id}', 'Morale\MoraleSurveyController@survey')->name('morale.survey');

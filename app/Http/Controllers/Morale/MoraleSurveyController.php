@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Morale;
 
 use Auth;
+use Excel;
 use App\User;
 use App\Models\Morale\MoraleSurvey as Survey;
 use App\Models\Morale\MoraleSurveyRatings as Rating;
@@ -206,5 +207,54 @@ class MoraleSurveyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function excel($type, $user)
+    {
+        //$questions = Questions::get()->toArray();
+
+        /*$semester  = Semestral::orderBy('id', 'DESC')->get()->toArray();*/
+        $semester        = Semestral::orderBy('id', 'ASC')->first();
+        $total_questions = Questions::all();
+
+        $divisions       = ['ORD', 'FAS', 'FOD', 'TSS'];
+        $div_oi          = [];
+        $question_oi     = [];
+
+        if ( $semester->count() > 0 )
+        {
+            $overall_index   = Rating::overallIndex($semester['id']);
+            array_push($div_oi, [ 'office' => 'OI', 'index' => $overall_index]);
+
+            foreach ($divisions as $div) {
+                $value = Rating::overallDivisionIndex( $semester['id'], $div);
+                array_push($div_oi, [ 'office' => $div, 'index' => $value]);
+            }
+
+            foreach ($total_questions as $question) {
+                //$value         = Rating::overallQuestionIndex( $semester[0]['id'], Auth::user()->div_unit, $question['id']);
+                
+                $value         = Rating::overallQuestionIndex( $semester['id'], 'Overall Index', $question['id']);
+                $question_oi[] =    [
+                                        'question'   => $question['text_question'],
+                                        'answer'     => $value,
+                                    ];
+            }
+        }
+        
+        //return view('morale.index', compact('semester', 'div_oi', 'question_oi'));
+
+        return view('morale.export.question', compact('semester', 'div_oi', 'question_oi'));
+
+
+
+        /*return Excel::create('Questions', function($excel) use ($questions, $semester) {
+
+            $excel->sheet('Question Details', function($sheet) use ($questions, $semester)
+            {
+                $sheet->loadView('morale.export.question', [ 'semester' => $semester ]);
+            });
+
+        })->export('xlsx'); */
     }
 }

@@ -77,6 +77,11 @@
 
             <div class="x_content">
                 <div class="col-md-9 col-sm-9 col-xs-12">
+                    {{-- link_to_route('morale.survey.excel', 'Export to Excel', ['xls', Auth::user()->id ], ['class' => 'btn btn-sm btn-info']) --}}
+
+
+
+                    {!! link_to_route('morale.survey.excel', 'Export to PDF', ['pdf', Auth::user()->id ], ['class' => 'btn btn-sm btn-info']) !!}
                     <canvas id="oiChart"></canvas>
                 </div>
 
@@ -213,8 +218,6 @@ var myChart = new Chart($('#oiChart'), {
                 console.log(e._index);
                 var x_value = this.data.labels[e._index];
                 var y_value = this.data.datasets[0].data[e._index];
-                console.log(x_value);
-                console.log(y_value);
 
                 $.get( "{!! url('morale/showOiPerQuestion/"+x_value+"') !!}", function( data ) {
 
@@ -287,132 +290,6 @@ var myChart = new Chart($('#oiChart'), {
                     // Text to display in label - default is null
                     content: "Critical"
                 },
-            }]
-        },
-        plugins: {
-            datalabels: {
-                backgroundColor: false,
-                borderColor: false,
-                /*backgroundColor: function(context) {
-                    return context.dataset.backgroundColor;
-                },
-                borderColor: function(context) {
-                    return context.dataset.borderColor;
-                },
-                borderWidth: 1,*/
-                formatter: function(value, context) {
-                    if ( value > 0 ) {
-                        return value + '%';
-                    } else {
-                        return 0 + '%';
-                    }
-                },
-                borderRadius: 4,
-                color: 'black',
-                font: {
-                    weight: 'bold'
-                },
-            }
-        },
-    }
-});
-
-/*** QUESTIONS ***/
-var arrayQuestions  = {!! json_encode($question_oi) !!};
-var $question_labels = [];
-var $questions       = [];
-var $answers          = [];
-
-$.each(arrayQuestions, function (n, currentElem) {
-    $question_labels.push(++n);
-    $questions.push(currentElem.question);
-    $answers.push(currentElem.answer)
-});
-
-var myBarChart = new Chart($('#perQuestionOIChart'), {
-    type: 'bar',
-    data: {
-        labels: $question_labels,
-        datasets: [{
-            label: 'OI%',
-            borderWidth: 1,
-            data: $answers,
-            backgroundColor: ["#8e5ea2"],
-            datalabels: {
-                align: 'center',
-                anchor: 'center',
-            },
-        }]
-    },
-    options: {
-        tooltips: {
-            enabled: true,
-            mode: 'label',
-            position: 'average',
-            callbacks: {
-                title: function(tooltipItem) {
-                    return "Question " + tooltipItem[0].xLabel + ": " + tooltipItem[0].yLabel + "%";
-                },
-                label: function(tooltipItem) {
-                    return $questions[tooltipItem.index];
-                }
-            }
-        },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }],
-            xAxes: [{
-                categoryPercentage: 1,
-                barPercentage: 0.9
-            }]
-        },
-        legend: { display: false },
-        title: {
-            display: true,
-            text: 'Overall Index (OI) based on Questions Answered',
-            position: 'bottom'
-        },
-        annotation: {
-            annotations: [{
-                drawTime: 'afterDraw', // overrides annotation.drawTime if set
-                id: 'a-line-1', // optional
-                type: 'line',
-                mode: 'horizontal',
-                scaleID: 'y-axis-0',
-                value: '25',
-                borderColor: 'red',
-                borderWidth: 1,   
-                borderDash: [2, 2],    
-                label: {
-                    // Background color of label, default below
-                    backgroundColor: 'rgba(229, 23, 16, 0.50)',
-                    // Font family of text, inherits from global
-                    fontFamily: "sans-serif",
-                    // Font size of text, inherits from global
-                    fontSize: 12,
-                    // Font style of text, default below
-                    fontStyle: "bold",
-                    // Font color of text, default below
-                    fontColor: "#fff",
-                    // Anchor position of label on line, can be one of: top, bottom, left, right, center. Default below.
-                    position: "center",
-                    // Adjustment along y-axis (top-bottom) of label relative to above number (can be negative)
-                    // For vertical lines positioned top or bottom, negative values move
-                    // the label toward the edge, and positive values toward the center.
-                    yAdjust: -15,
-                    // Whether the label is enabled and should be displayed
-                    enabled: true,
-                    // Text to display in label - default is null
-                    content: "Critical"
-                },
-                // Fires when the user clicks this annotation on the chart
-                // (be sure to enable the event in the events array below).
-                onClick: function(e) {
-                    // `this` is bound to the annotation element
-                }
             }]
         },
         plugins: {
