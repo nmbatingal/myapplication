@@ -124,9 +124,11 @@
                                         <th>Education</th>
                                         <th>School</th>
                                         <th>Eligibility</th>
-                                        <th>Date Filed</th>
+                                        <th>Date Applied</th>
+                                        <th>Date Received</th>
                                         <th>Status</th>
                                         <th>Attachments</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -160,7 +162,8 @@
                                                 {{ $eligibility['title'] }} <br>
                                             @endforeach
                                         </td>
-                                        <td>{{ date("M-d-Y", strtotime( $applicant['created_at'] )) }}</td>
+                                        <td>{{ !empty($applicant['date_of_application']) ? date("M-d-Y", strtotime( $applicant['date_of_application'] )) : '' }}</td>
+                                        <td>{{ !empty($applicant['date_received']) ? date("M-d-Y", strtotime( $applicant['date_received'] )) : '' }}</td>
                                         <td>
                                             @if( $applicant['status'] == 0 )
                                                 <span class="label bg-red">Not yet interviewed</span>
@@ -173,6 +176,11 @@
                                                 <a href="{{ asset($file['path'].'/'.$file['filename']) }}" class="font-12">{{ $file['filename'] }}</a>
                                                 <br>
                                             @endforeach
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('applicants.edit', ['applicant' => $applicant['id'] ]) }}" class="">
+                                                <i class="material-icons">mode_edit</i>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach

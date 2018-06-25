@@ -74,3 +74,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('morale', 'Morale\MoraleSurveyController');
 
 });
+
+Route::get('/sample', function() {
+    $applicant = App\Models\Hrmis\Applicants::find(5);
+    $trainings = App\Models\Hrmis\ApplicantTraining::where('applicant_id', '=', 5);
+    $educ = App\Models\Hrmis\ApplicantEducation::where('applicant_id', 5);
+    return dd($applicant->trainings);
+});

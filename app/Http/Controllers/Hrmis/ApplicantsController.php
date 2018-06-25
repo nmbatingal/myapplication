@@ -152,7 +152,9 @@ class ApplicantsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $applicant = Applicants::findOrFail($id);
+        
+        return view('hrmis.applicants.edit', compact('applicant'));
     }
 
     /**
@@ -164,7 +166,15 @@ class ApplicantsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $applicant = Applicants::findOrFail($id);
+        $applicant->date_of_application = $request['date_of_application'];
+        $applicant->date_received = $request['date_received'];
+        $applicant->firstname = $request['firstname'];
+        $applicant->middlename = $request['middlename'];
+        $applicant->lastname = $request['lastname'];
+        $applicant->save();
+
+        return redirect()->route('applicants.show', ['applicant' => $applicant->id ]);
     }
 
     /**

@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            <span class="font-32">{{ $applicant['firstname'] }} {{ $applicant['middlename'] ? $applicant['middlename'][0].'.' : ''}} {{ $applicant['lastname'] }}</span>
+                            <span class="font-32">{{ $applicant['firstname'] }} {{ $applicant['middlename'] ? $applicant['middlename'][0].'.' : ''}} {{ $applicant['lastname'] }} <a href="{{ route('applicants.edit', ['applicant' => $applicant['id'] ]) }}" class="btn btn-sm pmd-ripple-effect btn-primary"><i class="font-15 material-icons">mode_edit</i> Update</a></span>
                         </h2>
                     </div>
                     <div class="body">
@@ -60,6 +60,30 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="applicant_tab">
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-float">
+                                                    <label for="fullname">Date of Application</label>
+                                                    <div class="form-line">
+                                                        <input id="date_of_application" type="text" class="datepicker form-control" name="date_of_application" value="{{ $applicant['date_of_application'] }}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-float">
+                                                    <label for="age">Date Received</label>
+                                                    <div class="form-line">
+                                                        
+                                                        <input id="date_received" type="text" class="datepicker form-control" name="date_received" value="{{ $applicant['date_received'] }}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-10 col-md-offset-1">
                                         <div class="row">
@@ -139,14 +163,24 @@
                             </div>
 
                             <div role="tabpanel" class="tab-pane fade in" id="training_tab">
-                                @if ( !$applicant->trainings )
+                                @if ( count($applicant->trainings) > 0 )
                                     @foreach ( $applicant->trainings as $training )
                                         <div class="row">
-                                            <div class="col-md-10 col-md-offset-1">
+                                            <div class="col-md-12">
                                                 <div class="form-group form-float">
                                                     <label for="fullname">Activity title</label>
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" value="{{ $training['title'] }}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group form-float">
+                                                    <label for="fullname">Activity title</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $training['conducted_by'] }}" readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -164,14 +198,24 @@
                             </div>
 
                             <div role="tabpanel" class="tab-pane fade in" id="experience_tab">
-                                @if ( !$applicant->trainings )
-                                    @foreach ( $applicant->trainings as $training )
+                                @if ( count($applicant->experiences) > 0 )
+                                    @foreach ( $applicant->experiences as $experience )
                                         <div class="row">
-                                            <div class="col-md-10 col-md-offset-1">
+                                            <div class="col-md-12">
                                                 <div class="form-group form-float">
                                                     <label for="fullname">Activity title</label>
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" value="{{ $training['title'] }}" readonly>
+                                                        <input type="text" class="form-control" value="{{ $experience['position'] }}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group form-float">
+                                                    <label for="fullname">Activity title</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" value="{{ $experience['agency'] }}" readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -189,7 +233,7 @@
                             </div>
 
                             <div role="tabpanel" class="tab-pane fade in" id="eligibility_tab">
-                                @if ( !$applicant->eligibilities )
+                                @if ( count($applicant->eligibilities) > 0 )
                                     @foreach ( $applicant->eligibilities as $eligibility )
                                         <div class="row">
                                             <div class="col-md-10 col-md-offset-1">
