@@ -114,7 +114,7 @@ class ApplicantsController extends Controller
             $eligibility->save();
         }
 
-        foreach ($request->attachment as $attached) {
+        /*foreach ($request->attachment as $attached) {
 
             $filename            = $attached->getClientOriginalName();
             $destinationPath     = 'upload/applicants/'.'applicant_no_'.$applicant['id'];
@@ -126,7 +126,7 @@ class ApplicantsController extends Controller
 
             $attached->move($destinationPath, $filename);
             $file->save();
-        }
+        }*/
 
         return redirect()->route('applicants.showApplicants')->with('info', 'Applicant Information Saved Successfully!');
     }

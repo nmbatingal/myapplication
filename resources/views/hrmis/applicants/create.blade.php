@@ -31,6 +31,24 @@
                             {{ csrf_field() }}
                             <h3>Applicant Information</h3>
                             <fieldset>
+                                <div class="row clearfix">
+                                    <div class="col-sm-3">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input id="date_of_application" type="text" class="datepicker form-control" name="date_of_application" required>
+                                                <label class="form-label">Date of Application</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input id="date_received" type="text" class="datepicker form-control" name="date_received" required>
+                                                <label class="form-label">Date Received</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <h2 class="card-inside-title">Name</h2>
                                 <div class="row clearfix">
                                     <div class="col-sm-4">
@@ -265,7 +283,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </fieldset>
+                            </fieldset><!-- 
 
                             <h3>Other Details</h3>
                             <fieldset>
@@ -282,7 +300,7 @@
                                         <textarea class="form-control" name="remarks" rows="1"></textarea>
                                     </div>
                                 </div>
-                            </fieldset>
+                            </fieldset> -->
                         </form>
                     </div>
                 </div>
@@ -318,6 +336,7 @@
             weekStart: 0,
             time: false
         });
+
         $('#date-start-training').bootstrapMaterialDatePicker({
             clearButton: true,
             weekStart: 0,

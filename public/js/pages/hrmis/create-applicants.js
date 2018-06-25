@@ -48,26 +48,19 @@ $(function () {
             firstname   : "required",
             lastname    : "required",
             sex         : "required",
-            email       : {
-                required   : true,
-                email      : true
-            },
-            contact_number : {
-                required   : true
-            },
             program     : "required",
             school      : "required",
             remarks     : "required",
-            "attachment[]" : {
+            /*"attachment[]" : {
                 required  : true
-            }
+            }*/
         },
-        messages : {
+        /*messages : {
             "attachment[]" : {
                required : "Please upload atleast 1 document",
                //extension: "Only document file is allowed!"
             }
-        },
+        },*/
         highlight: function (input) {
             $(input).parents('.form-line').addClass('error');
         },

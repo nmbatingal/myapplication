@@ -17,7 +17,7 @@ class CreateApplicantExperiencesTable extends Migration
             $table->increments('id');
             $table->string('position');
             $table->string('agency');
-            $table->char('salary_grade', 3)->nullable();
+            $table->decimal('salary_grade', 10, 2)->nullable();
             $table->date('from_date')->nullable();
             $table->date('to_date')->nullable();
             $table->integer('applicant_id')->unsigned()->nullable();
