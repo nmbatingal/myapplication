@@ -29,6 +29,8 @@
                     <div class="body">
                         <form id="form_new_applicant" action="{{ route('applicants.store') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
+
+                            <!--
                             <h3>Applicant Information</h3>
                             <fieldset>
                                 <div class="row clearfix">
@@ -117,46 +119,64 @@
                                     </div>
                                 </div>
                             </fieldset>
+                            -->
 
                             <h3>Education</h3>
                             <fieldset>
-                                <h2 class="card-inside-title">Program Information</h2>
-                                <div class="row clearfix">
-                                    <div class="col-sm-9">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" name="program" class="form-control">
-                                                <label class="form-label">Program</label>
+                                <h2 class="card-inside-title">Program Information</h2><br>
+
+                                <button
+                                    class="btn btn-success"
+                                    type="button"
+                                    v-on:click.prevent="addProgramsCount()"
+                                >Add Program</button>
+
+                                <button
+                                    class="btn btn-default"
+                                    v-on:click.prevent="alert('test')"
+                                >TEST</button>
+
+                                <template v-for="n in applicantProgramsCount">
+                                    <hr>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-9">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" name="program" class="form-control">
+                                                    <label class="form-label">Program</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" name="acronym" class="form-control">
+                                                    <label class="form-label">Acronym</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" name="acronym" class="form-control">
-                                                <label class="form-label">Acronym</label>
+
+
+                                    <div class="row clearfix">
+                                        <div class="col-sm-9">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="school">
+                                                    <label class="form-label">School</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="datepicker form-control" name="year_graduated">
+                                                    <label class="form-label">Year graduated</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-9">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="school">
-                                                <label class="form-label">School</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="datepicker form-control" name="year_graduated">
-                                                <label class="form-label">Year graduated</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </template>
                             </fieldset>
 
                             <h3>Trainings</h3>
@@ -320,48 +340,7 @@
 <!-- Bootstrap Material Datetime Picker Plugin Js -->
 <script src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
 
+<script src="{{ asset('js/vue.js') }}"></script>
 <script src="{{ asset('js/pages/hrmis/create-applicants.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        /* DATE PICKER*/
-        $('.datepicker').bootstrapMaterialDatePicker({
-            clearButton: true,
-            weekStart: 0,
-            time: false
-        });
 
-        /* DATE TRAINING */
-        $('#date-end-training').bootstrapMaterialDatePicker({ 
-            clearButton: true,
-            weekStart: 0,
-            time: false
-        });
-
-        $('#date-start-training').bootstrapMaterialDatePicker({
-            clearButton: true,
-            weekStart: 0,
-            time: false 
-        }).on('change', function(e, date) {
-            $('#date-end-training').bootstrapMaterialDatePicker('setMinDate', date);
-        });
-
-        /* DATE WORK */
-        $('#date-end-work').bootstrapMaterialDatePicker({ 
-            clearButton: true,
-            weekStart: 0,
-            time: false
-        });
-        $('#date-start-work').bootstrapMaterialDatePicker({
-            clearButton: true,
-            weekStart: 0,
-            time: false 
-        }).on('change', function(e, date) {
-            $('#date-end-work').bootstrapMaterialDatePicker('setMinDate', date);
-        });
-
-        $('.dtp-buttons').each(function(){
-            $(this).find('button').addClass('col-black');
-        });
-    });
-</script>
 @endsection

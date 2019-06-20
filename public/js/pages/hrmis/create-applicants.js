@@ -1,4 +1,19 @@
-$(function () {
+$(document).ready(function() {
+    /** ====================================================================== */
+    var formApp = new Vue({
+        el: '#form_new_applicant',
+        data: {
+            applicantProgramsCount: 1,
+        },
+        methods: {
+            addProgramsCount: function() {
+                alert("Hello World!");
+                this.applicantProgramsCount += 1;
+            }
+        }
+    });
+    formApp.addProgramsCount();
+    /** ====================================================================== */
 
     //Advanced form with validation
     var form = $('#form_new_applicant').show();
@@ -48,8 +63,8 @@ $(function () {
             firstname   : "required",
             lastname    : "required",
             sex         : "required",
-            program     : "required",
-            school      : "required",
+            // program     : "required",
+            // school      : "required",
             remarks     : "required",
             /*"attachment[]" : {
                 required  : true
@@ -108,6 +123,56 @@ $(function () {
 
         //console.log(ids);
     } );*/
+
+
+    /**
+     * START
+     * Embedded Javascript
+     */
+
+    /* DATE PICKER*/
+    $('.datepicker').bootstrapMaterialDatePicker({
+        clearButton: true,
+        weekStart: 0,
+        time: false
+    });
+
+    /* DATE TRAINING */
+    $('#date-end-training').bootstrapMaterialDatePicker({ 
+        clearButton: true,
+        weekStart: 0,
+        time: false
+    });
+
+    $('#date-start-training').bootstrapMaterialDatePicker({
+        clearButton: true,
+        weekStart: 0,
+        time: false 
+    }).on('change', function(e, date) {
+        $('#date-end-training').bootstrapMaterialDatePicker('setMinDate', date);
+    });
+
+    /* DATE WORK */
+    $('#date-end-work').bootstrapMaterialDatePicker({ 
+        clearButton: true,
+        weekStart: 0,
+        time: false
+    });
+    $('#date-start-work').bootstrapMaterialDatePicker({
+        clearButton: true,
+        weekStart: 0,
+        time: false 
+    }).on('change', function(e, date) {
+        $('#date-end-work').bootstrapMaterialDatePicker('setMinDate', date);
+    });
+
+    $('.dtp-buttons').each(function(){
+        $(this).find('button').addClass('col-black');
+    });
+    /**
+     * END
+     * Embedded Javascript
+     */
 });
 
 function setButtonWavesEffect(event) {
