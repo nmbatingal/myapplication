@@ -55,6 +55,22 @@ class ApplicantsController extends Controller
      */
     public function store(Request $request)
     {
+        /**
+         * Data in array form:
+         *      programs
+         *      abbreviation
+         *      schools
+         *      year graduated
+         */
+
+        /*
+        if(!empty($request->training_titles)) {
+            return response()->json(["response" => "NOT EMPTY"]);
+        } else {
+            return response()->json(["response" => "NOT EMPTY"]);
+        }
+        */
+
         $applicant = new Applicants();
 
         $applicant->lastname    = $request['lastname'];
@@ -68,50 +84,75 @@ class ApplicantsController extends Controller
         $applicant->remarks     = nl2br($request['remarks']);
         $applicant->save();
 
-        if ( !empty($request['program']) ) {
-            $education = new Education();
+        if ( !empty($request->programs) ) {
+            $programsCount = count($request->programs);
 
-            $education->program         = $request['program'];
-            $education->acronym         = $request['acronym'];
-            $education->school          = $request['school'];
-            $education->year_graduated  = $request['year_graduated'];
-            $education->hasApplicant()->associate($applicant);
-            $education->save();
+            for($i=0; $i<$programsCount; $i++) {
+                if($request->programs[$i] != "") {
+                    $education = new Education;
+
+                    $education->program = $request->programs[$i];
+                    $education->acronym = $request->acronyms[$i];
+                    $education->school = $request->schools[$i];
+                    $education->year_graduated = $request->years_graduated[$i];
+
+                    $education->hasApplicant()->associate($applicant);
+                    $education->save();
+                }
+            }
         }
 
-        if ( !empty($request['training_title']) ) {
-            $training = new Training();
+        if ( !empty($request->training_titles) ) {
+            $trainingsCount = count($request->training_titles);
 
-            $training->title         = $request['training_title'];
-            $training->conducted_by  = $request['conducted_by'];
-            $training->hours         = $request['training_hours'];
-            $training->from_date     = $request['from_date_training'];
-            $training->to_date       = $request['to_date_training'];
-            $training->hasApplicant()->associate($applicant);
-            $training->save();
+            for($i=0; $i<$trainingsCount; $i++) {
+                if($request->training_titles[$i] != "") {
+                    $training = new Training();
+
+                    $training->title         = $request->training_titles{$i};
+                    $training->conducted_by  = $request->conducted_by[$i];
+                    $training->hours         = $request->training_hours[$i];
+                    $training->from_date     = $request->from_date_training[$i];
+                    $training->to_date       = $request->to_date_training[$i];
+                    $training->hasApplicant()->associate($applicant);
+                    $training->save();
+                }
+            }
         }
 
-        if ( !empty($request['work_position']) ) {
-            $experience = new Experience();
+        if ( !empty($request->work_positions) ) {
+            $workPositionsCount = count($request->work_positions);
 
-            $experience->position       = $request['work_position'];
-            $experience->agency         = $request['work_agency'];
-            $experience->salary_grade   = $request['salary_grade'];
-            $experience->from_date      = $request['from_date_agency'];
-            $experience->to_date        = $request['to_date_agency'];
-            $experience->hasApplicant()->associate($applicant);
-            $experience->save();
+            for($i=0; $i<$workPositionsCount; $i++) {
+                if($request->work_positions[$i] != "") {
+                    $experience = new Experience;
+
+                    $experience->position       = $request->work_positions[$i];
+                    $experience->agency         = $request->work_agencies[$i];
+                    $experience->salary_grade   = $request->salary_grade[$i];
+                    $experience->from_date      = $request->from_date_agency[$i];
+                    $experience->to_date        = $request->to_date_agency[$i];
+                    $experience->hasApplicant()->associate($applicant);
+                    $experience->save();
+                }
+            }
         }
 
-        if ( !empty($request['title_eligibility']) ) {
-            $eligibility = new Eligibility();
+        if ( !empty($request->title_eligibilities) ) {
+            $eligibilitiesCount = count($request->title_eligibilities);
 
-            $eligibility->title          = $request['title_eligibility'];
-            $eligibility->license_number = $request['license_number'];
-            $eligibility->rating         = $request['rating'];
-            $eligibility->exam_date      = $request['exam_date'];
-            $eligibility->hasApplicant()->associate($applicant);
-            $eligibility->save();
+            for($i=0; $i<$eligibilitiesCount; $i++) {
+                if($request->title_eligibilities[$i] != "") {
+                    $eligibility = new Eligibility;
+
+                    $eligibility->title          = $request->title_eligibilities[$i];
+                    $eligibility->license_number = $request->license_numbers[$i];
+                    $eligibility->rating         = $request->ratings[$i];
+                    $eligibility->exam_date      = $request->exam_date[$i];
+                    $eligibility->hasApplicant()->associate($applicant);
+                    $eligibility->save();
+                }
+            }
         }
 
         /*foreach ($request->attachment as $attached) {

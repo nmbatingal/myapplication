@@ -4,7 +4,10 @@
 <!-- Animation Css -->
 <!-- <link href="{{ asset('plugins/animate-css/animate.css') }}" rel="stylesheet" /> -->
 <!-- Bootstrap Material Datetime Picker Css -->
+
 <link href="{{ asset('plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" />
+<link href="{{ asset('css/animate-css/animate.min.css') }}" rel="stylesheet" />
+
 @endsection
 
 @section('content')
@@ -26,11 +29,10 @@
                     <div class="header">
                         <h2>NEW APPLICANT FORM <small>Description text here...</small></h2>
                     </div>
-                    <div class="body">
+                    <div id="form-new-applicant" class="body">
                         <form id="form_new_applicant" action="{{ route('applicants.store') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            <!--
                             <h3>Applicant Information</h3>
                             <fieldset>
                                 <div class="row clearfix">
@@ -119,38 +121,34 @@
                                     </div>
                                 </div>
                             </fieldset>
-                            -->
 
                             <h3>Education</h3>
                             <fieldset>
                                 <h2 class="card-inside-title">Program Information</h2><br>
 
                                 <button
-                                    class="btn btn-success"
+                                    id="button-add-program"
+                                    class="btn btn-success animated slideInLeft"
                                     type="button"
-                                    v-on:click.prevent="addProgramsCount()"
                                 >Add Program</button>
 
-                                <button
-                                    class="btn btn-default"
-                                    v-on:click.prevent="alert('test')"
-                                >TEST</button>
+                                <div id="programs-info"></div>
 
-                                <template v-for="n in applicantProgramsCount">
+                                <template class="template-programs-info">
                                     <hr>
                                     <div class="row clearfix">
                                         <div class="col-sm-9">
-                                            <div class="form-group form-float">
+                                            <div class="form-group form-float animated slideInDown">
                                                 <div class="form-line">
-                                                    <input type="text" name="program" class="form-control">
+                                                    <input type="text" name="programs[]" class="form-control">
                                                     <label class="form-label">Program</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
-                                            <div class="form-group form-float">
+                                            <div class="form-group form-float animated slideInDown">
                                                 <div class="form-line">
-                                                    <input type="text" name="acronym" class="form-control">
+                                                    <input type="text" name="acronyms[]" class="form-control">
                                                     <label class="form-label">Acronym</label>
                                                 </div>
                                             </div>
@@ -160,18 +158,73 @@
 
                                     <div class="row clearfix">
                                         <div class="col-sm-9">
-                                            <div class="form-group form-float">
+                                            <div class="form-group form-float animated slideInDown">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="school">
+                                                    <input type="text" class="form-control" name="schools[]">
                                                     <label class="form-label">School</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
-                                            <div class="form-group form-float">
+                                            <div class="form-group form-float animated slideInDown">
                                                 <div class="form-line">
-                                                    <input type="text" class="datepicker form-control" name="year_graduated">
+                                                    <input type="text" class="datepicker form-control" name="years_graduated[]">
                                                     <label class="form-label">Year graduated</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+
+                            </fieldset>
+
+                            <h3>Trainings</h3>
+                            <fieldset>
+                                <h2 class="card-inside-title">Training Details</h2>
+
+                                <button
+                                    id="button-add-training"
+                                    class="btn btn-success animated slideInLeft"
+                                    type="button"
+                                >Add Trainings</button>
+
+                                <div id="trainings-info"></div>
+
+                                <template class="template-trainings-info">
+                                    <div class="form-group form-float animated slideInDown">
+                                        <div class="form-line">
+                                            <input type="text" name="training_titles[]" class="form-control">
+                                            <label class="form-label">Title</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float animated slideInDown">
+                                        <div class="form-line">
+                                            <input type="text" name="conducted_by[]" class="form-control">
+                                            <label class="form-label">Conducted by</label>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-2">
+                                            <div class="form-group form-float animated slideInDown">
+                                                <div class="form-line">
+                                                    <input type="number" class="form-control" name="training_hours[]">
+                                                    <label class="form-label">Hours</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group form-float animated slideInDown">
+                                                <div class="form-line">
+                                                    <input id="date-start-training" type="text" class="form-control" name="from_date_training[]">
+                                                    <label class="form-label">From date</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group form-float animated slideInDown">
+                                                <div class="form-line">
+                                                    <input id="date-end-training" type="text" class="form-control" name="to_date_training[]">
+                                                    <label class="form-label">To date</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -179,130 +232,110 @@
                                 </template>
                             </fieldset>
 
-                            <h3>Trainings</h3>
-                            <fieldset>
-                                <h2 class="card-inside-title">Training Details</h2>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" name="training_title" class="form-control">
-                                        <label class="form-label">Title</label>
-                                    </div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" name="conducted_by" class="form-control">
-                                        <label class="form-label">Conducted by</label>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-2">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="number" class="form-control" name="training_hours">
-                                                <label class="form-label">Hours</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input id="date-start-training" type="text" class="form-control" name="from_date_training">
-                                                <label class="form-label">From date</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input id="date-end-training" type="text" class="form-control" name="to_date_training">
-                                                <label class="form-label">To date</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-
                             <h3>Work Experience</h3>
                             <fieldset>
                                 <h2 class="card-inside-title">Work Details</h2>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" name="work_position" class="form-control">
-                                        <label class="form-label">Position</label>
+
+                                <button
+                                    id="button-add-work"
+                                    class="btn btn-success animated slideInLeft"
+                                    type="button"
+                                >Add Work Experience</button>
+
+                                <div id="work-info"></div>
+
+                                <template class="template-work-info">
+                                    <div class="form-group form-float animated slideInDown">
+                                        <div class="form-line">
+                                            <input type="text" name="work_positions[]" class="form-control">
+                                            <label class="form-label">Position</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-9">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="work_agency">
-                                                <label class="form-label">Agency</label>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-9">
+                                            <div class="form-group form-float animated slideInDown">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="work_agencies[]">
+                                                    <label class="form-label">Agency</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group form-float animated slideInDown">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="salary_grade[]">
+                                                    <label class="form-label">Salary Grade</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="salary_grade">
-                                                <label class="form-label">Salary Grade</label>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-3">
+                                            <div class="form-group form-float animated slideInDown">
+                                                <div class="form-line">
+                                                    <input id="date-start-work" type="text" class="form-control" name="from_date_agency[]">
+                                                    <label class="form-label">From date</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group form-float animated slideInDown">
+                                                <div class="form-line">
+                                                    <input id="date-end-work" type="text" class="form-control" name="to_date_agency[]">
+                                                    <label class="form-label">To date</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-3">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input id="date-start-work" type="text" class="form-control" name="from_date_agency">
-                                                <label class="form-label">From date</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input id="date-end-work" type="text" class="form-control" name="to_date_agency">
-                                                <label class="form-label">To date</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                </template>
                             </fieldset>
 
                             <h3>Eligibility</h3>
                             <fieldset>
                                 <h2 class="card-inside-title">Eligibility</h2>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" name="title_eligibility" class="form-control">
-                                        <label class="form-label">Title</label>
+
+                                <button
+                                    id="button-add-eligibility"
+                                    class="btn btn-success animated slideInLeft"
+                                    type="button"
+                                >Add Eligibility</button>
+
+                                <div id="eligibilities-info"></div>
+
+                                <template class="template-eligibilities-info">
+                                    <div class="form-group form-float animated slideInDown">
+                                        <div class="form-line">
+                                            <input type="text" name="title_eligibilities[]" class="form-control">
+                                            <label class="form-label">Title</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-6">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="license_number">
-                                                <label class="form-label">License number</label>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-6">
+                                            <div class="form-group form-float animated slideInDown">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="license_numbers[]">
+                                                    <label class="form-label">License number</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group form-float animated slideInDown">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="ratings[]">
+                                                    <label class="form-label">Rating</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group form-float animated slideInDown">
+                                                <div class="form-line">
+                                                    <input type="text" class="datepicker form-control" name="exam_date[]">
+                                                    <label class="form-label">Exam date</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="rating">
-                                                <label class="form-label">Rating</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="datepicker form-control" name="exam_date">
-                                                <label class="form-label">Exam date</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </template>
                             </fieldset><!-- 
 
                             <h3>Other Details</h3>
@@ -340,7 +373,7 @@
 <!-- Bootstrap Material Datetime Picker Plugin Js -->
 <script src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
 
-<script src="{{ asset('js/vue.js') }}"></script>
+<!--<script src="{{ asset('js/vue.js') }}"></script>-->
 <script src="{{ asset('js/pages/hrmis/create-applicants.js') }}"></script>
 
 @endsection

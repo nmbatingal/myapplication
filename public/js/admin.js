@@ -261,6 +261,7 @@ $.AdminBSB.navbar = {
 $.AdminBSB.input = {
     activate: function () {
         //On focus event
+        
         $('.form-control').focus(function () {
             $(this).parent().addClass('focused');
         });

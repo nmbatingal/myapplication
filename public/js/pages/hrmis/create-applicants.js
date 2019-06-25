@@ -1,20 +1,21 @@
 $(document).ready(function() {
+
     /** ====================================================================== */
-    var formApp = new Vue({
-        el: '#form_new_applicant',
+    /*
+    var vm = new Vue({
+        el: '#form-new-applicant',
         data: {
             applicantProgramsCount: 1,
         },
         methods: {
             addProgramsCount: function() {
-                alert("Hello World!");
                 this.applicantProgramsCount += 1;
             }
         }
     });
-    formApp.addProgramsCount();
+    */
     /** ====================================================================== */
-
+    
     //Advanced form with validation
     var form = $('#form_new_applicant').show();
 
@@ -72,8 +73,8 @@ $(document).ready(function() {
         },
         /*messages : {
             "attachment[]" : {
-               required : "Please upload atleast 1 document",
-               //extension: "Only document file is allowed!"
+            required : "Please upload atleast 1 document",
+            //extension: "Only document file is allowed!"
             }
         },*/
         highlight: function (input) {
@@ -89,7 +90,6 @@ $(document).ready(function() {
 
     //Masked Input ============================================================================================================================
     var $demoMaskedInput = $('.masked-input');
-
     $demoMaskedInput.find('.mobile-phone-number').inputmask('+63 999 999 9999', { placeholder: '+__ ___ ___ ____' });
 
     /*$('#submitlist').click( function () {
@@ -131,47 +131,93 @@ $(document).ready(function() {
      */
 
     /* DATE PICKER*/
-    $('.datepicker').bootstrapMaterialDatePicker({
-        clearButton: true,
-        weekStart: 0,
-        time: false
-    });
+    function initDatePicker() {
+        $('.datepicker').bootstrapMaterialDatePicker({
+            clearButton: true,
+            weekStart: 0,
+            time: false
+        });
 
-    /* DATE TRAINING */
-    $('#date-end-training').bootstrapMaterialDatePicker({ 
-        clearButton: true,
-        weekStart: 0,
-        time: false
-    });
+        /* DATE TRAINING */
+        $('#date-end-training').bootstrapMaterialDatePicker({ 
+            clearButton: true,
+            weekStart: 0,
+            time: false
+        });
 
-    $('#date-start-training').bootstrapMaterialDatePicker({
-        clearButton: true,
-        weekStart: 0,
-        time: false 
-    }).on('change', function(e, date) {
-        $('#date-end-training').bootstrapMaterialDatePicker('setMinDate', date);
-    });
+        $('#date-start-training').bootstrapMaterialDatePicker({
+            clearButton: true,
+            weekStart: 0,
+            time: false 
+        }).on('change', function(e, date) {
+            $('#date-end-training').bootstrapMaterialDatePicker('setMinDate', date);
+        });
 
-    /* DATE WORK */
-    $('#date-end-work').bootstrapMaterialDatePicker({ 
-        clearButton: true,
-        weekStart: 0,
-        time: false
-    });
-    $('#date-start-work').bootstrapMaterialDatePicker({
-        clearButton: true,
-        weekStart: 0,
-        time: false 
-    }).on('change', function(e, date) {
-        $('#date-end-work').bootstrapMaterialDatePicker('setMinDate', date);
-    });
+        /* DATE WORK */
+        $('#date-end-work').bootstrapMaterialDatePicker({ 
+            clearButton: true,
+            weekStart: 0,
+            time: false
+        });
+        $('#date-start-work').bootstrapMaterialDatePicker({
+            clearButton: true,
+            weekStart: 0,
+            time: false 
+        }).on('change', function(e, date) {
+            $('#date-end-work').bootstrapMaterialDatePicker('setMinDate', date);
+        });
 
-    $('.dtp-buttons').each(function(){
-        $(this).find('button').addClass('col-black');
-    });
+        $('.dtp-buttons').each(function(){
+            $(this).find('button').addClass('col-black');
+        });
+    }
+    initDatePicker();
+
     /**
      * END
      * Embedded Javascript
+     */
+
+    /**
+     * Creating additional info to new applicant
+     */
+
+    // PROGRAMS
+    var buttonAddProgram = document.getElementById("button-add-program");
+    buttonAddProgram.addEventListener("click", function() {cloneFieldset("template-programs-info", "programs-info")});
+    for(var i=0; i<1; i++) {
+        cloneFieldset("template-programs-info", "programs-info");
+    }
+
+    // TRAININGS
+    var buttonAddTraining = document.getElementById("button-add-training");
+    buttonAddTraining.addEventListener("click", function() {cloneFieldset("template-trainings-info", "trainings-info")});
+    cloneFieldset("template-trainings-info", "trainings-info");
+
+    // WORK EXPERIENCE
+    var buttonAddWorkExperience = document.getElementById("button-add-work");
+    buttonAddWorkExperience.addEventListener("click", function() {cloneFieldset("template-work-info", "work-info")});
+    cloneFieldset("template-work-info", "work-info");
+
+    // ELIGIBILITY
+    var buttonAddEligibility = document.getElementById("button-add-eligibility");
+    buttonAddEligibility.addEventListener("click", function() {cloneFieldset("template-eligibilities-info", "eligibilities-info")});
+    cloneFieldset("template-eligibilities-info", "eligibilities-info");
+
+    /**
+     * ============================================================
+     * FUNCTIONS
+     * ============================================================
+     */
+    function cloneFieldset(templateClass, fieldSetId) {
+        var templateClone = document.getElementsByClassName(templateClass)[0].content.cloneNode(true);
+        document.getElementById(fieldSetId).prepend(templateClone);
+        $.AdminBSB.input.activate(); // reinitialize focus event feature on generated shadow DOMs.
+        initDatePicker();
+    }
+
+    /**
+     * ============================================================
      */
 });
 
