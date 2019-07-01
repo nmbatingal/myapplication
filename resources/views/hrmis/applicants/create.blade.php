@@ -27,8 +27,18 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>NEW APPLICANT FORM <small>Description text here...</small></h2>
+                        <div style="display: flex; justify-content: space-between;">
+                            <h2>NEW APPLICANT FORM <small>Description text here...</small></h2>
+
+                            <button
+                                type="button"
+                                class="
+                                    btn btn-success 
+                                    animated slideInRight"
+                            >Import Excel</button>
+                        </div>
                     </div>
+
                     <div id="form-new-applicant" class="body">
                         <form id="form_new_applicant" action="{{ route('applicants.store') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
@@ -36,7 +46,7 @@
                             <h3>Applicant Information</h3>
                             <fieldset>
                                 <div class="row clearfix">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input id="date_of_application" type="text" class="datepicker form-control" name="date_of_application" required>
@@ -44,7 +54,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input id="date_received" type="text" class="datepicker form-control" name="date_received" required>
@@ -81,6 +91,38 @@
                                     </div>
                                 </div>
 
+                                <div style="display: flex; 
+                                    justify-content: flex-start; 
+                                    align-items: flex-end;
+                                ">
+                                    <!-- SEX -->
+                                    <div style="display: flex; flex-direction: column;">
+                                        <h2 class="card-inside-title">Sex</h2>
+                                        <div class="form-group">
+                                            <input name="sex" type="radio" id="radio_1" value="1" />
+                                            <label for="radio_1">Male</label>
+                                            <input name="sex" type="radio" id="radio_2" value="2" />
+                                            <label for="radio_2">Female</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- AGE -->
+                                    <div style="
+                                        display: flex; 
+                                        flex-direction: column; 
+                                        margin-left: 40px;
+                                        width: 8em;
+                                    ">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="number" class="form-control" name="age" min="0">
+                                                <label class="form-label">Age</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--
                                 <h2 class="card-inside-title">Sex</h2>
                                 <div class="row clearfix">
                                     <div class="col-sm-4">
@@ -100,6 +142,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                -->
 
                                 <h2 class="card-inside-title">Contact</h2>
                                 <div class="row clearfix">
@@ -128,7 +171,7 @@
 
                                 <button
                                     id="button-add-program"
-                                    class="btn btn-success animated slideInLeft"
+                                    class="btn btn-info animated slideInLeft"
                                     type="button"
                                 >Add Program</button>
 
@@ -184,7 +227,7 @@
 
                                 <button
                                     id="button-add-training"
-                                    class="btn btn-success animated slideInLeft"
+                                    class="btn btn-info animated slideInLeft"
                                     type="button"
                                 >Add Trainings</button>
 
@@ -238,7 +281,7 @@
 
                                 <button
                                     id="button-add-work"
-                                    class="btn btn-success animated slideInLeft"
+                                    class="btn btn-info animated slideInLeft"
                                     type="button"
                                 >Add Work Experience</button>
 
@@ -296,7 +339,7 @@
 
                                 <button
                                     id="button-add-eligibility"
-                                    class="btn btn-success animated slideInLeft"
+                                    class="btn btn-info animated slideInLeft"
                                     type="button"
                                 >Add Eligibility</button>
 
