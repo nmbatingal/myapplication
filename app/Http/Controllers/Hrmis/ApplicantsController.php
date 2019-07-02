@@ -44,6 +44,7 @@ class ApplicantsController extends Controller
      */
     public function create()
     {
+        
         return view('hrmis.applicants.create');
     }
 

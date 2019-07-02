@@ -93,10 +93,9 @@
 
                                 <div style="display: flex; 
                                     justify-content: flex-start; 
-                                    align-items: flex-end;
                                 ">
                                     <!-- SEX -->
-                                    <div style="display: flex; flex-direction: column;">
+                                    <div style="display: flex; flex-direction: column;" class="col-sm-4">
                                         <h2 class="card-inside-title">Sex</h2>
                                         <div class="form-group">
                                             <input name="sex" type="radio" id="radio_1" value="1" />
@@ -109,10 +108,9 @@
                                     <!-- AGE -->
                                     <div style="
                                         display: flex; 
-                                        flex-direction: column; 
-                                        margin-left: 40px;
-                                        width: 8em;
-                                    ">
+                                        flex-direction: column;
+                                    " class="col-sm-4">
+                                        <h2 class="card-inside-title">Age</h2>
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <input type="number" class="form-control" name="age" min="0">
@@ -120,6 +118,27 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- CIVIL STATUS -->
+                                    <div style="
+                                        display: flex; 
+                                        flex-direction: column;
+                                    " class="col-sm-4">
+                                        <h2 class="card-inside-title">Civil Status</h2>
+                                        <div class="form-group">
+                                            <select 
+                                                name="civil_status" 
+                                                id="civil_status"
+                                                class="form-control"
+                                            >
+                                                <option value="Single">Single</option>
+                                                <option value="Married">Married</option>
+                                                <option value="Divorced">Divorced</option>
+                                                <option value="Widowed">Widowed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <!--
@@ -143,6 +162,56 @@
                                     </div>
                                 </div>
                                 -->
+
+                                <h2 class="card-inside-title">Home Address</h2>
+                                <div class="row clearfix">
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select name="region" id="region" class="form-control">
+                                                </select>
+                                                <label class="form-label" for="region">Region</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select name="province" id="province" class="form-control">
+
+                                                </select>
+                                                <label class="form-label" for="province">Province</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select name="municipality" id="municipality" class="form-control">
+                                                
+                                                </select>
+                                                <label class="form-label" id="municipality">Municipality</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select name="barangay" id="barangay" class="form-control">
+                                                    <option value=""></option>
+                                                </select>
+                                                <label class="form-label" for="barangay">Barangay</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
 
                                 <h2 class="card-inside-title">Contact</h2>
                                 <div class="row clearfix">

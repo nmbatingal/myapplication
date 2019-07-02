@@ -7,12 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Applicants extends Model
 {
     protected $connection = 'mysql';
-    
     protected $table = 'applicants';
-
     protected $fillable = [
-        'lastname', 'firstname', 'middlename', 
-        'contact_number', 'email', 'age', 'sex', 
+        'lastname', 'firstname', 'middlename',
+        'contact_number', 'email', 'age', 'sex', 'civil_status', 'address',
         'date_of_application',
         'date_received',
         'remarks', 'status', 'added_by',  
