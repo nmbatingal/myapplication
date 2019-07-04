@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// ADDRESS
+Route::get('address/regions', 'OpenApiController@regions');
+Route::get('address/provinces', 'OpenApiController@provinces');
+Route::get('address/municipalities', 'OpenApiController@municipalities');
+Route::get('address/barangays', 'OpenApiController@barangays');

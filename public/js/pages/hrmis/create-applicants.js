@@ -1,21 +1,4 @@
 $(document).ready(function() {
-
-    /** ====================================================================== */
-    /*
-    var vm = new Vue({
-        el: '#form-new-applicant',
-        data: {
-            applicantProgramsCount: 1,
-        },
-        methods: {
-            addProgramsCount: function() {
-                this.applicantProgramsCount += 1;
-            }
-        }
-    });
-    */
-    /** ====================================================================== */
-    
     //Advanced form with validation
     var form = $('#form_new_applicant').show();
 
@@ -181,6 +164,97 @@ $(document).ready(function() {
     /**
      * Creating additional info to new applicant
      */
+
+    /**
+     * VUE Apps
+     */
+    var location = new Vue({
+        el: '#address-fieldset',
+        data: {
+            selected: {
+                region: '',
+                province: '',
+                municipality: '',
+                barangay: ''
+            },
+            regions: '',
+            provinces: '',
+            municipalities: '',
+            barangays: '',
+        },
+        methods: {
+            getRegions: function() {
+                var self = this;
+                $.ajax({
+                    url: '/api/address/regions',
+                    method: 'GET',
+                    success: function(data, textStatus, jqXHR) {
+                        self.regions = data.regions;
+                    }
+                });
+            },
+            getProvinces: function() {
+                var self = this;
+
+                self.selected.province = '';
+                self.selected.municipality = '';
+                self.selected.barangay = '';
+                
+                self.provinces = '';
+                self.municipalities = '';
+                self.barangays = '';
+
+                $.ajax({
+                    url: '/api/address/provinces',
+                    method: 'GET',
+                    data: {
+                        region_code: self.selected.region.code,
+                    },
+                    success: function(data, textStatus, jqXHR) {
+                        self.provinces = data.provinces;
+                    }
+                });
+            },
+            getMunicipalities: function() {
+                var self = this;
+
+                self.selected.municipality = '';
+                self.selected.barangay = '';
+                self.municipalities = '';
+                self.barangays = '';
+
+                $.ajax({
+                    url: '/api/address/municipalities',
+                    method: 'GET',
+                    data: {
+                        province_code: self.selected.province.code,
+                    },
+                    success: function(data, textStatus, jqXHR) {
+                        self.municipalities = data.municipalities;
+                    }
+                });
+            },
+            getBarangays: function() {
+                var self = this;
+
+                self.selected.barangay = '';
+                self.barangays = '';
+
+                $.ajax({
+                    url: '/api/address/barangays',
+                    method: 'GET',
+                    data: {
+                        municipality_code: self.selected.municipality.code,
+                    },
+                    success: function(data, textStatus, jqXHR) {
+                        console.log([data, textStatus, jqXHR]);
+                        self.barangays = data.barangays;
+                    }
+                });
+            },
+        }
+    });
+    location.getRegions();
 
     // PROGRAMS
     var buttonAddProgram = document.getElementById("button-add-program");

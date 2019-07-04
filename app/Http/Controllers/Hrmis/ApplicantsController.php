@@ -13,6 +13,12 @@ use App\Models\Hrmis\PositionHiring as Positions;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+// location models
+use App\Models\Location\Region as Region;
+use App\Models\Location\Province as Province;
+use App\Models\Location\Municipality as Municipality;
+use App\Models\Location\Barangay as Barangay;
+
 class ApplicantsController extends Controller
 {
     public function __construct()
@@ -42,9 +48,16 @@ class ApplicantsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function getRegions() {
+        $regions = Region::all();
+        return response()->json([
+            'regions' => $regions,
+        ]);
+    }
+
     public function create()
     {
-        
         return view('hrmis.applicants.create');
     }
 

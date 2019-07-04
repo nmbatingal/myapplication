@@ -10,7 +10,7 @@ class Applicants extends Model
     protected $table = 'applicants';
     protected $fillable = [
         'lastname', 'firstname', 'middlename',
-        'contact_number', 'email', 'age', 'sex', 'civil_status', 'address',
+        'contact_number', 'email', 'age', 'sex', 'civil_status',
         'date_of_application',
         'date_received',
         'remarks', 'status', 'added_by',  

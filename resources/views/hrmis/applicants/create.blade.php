@@ -164,47 +164,98 @@
                                 -->
 
                                 <h2 class="card-inside-title">Home Address</h2>
-                                <div class="row clearfix">
-
-                                    <div class="col-sm-4">
+                                <!-- HOME ADDRESS fieldset-->
+                                <div 
+                                    id="address-fieldset"
+                                    style="
+                                        display: flex;
+                                        flex-direction: column;
+                                    "
+                                >
+                                    <div class="col-sm-10">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <select name="region" id="region" class="form-control">
+                                                <label for="region">Region</label>
+                                                <select 
+                                                    v-model="selected.region"
+                                                    @change="getProvinces"
+                                                    name="region" 
+                                                    id="region" 
+                                                    class="form-control"
+                                                    autofocus
+                                                >
+                                                    <option
+                                                        v-for="region in regions"
+                                                        v-bind:value="region"
+                                                    >
+                                                        @{{ region.name }}
+                                                    </option>
                                                 </select>
-                                                <label class="form-label" for="region">Region</label>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <div v-if="selected.region != ''" class="col-sm-10 animated slideInDown">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <select name="province" id="province" class="form-control">
-
+                                                <label for="province">Province</label>
+                                                <select 
+                                                    v-model="selected.province"
+                                                    @change="getMunicipalities"
+                                                    name="province"
+                                                    id="province" 
+                                                    class="form-control"
+                                                >
+                                                    <option
+                                                        v-for="province in provinces"
+                                                        v-bind:value="province"
+                                                    >
+                                                        @{{ province.name }}
+                                                    </option>
                                                 </select>
-                                                <label class="form-label" for="province">Province</label>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <div v-if="selected.province != ''" class="col-sm-10 animated slideInDown">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <select name="municipality" id="municipality" class="form-control">
-                                                
+                                                <label id="municipality">Municipality</label>
+                                                <select 
+                                                    v-model="selected.municipality"
+                                                    @change="getBarangays"
+                                                    name="municipality" 
+                                                    id="municipality" 
+                                                    class="form-control"
+                                                >
+                                                    <option
+                                                        v-for="municipality in municipalities"
+                                                        v-bind:value="municipality"
+                                                    >
+                                                        @{{ municipality.name }}
+                                                    </option>
                                                 </select>
-                                                <label class="form-label" id="municipality">Municipality</label>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-12">
+                                    <div v-if="selected.municipality != ''" class="col-sm-10 animated slideInDown">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <select name="barangay" id="barangay" class="form-control">
-                                                    <option value=""></option>
+                                                <label for="barangay">Barangay</label>
+                                                <select 
+                                                    v-model="selected.barangay"
+                                                    name="barangay" 
+                                                    id="barangay" 
+                                                    class="form-control"
+                                                >
+                                                    <option 
+                                                        v-for="barangay in barangays"
+                                                        v-bind:value="barangay"
+                                                    >
+                                                        @{{ barangay.name }}
+                                                    </option>
                                                 </select>
-                                                <label class="form-label" for="barangay">Barangay</label>
                                             </div>
                                         </div>
                                     </div>
@@ -478,14 +529,17 @@
 @endsection
 
 @section('scripts')
+
 <!-- JQuery Steps Plugin Js -->
 <script src="{{ asset('plugins/jquery-steps/jquery.steps.js') }}"></script>
+
 <!-- Moment Plugin Js -->
 <script src="{{ asset('plugins/momentjs/moment.js') }}"></script>
+
 <!-- Bootstrap Material Datetime Picker Plugin Js -->
 <script src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
 
-<!--<script src="{{ asset('js/vue.js') }}"></script>-->
+<script src="{{ asset('js/vue.js') }}"></script>
 <script src="{{ asset('js/pages/hrmis/create-applicants.js') }}"></script>
 
 @endsection
