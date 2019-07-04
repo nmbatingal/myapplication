@@ -172,10 +172,10 @@ $(document).ready(function() {
         el: '#address-fieldset',
         data: {
             selected: {
-                region: '',
-                province: '',
-                municipality: '',
-                barangay: ''
+                regionCode: '',
+                provinceCode: '',
+                municipalityCode: '',
+                barangayCode: ''
             },
             regions: '',
             provinces: '',
@@ -183,6 +183,23 @@ $(document).ready(function() {
             barangays: '',
         },
         methods: {
+            initDefault: function(
+                pRegionCode,
+                pProvinceCode,
+                pMunicipalityCode
+            ) {
+                var self = this;
+                self.getRegions();
+
+                self.selected.regionCode = pRegionCode;
+                self.getProvinces();
+
+                self.selected.provinceCode = pProvinceCode;
+                self.getMunicipalities();
+
+                self.selected.municipalityCode = pMunicipalityCode;
+                self.getBarangays();
+            },
             getRegions: function() {
                 var self = this;
                 $.ajax({
@@ -196,9 +213,9 @@ $(document).ready(function() {
             getProvinces: function() {
                 var self = this;
 
-                self.selected.province = '';
-                self.selected.municipality = '';
-                self.selected.barangay = '';
+                self.selected.provinceCode = '';
+                self.selected.municipalityCode = '';
+                self.selected.barangayCode = '';
                 
                 self.provinces = '';
                 self.municipalities = '';
@@ -208,7 +225,7 @@ $(document).ready(function() {
                     url: '/api/address/provinces',
                     method: 'GET',
                     data: {
-                        region_code: self.selected.region.code,
+                        region_code: self.selected.regionCode,
                     },
                     success: function(data, textStatus, jqXHR) {
                         self.provinces = data.provinces;
@@ -218,8 +235,9 @@ $(document).ready(function() {
             getMunicipalities: function() {
                 var self = this;
 
-                self.selected.municipality = '';
-                self.selected.barangay = '';
+                self.selected.municipalityCode = '';
+                self.selected.barangayCode = '';
+
                 self.municipalities = '';
                 self.barangays = '';
 
@@ -227,7 +245,7 @@ $(document).ready(function() {
                     url: '/api/address/municipalities',
                     method: 'GET',
                     data: {
-                        province_code: self.selected.province.code,
+                        province_code: self.selected.provinceCode,
                     },
                     success: function(data, textStatus, jqXHR) {
                         self.municipalities = data.municipalities;
@@ -237,24 +255,23 @@ $(document).ready(function() {
             getBarangays: function() {
                 var self = this;
 
-                self.selected.barangay = '';
+                self.selected.barangayCode = '';
                 self.barangays = '';
 
                 $.ajax({
                     url: '/api/address/barangays',
                     method: 'GET',
                     data: {
-                        municipality_code: self.selected.municipality.code,
+                        municipality_code: self.selected.municipalityCode,
                     },
                     success: function(data, textStatus, jqXHR) {
-                        console.log([data, textStatus, jqXHR]);
                         self.barangays = data.barangays;
                     }
                 });
             },
         }
     });
-    location.getRegions();
+    location.initDefault(16, 1602, 160202);
 
     // PROGRAMS
     var buttonAddProgram = document.getElementById("button-add-program");

@@ -48,14 +48,6 @@ class ApplicantsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function getRegions() {
-        $regions = Region::all();
-        return response()->json([
-            'regions' => $regions,
-        ]);
-    }
-
     public function create()
     {
         return view('hrmis.applicants.create');
@@ -85,7 +77,12 @@ class ApplicantsController extends Controller
         }
         */
 
+        //return response()->json(['response' => $request->all()]);
+
         $applicant = new Applicants();
+
+        $applicant->date_of_application = $request->date_of_application;
+        $applicant->date_received = $request->date_received;
 
         $applicant->lastname    = $request['lastname'];
         $applicant->firstname   = $request['firstname'];
@@ -96,6 +93,10 @@ class ApplicantsController extends Controller
         $applicant->email       = $request['email'];
         $applicant->log_id      = Auth::user()->id;
         $applicant->remarks     = nl2br($request['remarks']);
+
+        $applicant->barangay_code = $request->barangay;
+        $applicant->civil_status = $request->civil_status;
+
         $applicant->save();
 
         if ( !empty($request->programs) ) {

@@ -97,24 +97,24 @@
                                     <!-- SEX -->
                                     <div style="display: flex; flex-direction: column;" class="col-sm-4">
                                         <h2 class="card-inside-title">Sex</h2>
-                                        <div class="form-group">
-                                            <input name="sex" type="radio" id="radio_1" value="1" />
-                                            <label for="radio_1">Male</label>
-                                            <input name="sex" type="radio" id="radio_2" value="2" />
-                                            <label for="radio_2">Female</label>
+                                        <div class="form-check form-check-inline">
+                                            <input name="sex" type="radio" id="radio_1" class="form-check-input" value="1" />
+                                            <label for="radio_1" class="form-check-label">Male</label>
+                                            <input name="sex" type="radio" id="radio_2" class="form-check-input" value="2" />
+                                            <label for="radio_2" class="form-check-label">Female</label>
                                         </div>
                                     </div>
 
                                     <!-- AGE -->
                                     <div style="
                                         display: flex; 
-                                        flex-direction: column;
-                                    " class="col-sm-4">
+                                        flex-direction: column;" 
+                                    class="col-sm-4">
                                         <h2 class="card-inside-title">Age</h2>
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <input type="number" class="form-control" name="age" min="0">
-                                                <label class="form-label">Age</label>
+                                                <!-- <label class="form-label">Age</label> -->
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +177,7 @@
                                             <div class="form-line">
                                                 <label for="region">Region</label>
                                                 <select 
-                                                    v-model="selected.region"
+                                                    v-model="selected.regionCode"
                                                     @change="getProvinces"
                                                     name="region" 
                                                     id="region" 
@@ -186,7 +186,7 @@
                                                 >
                                                     <option
                                                         v-for="region in regions"
-                                                        v-bind:value="region"
+                                                        v-bind:value="region.code"
                                                     >
                                                         @{{ region.name }}
                                                     </option>
@@ -195,12 +195,12 @@
                                         </div>
                                     </div>
 
-                                    <div v-if="selected.region != ''" class="col-sm-10 animated slideInDown">
+                                    <div v-if="selected.regionCode != ''" class="col-sm-10 animated slideInDown">
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <label for="province">Province</label>
                                                 <select 
-                                                    v-model="selected.province"
+                                                    v-model="selected.provinceCode"
                                                     @change="getMunicipalities"
                                                     name="province"
                                                     id="province" 
@@ -208,7 +208,7 @@
                                                 >
                                                     <option
                                                         v-for="province in provinces"
-                                                        v-bind:value="province"
+                                                        v-bind:value="province.code"
                                                     >
                                                         @{{ province.name }}
                                                     </option>
@@ -217,12 +217,12 @@
                                         </div>
                                     </div>
 
-                                    <div v-if="selected.province != ''" class="col-sm-10 animated slideInDown">
+                                    <div v-if="selected.provinceCode != ''" class="col-sm-10 animated slideInDown">
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <label id="municipality">Municipality</label>
                                                 <select 
-                                                    v-model="selected.municipality"
+                                                    v-model="selected.municipalityCode"
                                                     @change="getBarangays"
                                                     name="municipality" 
                                                     id="municipality" 
@@ -230,7 +230,7 @@
                                                 >
                                                     <option
                                                         v-for="municipality in municipalities"
-                                                        v-bind:value="municipality"
+                                                        v-bind:value="municipality.code"
                                                     >
                                                         @{{ municipality.name }}
                                                     </option>
@@ -239,19 +239,19 @@
                                         </div>
                                     </div>
 
-                                    <div v-if="selected.municipality != ''" class="col-sm-10 animated slideInDown">
+                                    <div v-if="selected.municipalityCode != ''" class="col-sm-10 animated slideInDown">
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <label for="barangay">Barangay</label>
                                                 <select 
-                                                    v-model="selected.barangay"
-                                                    name="barangay" 
+                                                    v-model="selected.barangayCode"
+                                                    name="barangay"
                                                     id="barangay" 
                                                     class="form-control"
                                                 >
-                                                    <option 
+                                                    <option
                                                         v-for="barangay in barangays"
-                                                        v-bind:value="barangay"
+                                                        v-bind:value="barangay.code"
                                                     >
                                                         @{{ barangay.name }}
                                                     </option>
@@ -354,6 +354,7 @@
                                 <div id="trainings-info"></div>
 
                                 <template class="template-trainings-info">
+                                    <hr>
                                     <div class="form-group form-float animated slideInDown">
                                         <div class="form-line">
                                             <input type="text" name="training_titles[]" class="form-control">
@@ -408,6 +409,7 @@
                                 <div id="work-info"></div>
 
                                 <template class="template-work-info">
+                                    <hr>
                                     <div class="form-group form-float animated slideInDown">
                                         <div class="form-line">
                                             <input type="text" name="work_positions[]" class="form-control">
@@ -466,6 +468,7 @@
                                 <div id="eligibilities-info"></div>
 
                                 <template class="template-eligibilities-info">
+                                    <hr>
                                     <div class="form-group form-float animated slideInDown">
                                         <div class="form-line">
                                             <input type="text" name="title_eligibilities[]" class="form-control">
