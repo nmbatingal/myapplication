@@ -44,12 +44,15 @@ $(document).ready(function() {
         }
     }).validate({
         rules: {
-            firstname   : "required",
-            lastname    : "required",
-            sex         : "required",
+            //firstname   : "required",
+            //lastname    : "required",
+            //sex         : "required",
+
             // program     : "required",
             // school      : "required",
-            remarks     : "required",
+
+            //remarks     : "required",
+
             /*"attachment[]" : {
                 required  : true
             }*/

@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-// location models
+// location models;
 use App\Models\Location\Region as Region;
 use App\Models\Location\Province as Province;
 use App\Models\Location\Municipality as Municipality;
 use App\Models\Location\Barangay as Barangay;
+
+// academic degrees;
+use App\AcademicDegree as AcademicDegree;
+use App\DegreeType as DegreeType;
 
 class OpenApiController extends Controller
 {
@@ -36,5 +40,10 @@ class OpenApiController extends Controller
         return response()->json([
             'barangays' => $barangays,
         ]);
+    }
+
+    public function academicDegrees() {
+        $degrees = AcademicDegree::with(['degreeTypes'])->get();
+        return response()->json(['degrees' => $degrees]);
     }
 }

@@ -91,7 +91,8 @@
                                     </div>
                                 </div>
 
-                                <div style="display: flex; 
+                                <div style="
+                                    display: flex; 
                                     justify-content: flex-start; 
                                 ">
                                     <!-- SEX -->
@@ -299,7 +300,133 @@
 
                                 <template class="template-programs-info">
                                     <hr>
+                                    <div style="
+                                        display: grid;
+                                        grid-template-columns: repeat(4, 1fr);
+                                        grid-column-gap: 1em;
+                                        grid-row-gap: 1em;
+                                    ">
+                                        <!-- Academic Degree -->
+                                        <div style="
+                                            grid-column: 1/3;
+                                            grid-row: 1/2;
+                                        ">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label>Academic Degree</label>
+                                                    <select
+                                                        class="form-control" 
+                                                        name="academic_degrees[]"
+                                                    >   
+                                                        <option value="">Select Academic degree</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Degree Type -->
+                                        <div style="
+                                            grid-column: 3/5;
+                                            grid-row: 1/2;
+                                        ">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label>Degree Type</label>
+                                                    <select
+                                                        class="form-control" 
+                                                        name="degree_types[]"
+                                                    >
+                                                        <option value="">Select degree type</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Program -->
+                                        <div 
+                                            style="
+                                                grid-column: 1/4;
+                                                grid-row: 2/3;
+                                            "
+                                            class="animated slideInDown"
+                                        >
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" name="programs[]" class="form-control">
+                                                    <label class="form-label">Program</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Acronym -->
+                                        <div
+                                            class="animated slideInDown"
+                                            style="
+                                                grid-column: 4/5;
+                                                grid-row: 2/3;
+                                            "
+                                        >
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" name="acronyms[]" class="form-control">
+                                                    <label class="form-label">Acronym</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- School/University -->
+                                        <div 
+                                            class="animated slideInDown"
+                                            style="
+                                                grid-column: 1/4;
+                                                grid-row: 3/4;
+                                            "
+                                        >
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="schools[]">
+                                                    <label class="form-label">School</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Year Graduated -->
+                                        <div 
+                                            class="animated slideInDown"
+                                            style="
+                                                grid-column: 4/5;
+                                                grid-row: 3/4;
+                                            "
+                                        >
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="datepicker form-control" name="years_graduated[]">
+                                                    <label class="form-label">Year graduated</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Honours received -->
+                                        <div 
+                                            class="animated slideInDown"
+                                            style="
+                                                grid-column: 1/4;
+                                                grid-row: 4/5;
+                                            "
+                                        >
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="honors_received[]">
+                                                    <label class="form-label">Honors Received</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!--
                                     <div class="row clearfix">
+
                                         <div class="col-sm-9">
                                             <div class="form-group form-float animated slideInDown">
                                                 <div class="form-line">
@@ -308,6 +435,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-sm-3">
                                             <div class="form-group form-float animated slideInDown">
                                                 <div class="form-line">
@@ -316,8 +444,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
+                                    </div>
 
                                     <div class="row clearfix">
                                         <div class="col-sm-9">
@@ -337,6 +465,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    -->
                                 </template>
 
                             </fieldset>

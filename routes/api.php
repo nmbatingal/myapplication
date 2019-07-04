@@ -22,3 +22,6 @@ Route::get('address/regions', 'OpenApiController@regions');
 Route::get('address/provinces', 'OpenApiController@provinces');
 Route::get('address/municipalities', 'OpenApiController@municipalities');
 Route::get('address/barangays', 'OpenApiController@barangays');
+
+// ACADEMIC DATA
+Route::get('academic/degrees', 'OpenApiController@academicDegrees');
