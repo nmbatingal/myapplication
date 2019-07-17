@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ApplicantEducation extends Model
 {
     protected $connection = 'mysql';
-    
     protected $table = 'applicant_educations';
-
     protected $fillable = [
         'program', 'acronym', 'school', 'year_graduated', 'applicant_id',
     ];

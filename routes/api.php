@@ -25,3 +25,6 @@ Route::get('address/barangays', 'OpenApiController@barangays');
 
 // ACADEMIC DATA
 Route::get('academic/degrees', 'OpenApiController@academicDegrees');
+
+// TEST
+Route::get('test', 'OpenApiController@test');

@@ -39,14 +39,14 @@ $(document).ready(function() {
             form.validate().settings.ignore = ':disabled';
             return form.valid();
         },
-        onFinished: function (event, currentIndex) {
+        onFinidshed: function (event, currentIndex) {
             form.submit();
         }
     }).validate({
         rules: {
-            //firstname   : "required",
-            //lastname    : "required",
-            //sex         : "required",
+            firstname   : "required",
+            lastname    : "required",
+            sex         : "required",
 
             // program     : "required",
             // school      : "required",
@@ -171,6 +171,7 @@ $(document).ready(function() {
     /**
      * VUE Apps
      */
+
     var location = new Vue({
         el: '#address-fieldset',
         data: {
@@ -219,7 +220,7 @@ $(document).ready(function() {
                 self.selected.provinceCode = '';
                 self.selected.municipalityCode = '';
                 self.selected.barangayCode = '';
-                
+
                 self.provinces = '';
                 self.municipalities = '';
                 self.barangays = '';
@@ -275,6 +276,7 @@ $(document).ready(function() {
         }
     });
     location.initDefault(16, 1602, 160202);
+
 
     // PROGRAMS
     var buttonAddProgram = document.getElementById("button-add-program");

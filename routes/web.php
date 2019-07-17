@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('hrmis/applicants/all', 'Hrmis\ApplicantsController@showApplicants')->name('applicants.showApplicants');
     
     Route::resource('hrmis/applicants', 'Hrmis\ApplicantsController');  // Resource controller for applicants
+    Route::post('hrmis/applicants/csv_upload', 'Hrmis\ApplicantsController@csvUpload')->name('applicants.csvUpload');
 
     Route::get('hrmis/lineup/{id}/print', 'Hrmis\SelectionLineupController@printLineup')->name('lineup.print.lineup');
     Route::resource('hrmis/lineup', 'Hrmis\SelectionLineupController');  // Resource controller for applicants

@@ -19,6 +19,16 @@ use App\Models\Location\Province as Province;
 use App\Models\Location\Municipality as Municipality;
 use App\Models\Location\Barangay as Barangay;
 
+// academic
+use App\AcademicDegree as AcademicDegree;
+use App\CourseCategory as CourseCategory;
+use App\Course as Course;
+
+// EXCEL imports
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ApplicantsImport as ApplicantsImport;
+
+
 class ApplicantsController extends Controller
 {
     public function __construct()
@@ -50,7 +60,13 @@ class ApplicantsController extends Controller
      */
     public function create()
     {
-        return view('hrmis.applicants.create');
+        $academicDegrees = AcademicDegree::with(['degreeTypes'])->orderBy('id')->get();
+        $courseCategories = CourseCategory::orderBy('name')->get();
+
+        return view('hrmis.applicants.create', [
+            'academicDegrees' => $academicDegrees,
+            'courseCategories' => $courseCategories,
+        ]);
     }
 
     /**
@@ -78,6 +94,14 @@ class ApplicantsController extends Controller
         */
 
         //return response()->json(['response' => $request->all()]);
+        $coursesSaved = [];
+        for($i=0; $i<count($request->programs); $i++) {
+            $coursesSaved[] = Course::firstOrCreate([
+                'name' => $request->programs[$i],
+                'degree_type_id' => $request->degree_types[$i],
+                'course_category_id' => $request->course_categories[$i]
+            ]);
+        }
 
         $applicant = new Applicants();
 
@@ -106,6 +130,7 @@ class ApplicantsController extends Controller
                 if($request->programs[$i] != "") {
                     $education = new Education;
 
+                    $education->course_id = $coursesSaved[$i]->id;
                     $education->program = $request->programs[$i];
                     $education->acronym = $request->acronyms[$i];
                     $education->school = $request->schools[$i];
@@ -242,5 +267,19 @@ class ApplicantsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function csvUpload(Request $request) {
+        if(!empty($request->file('applicantsFile'))) {
+            $csvFilePath = $request->file('applicantsFile')->store('csv');
+            $this->csvImport($csvFilePath);
+            return response()->json(['message' => 'File successfully saved.']);
+        } else {
+            return response()->json(['meesage' => 'No file found.']);
+        }
+    }
+
+    public function csvImport($csvFilePath) {
+        Excel::import(new ApplicantsImport, $csvFilePath);
     }
 }

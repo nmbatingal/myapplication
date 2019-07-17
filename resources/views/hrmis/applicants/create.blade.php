@@ -35,8 +35,55 @@
                                 class="
                                     btn btn-success 
                                     animated slideInRight"
-                            >Import Excel</button>
+                                data-toggle="modal"
+                                data-target="#excelUploadForm"
+                            >
+                                Import Excel
+                            </button>
                         </div>
+
+                        <!-- MODAL start -->
+                        <div 
+                            class="modal fade" 
+                            id="excelUploadForm" 
+                            tabindex="-1" 
+                            role="dialog" 
+                            aria-labelledby="excelUploadFormLabel" 
+                            aria-hidden="true">
+
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">
+                                            Upload Excel File
+                                        </h5>
+                                    </div>
+
+                                    <div class="modal-body" style="display:flex; flex-direction:row-reverse;">
+                                        <!-- EXCEL upload form -->
+                                        <form 
+                                            method="POST" 
+                                            action="{{ route('applicants.csvUpload') }}"
+                                            enctype="multipart/form-data"
+                                        >
+                                            {{ csrf_field() }}
+                                            <label for="applicantsFile"></label>
+                                            <input
+                                                type="file"
+                                                name="applicantsFile"
+                                                id="applicantsFile"
+                                            >
+
+                                            <button type="submit" class="btn btn-warning">
+                                                Upload
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- MODAL FORM -->
+
                     </div>
 
                     <div id="form-new-applicant" class="body">
@@ -127,7 +174,7 @@
                                     " class="col-sm-4">
                                         <h2 class="card-inside-title">Civil Status</h2>
                                         <div class="form-group">
-                                            <select 
+                                            <select
                                                 name="civil_status" 
                                                 id="civil_status"
                                                 class="form-control"
@@ -166,7 +213,7 @@
 
                                 <h2 class="card-inside-title">Home Address</h2>
                                 <!-- HOME ADDRESS fieldset-->
-                                <div 
+                                <div
                                     id="address-fieldset"
                                     style="
                                         display: flex;
@@ -196,7 +243,13 @@
                                         </div>
                                     </div>
 
-                                    <div v-if="selected.regionCode != ''" class="col-sm-10 animated slideInDown">
+                                    <div 
+                                        v-bind:class="{
+                                            slideInDown: selected.regionCode != '',
+                                            slideOutUp: selected.regionCode == ''
+                                        }"
+                                        class="col-sm-10 animated"
+                                    >
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <label for="province">Province</label>
@@ -218,7 +271,13 @@
                                         </div>
                                     </div>
 
-                                    <div v-if="selected.provinceCode != ''" class="col-sm-10 animated slideInDown">
+                                    <div 
+                                        v-bind:class="{
+                                            slideOutUp: selected.provinceCode == '',
+                                            slideInDown: selected.provinceCode != ''
+                                        }"
+                                        class="col-sm-10 animated"
+                                    >
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <label id="municipality">Municipality</label>
@@ -240,7 +299,13 @@
                                         </div>
                                     </div>
 
-                                    <div v-if="selected.municipalityCode != ''" class="col-sm-10 animated slideInDown">
+                                    <div 
+                                        v-bind:class="{
+                                            slideInDown: selected.municipalityCode != '',
+                                            slideOutUp: selected.municipalityCode == ''
+                                        }"
+                                        class="col-sm-10 animated"
+                                    >
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <label for="barangay">Barangay</label>
@@ -296,6 +361,7 @@
                                     type="button"
                                 >Add Program</button>
 
+                                <!-- Populated by Vanilla JS (custom), that generates new entry. -->
                                 <div id="programs-info"></div>
 
                                 <template class="template-programs-info">
@@ -310,40 +376,50 @@
                                         <div style="
                                             grid-column: 1/3;
                                             grid-row: 1/2;
-                                        ">
+                                        " class="animated slideInDown">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <label>Academic Degree</label>
                                                     <select
                                                         class="form-control" 
-                                                        name="academic_degrees[]"
-                                                    >   
-                                                        <option value="">Select Academic degree</option>
+                                                        name="degree_types[]"
+                                                    >
+                                                        <option value="0"></option>
+                                                        @foreach($academicDegrees as $academicDegree)
+                                                            <optgroup label="{{ $academicDegree->name }}">
+                                                                @foreach($academicDegree->degreeTypes as $degreeType)
+                                                                    <option value="{{ $degreeType->id }}">{{ $degreeType->name }}</option>
+                                                                @endforeach
+                                                            </optgroup>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!-- Degree Type -->
+                                        <!-- Course Category -->
                                         <div style="
                                             grid-column: 3/5;
                                             grid-row: 1/2;
-                                        ">
+                                        " class="animated slideInDown">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <label>Degree Type</label>
+                                                    <label>Course Category</label>
                                                     <select
-                                                        class="form-control" 
-                                                        name="degree_types[]"
+                                                        class="form-control"
+                                                        name="course_categories[]"
                                                     >
-                                                        <option value="">Select degree type</option>
+                                                        <option value="0"></option>
+                                                        @foreach($courseCategories as $courseCategory)
+                                                            <option value="{{ $courseCategory->id }}">{{ $courseCategory->name }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <!-- Program -->
-                                        <div 
+                                        <div
                                             style="
                                                 grid-column: 1/4;
                                                 grid-row: 2/3;
@@ -352,7 +428,12 @@
                                         >
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" name="programs[]" class="form-control">
+                                                    <input
+                                                        type="text" 
+                                                        name="programs[]" 
+                                                        class="form-control"
+                                                        placeholder=" e.g. Information Technology"
+                                                    >
                                                     <label class="form-label">Program</label>
                                                 </div>
                                             </div>
