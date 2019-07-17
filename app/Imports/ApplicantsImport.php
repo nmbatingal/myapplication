@@ -107,32 +107,24 @@ class ApplicantsImport implements ToCollection
                 $applicant->barangay_code = $region->provinces[0]->municipalities[0]->barangays[0]->code;
 
                 $applicant->save();
+            }
+            // EDUCATION
+            if($collection[$i][COURSE_CATEGORY] != '' && $collection[$i][ACADEMIC_DEGREES] != '') {
+                $this->saveEducation($applicant->id,$collection[$i]);
+            }
+            // TRAININGS
+            if($collection[$i][TRAINING_TITLE] != '') {
+                $this->saveTraining($applicant->id, $collection[$i]);
+            }
 
-                // EDUCATION
-                if($collection[$i][COURSE_CATEGORY] != '' && $collection[$i][ACADEMIC_DEGREES] != '') {
-                    $this->saveEducation($applicant->id,$collection[$i]);
-                }
+            // WORK EXPERIENCES
+            if($collection[$i][EXPERIENCE_POSITION] != '') {
+                $this->saveExperience($applicant->id, $collection[$i]);
+            }
 
-                // TRAININGS
-                if($collection[$i][TRAINING_TITLE] != '') {
-                    $this->saveTraining($applicant->id, $collection[$i]);
-                }
-
-                // WORK EXPERIENCES
-                if($collection[$i][EXPERIENCE_POSITION] != '') {
-                    $this->saveExperience($applicant->id, $collection[$i]);
-                }
-
-                // ELIGIBILITIES
-                if($collection[$i][ELIGIBILITY_TITLE] != '') {
-                    $this->saveEligiblity($applicant->id, $collection[$i]);
-                }
-
-            } else {
-                // EDUCATION
-                if($collection[$i][COURSE_CATEGORY] != '' && $collection[$i][ACADEMIC_DEGREES] != '') {
-                    $this->saveEducation($applicant->id,$collection[$i]);
-                }
+            // ELIGIBILITIES
+            if($collection[$i][ELIGIBILITY_TITLE] != '') {
+                $this->saveEligiblity($applicant->id, $collection[$i]);
             }
         }
     }
@@ -143,8 +135,8 @@ class ApplicantsImport implements ToCollection
 
         $course = Course::firstOrCreate([
             'name' => $row[COURSES],
-            'degree_type_id' => $academicDegreeId,
-            'course_category_id' => $courseCategoryId,
+            'degree_type_id' => $academicDegree->id,
+            'course_category_id' => $courseCategory->id,
         ]);
 
         $applicantEducation = new ApplicantEducation;
