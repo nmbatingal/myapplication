@@ -95,7 +95,7 @@
                             </div>
                             @endhasanyrole
 
-                            <div class="col-md-3">
+                            <div class="col-md-3" style="display: none;">
                                 <div class="card card-default pmd-z-depth">
                                     <!-- Card media -->
                                     <div class="card-media">
@@ -128,7 +128,7 @@
                                     </div>
 
                                     <div class="header">
-                                        <h2><a href="{{ route('morale.index') }}" class="font-bold">MorSS</a> <small>Morale Survey System...</small></h2>
+                                        <h2><a href="{{ route('morale.semestral') }}" class="font-bold">Morale Survey</a> <small>Morale Survey System</small></h2>
                                         <ul class="header-dropdown m-r-0">
                                             <li>
                                                 <a href="javascript:void(0);">

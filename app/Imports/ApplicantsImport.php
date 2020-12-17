@@ -68,8 +68,6 @@ class ApplicantsImport implements ToCollection
     */
     public function collection(Collection $collection)
     {
-        $isNewApplicant = true;
-
         $applicantsCount = count($collection);
         for($i=2; $i<$applicantsCount; $i++) {
             if($collection[$i][LASTNAME] != '') {

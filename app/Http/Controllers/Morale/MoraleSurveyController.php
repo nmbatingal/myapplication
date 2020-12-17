@@ -137,13 +137,12 @@ class MoraleSurveyController extends Controller
     public function store(Request $request)
     {
 
-        $survey_notif = new Notification;
-        $survey_notif->sem_id  = $request['sem_id'];
-        $survey_notif->user_id = $request['user_id'];
-        $survey_notif->div_id  = $request['div_id'];
+        //$survey_notif = new Notification;
+        //$survey_notif->sem_id  = $request['sem_id'];
+        //$survey_notif->user_id = $request['user_id'];
+        //$survey_notif->div_id  = $request['div_id'];
 
-        if ( $survey_notif->save() )
-        {
+        //if ( $survey_notif->save() ) {
             foreach ($request->q_id as $q_id) {
                 $survey = new Survey;
 
@@ -152,10 +151,14 @@ class MoraleSurveyController extends Controller
                 $survey->score       = $request['qn_'.$q_id];
                 $survey->semestral_id = $request['sem_id'];
                 $survey->save();
+				return $q_id;
+				
+				
             }
-        }
+        //}
 
-        return redirect()->route('morale.semestral');
+        // return redirect()->route('morale.semestral');
+		// return $request;
     }
 
     /**

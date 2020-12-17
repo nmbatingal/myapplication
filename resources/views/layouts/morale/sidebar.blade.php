@@ -25,7 +25,9 @@
             <div class="menu_section active">
                 <h3>MENU</h3>
                 <ul class="nav side-menu">
-                    <li><a href="{{ route('morale.index') }}"><i class="fa fa-th-large"></i> Dashboard</a></li>
+                    
+						<li><a href="{{ route('morale.index') }}"><i class="fa fa-th-large"></i> Dashboard</a></li>
+					
                     <li><a href="{{ route('morale.semestral') }}"><i class="fa fa-pencil"></i> Conduct Survey</a></li>
                 </ul>
             </div>
